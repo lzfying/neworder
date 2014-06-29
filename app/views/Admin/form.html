@@ -1,0 +1,81 @@
+#{extends 'admin.html' /}
+ 
+#{ifnot meal?.id}
+    <h3>新建, <span>a new meal</span></h3>
+#{/ifnot}
+#{else}
+    <h3>编辑, <span>this meal</span></h3>
+#{/else}
+ 
+#{form @save(meal?.id)}
+ 
+    #{ifErrors}
+        <p class="error">
+            Please correct these errors.
+        </p>
+    #{/ifErrors}
+     
+    <p>
+        #{field 'name'}
+        <label>菜品:</label>
+        <input type="text" name="${field.name}" 
+           value="${meal?.name}" />
+        <span class="error">#{error 'meal.name'/}</span>
+        #{/field}
+    </p>
+    
+    <p>
+        #{field 'type'}
+        <label>种类:</label>
+        <input type="text" name="${field.name}" 
+           value="${meal?.type}" />
+        <span class="error">#{error 'meal.type'/}</span>
+        #{/field}
+    </p>
+    
+    <p>
+        #{field 'type1'}
+        <label>类型:</label>
+        
+          #{select 'meal.type2', value:meal?.type2}
+            #{option 1}中式#{/option}
+            #{option 2}西式#{/option}
+            
+        #{/select}
+  	
+        #{/field}
+    </p>
+    
+     <p>
+        #{field 'type2'}
+        <label>口味:</label>
+        <input type="text" name="${field.name}" 
+           value="${meal?.type2}" />
+        <span class="error">#{error 'meal.name'/}</span>
+        #{/field}
+    </p>
+ 
+ 
+    <p>
+        #{field 'content'}
+        <label>简介:</label>
+        <textarea name="${field.name}">
+          ${meal?.mealDesc?.content}
+        </textarea>
+        <span class="error">#{error 'meal.content'/}</span>
+        #{/field}
+    </p>
+ 
+    <p>
+        #{field 'tags'}
+        <label>Enter some tags:</label>
+        <input type="text" size="50" 
+            name="${field.name}" value="${post?.tags?.join(' ')}" />
+        #{/field}
+    </p>
+    
+    <p>
+        <input type="submit" value="Publish this post to the blog" />
+    </p>
+    
+#{/form}

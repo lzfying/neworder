@@ -1,0 +1,384 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DAOWEIR</title>
+<link rel="stylesheet" href="@{'/public/Style/main.css'}">
+<link rel="stylesheet" href="@{'/public/stylesheets/cart.css'}">
+#{script src:"jquery-1.7.1.min.js" /}
+#{script src:"jquery.tools-1.2.5.toolbox.expose.min.js" /}
+#{script src:"Headroom.js" /}
+#{script src:"jQuery.headroom.js" /}
+#{script src:"simpleCart.js" /}
+</head>
+
+
+<script> 
+
+$(document).ready(function(){ 
+
+    $(".fr").click(function(){ 
+
+        var menID =  $(this).attr("id");
+
+        var thisTop = $("#img_" + menID).offset().top; //所在位置的高度
+
+        var thisLeft = $("#img_" + menID).offset().left; //所在位置的宽度
+
+         animatenTop(thisTop,thisLeft);
+
+        return false; 
+
+    }); 
+    
+
+    
+    
+    
+
+}); 
+
+function showcart(){
+	
+	$("#cartPopover").show(); $("header .cartInfo").addClass('open');
+}
+
+function animatenTop(thisTop,thisLeft) {
+
+    var CopyDiv = '<img src="images/490-260.png" id="box" style="top:' + thisTop + 'px;left:' + thisLeft + 'px" />';
+
+    var topLength =  $(".cartInfo ").offset().top; //取得到购物车的宽度
+
+    var leftLength = $(".cartInfo ").offset().left; //取得到购物车的宽度 
+
+    $("body").append(CopyDiv);
+
+    $("body").children("#box").animate({width: "30px",height: "30px","top": topLength, "left": leftLength, "opacity": .1  }, 900, function(){$(this).remove()});
+
+}
+
+
+</script>
+<script>
+
+
+$(function(){
+	//encode html entities
+	function htmlDecode(value) {
+	    if (value) {
+	        return $('<div />').text(value).html();
+	    } else {
+	        return '';
+	    }
+	}
+	
+	$('pre.html,pre.feature-html').each(function(){
+		$(this).html(htmlDecode($(this).html()));
+	});
+	
+	$("#demo .simpleCart_shelfItem").mouseenter(function(event) {
+		$(this).find('.tooltip').fadeIn(200);
+	});
+	$("#demo .simpleCart_shelfItem").mouseleave(function(event) {
+		$(this).find('.tooltip').fadeOut(200);
+	});
+	$(".cartInfo").toggle(function(){
+
+		$("#cartPopover").show();
+		$("header .cartInfo").addClass('open');
+	}, function(){
+		$("#cartPopover").hide();
+		$("header .cartInfo").removeClass('open');
+	});
+	
+	
+//	$("#demoShelf .simpleCart_shelfItem:eq(0)").css('left', '310px');
+//	$("#demoShelf .simpleCart_shelfItem:eq(1)").css('left', '171px');
+//	$("#demoShelf .simpleCart_shelfItem:eq(2)").css('left', '29px');
+//	$("#demoShelf .simpleCart_shelfItem").delay(500).animateStep({css:{top:'0px'},delay:100,speed:100});
+/* 	$("#demoShelf .simpleCart_shelfItem").click(function(){
+		$(".intro").css('overflow','visible');
+		var clone = $(this).clone(),
+			position = $(this).position(),
+			bezier_params = {
+		    start: { 
+		      x: position.left, 
+		      y: 0, 
+		      angle: -90
+		    },  
+		    end: { 
+		      x:310,
+		      y:-210, 
+		      angle: 180, 
+		      length: .2
+		    }
+		  };
+		
+		clone.appendTo('#demoShelf');
+		clone.find('.tooltip').hide();
+		clone.addClass('addDemoAnimation');
+		clone.animate({path : new $.path.bezier(bezier_params)}, 600);
+		
+	}); */
+	
+	
+
+});
+
+
+
+simpleCart.currency({
+	  code: "RMB" ,
+	  symbol: "￥" ,
+	  name: "人民币"
+	});
+
+
+
+simpleCart({
+	//Setting the Cart Columns for the sidebar cart display.
+	cartColumns: [
+	//A custom cart column for putting the quantity and increment and decrement items in one div for easier styling.
+	{ view: function(item, column){
+		return "<span>"+item.get('quantity')+"</span>" +
+		"<div>" +
+		"<a href='javascript:;' class='simpleCart_increment'><img src='@{'/public/images/increment.png'}' title='+1' alt='arrow up'/></a>" +
+		"<a href='javascript:;' class='simpleCart_decrement'><img src='@{'/public/images/decrement.png'}' title='-1' alt='arrow down'/></a>" +
+		"</div>";
+	}, attr: 'custom' },
+		//Name of the item
+	{ attr: "name" , label: false },
+		//Subtotal of that row (quantity of that item * the price)
+	{ view: 'currency', attr: "total" , label: false }
+	],
+	
+	 checkout: {
+		 type: "SendForm" ,
+		 url: "https://mapi.alipay.com/gateway.do?_input_charset=utf-8"
+		 },
+	cartStyle: 'div'
+});
+</script>
+<body>
+<div class="header">
+    <div class="wrap">
+        <div class="logo fl">
+        <a href="/"></a>
+        </div>
+        <div class="nav fr">
+        <ul class="fl">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">套餐</a></li>
+        <li><a href="#">单点</a></li>
+        <li class="nobg"><a href="#">今日特惠</a></li>
+        </ul>
+        <div class="login_reg fr">
+        <daobutton><a href="@{Admin.index()}">登录</a> </daobutton>
+        <daobutton>注册</daobutton>
+        </div>
+        </div>
+    </div>
+</div>
+<div class="banner"></div>
+
+
+
+<div class="shoppingBox ">
+	<div class="cartInfo">
+	<span    class="simpleCart_quantity"></span> 订单
+	</div>
+	
+	
+	<div id="cartPopover" style="display: none;">
+			
+			<div class="simpleCart_items">
+				<div>
+				<div>
+					<div class="headerRow">
+						<div class="item-custom"></div>
+						<div class="item-name"></div>
+						<div class="item-total"></div>
+					</div>
+				</div>
+
+				</div>
+			</div>
+			<div id="cartData" class="clearfix">
+			<div class="left">
+				<strong>数量: </strong>
+					<span class="simpleCart_quantity"></span>
+			</div>
+			<div class="right">
+				<strong>餐费: </strong>
+				<span class="simpleCart_total"></span>
+			</div>
+			<div id="popoverButtons" class="clearfix">
+				<a class="hudbtn left" href="/cart/">查看订单</a>
+				<a class="simpleCart_checkout hudbtn primary right" href="javascript:;">结账</a>
+			</div>
+			
+			<a href="javascript:;" class="simpleCart_empty">清空</a>
+			</div>
+		</div>
+	
+</div>
+
+
+
+
+
+
+
+
+<div class="wrap taocan">
+<h2>套餐</h2>
+<ul>
+<li><a href="#"><img src="images/taocan320-400.png" /></a>
+<p><a href="#">屌丝套餐 <span>18</span>元</a></p>
+</li>
+<li><a href="#"><img src="images/taocan320-400.png" /></a>
+<p><a href="#">屌丝套餐 <span>28</span>元</a></p>
+</li>
+<li><a href="#"><img src="images/taocan320-400.png" /></a>
+<p><a href="#">屌丝套餐 <span>58</span>元</a></p>
+</li>
+</ul>
+</div>
+<div class="clear"></div>
+<div class="wrap jinritaocan">
+<h2>今日套餐</h2>
+<ul>
+<li>
+<a href="#"><img src="images/490-260.png" /></a>
+<div class="des">
+<p class="fl"><strong>【特惠套餐二】 </strong>&nbsp;&nbsp;水煮肉片+豆芽炒面筋+干锅西兰花</p>
+<span class="fl">&yen;<em>68</em></span>
+<a class="fr" href="javascript:;" onclick="simpleCart.add({name:'水煮肉片+豆芽炒面筋+干锅西兰花', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
+</div>
+</li>
+<li>
+<a href="#"><img src="images/490-260.png" /></a>
+<div class="des">
+<p class="fl"><strong>【特惠套餐二】 </strong>&nbsp;&nbsp;水煮肉片+豆芽炒面筋+干锅西兰花</p>
+<span class="fl">&yen;<em>68</em></span>
+<a class="fr" href="javascript:;"    onclick="simpleCart.add({name:'水煮肉片+豆芽炒面筋+干锅西兰花', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
+</div>
+</li>
+</ul>
+</div>
+<div class="clear"></div>
+<div class="wrap zhushi others">
+<h2>主食</h2>
+<ul>
+<li>
+<a href="#"><img src="images/240-240.png" id='img_1' /></a>
+<p><a class="fr" href="javascript:;" id='1'   onclick="showcart();simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
+<span><em>&yen;</em>16</span><br />
+【辣子鸡盒饭1】
+</p>
+</li> 
+<li>
+<a href="#"><img src="images/240-240.png" /></a>
+<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
+<span><em>&yen;</em>16</span><br />
+【辣子鸡盒饭2】
+</p>
+</li>
+<li>
+<a href="#"><img src="images/240-240.png" /></a>
+<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
+<span><em>&yen;</em>16</span><br />
+【辣子鸡盒饭3】
+</p>
+</li>
+<li>
+<a href="#"><img src="images/240-240.png" /></a>
+<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
+<span><em>&yen;</em>16</span><br />
+【辣子鸡盒饭4】
+</p>
+</li>
+</ul>
+</div>
+<div class="clear"></div>
+<div class="wrap tanglei others">
+<h2>汤类</h2>
+<ul>
+<li>
+<a href="#"><img src="images/240-240.png" /></a>
+<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
+<span><em>&yen;</em>16</span><br />
+【辣子鸡盒饭】
+</p>
+</li>
+<li>
+<a href="#"><img src="images/240-240.png" /></a>
+<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
+<span><em>&yen;</em>16</span><br />
+【辣子鸡盒饭】
+</p>
+</li>
+<li>
+<a href="#"><img src="images/240-240.png" /></a>
+<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
+<span><em>&yen;</em>16</span><br />
+【辣子鸡盒饭】
+</p>
+</li>
+<li>
+<a href="#"><img src="images/240-240.png" /></a>
+<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
+<span><em>&yen;</em>16</span><br />
+【辣子鸡盒饭】
+</p>
+</li>
+</ul>
+</div>
+<div class="clear"></div>
+<div class="wrap xiaochi others pd30">
+<h2>小吃</h2>
+<ul>
+<li>
+<a href="#"><img src="images/240-240.png" /></a>
+<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
+<span><em>&yen;</em>16</span><br />
+【辣子鸡盒饭】
+</p>
+</li>
+<li>
+<a href="#"><img src="images/240-240.png" /></a>
+<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
+<span><em>&yen;</em>16</span><br />
+【辣子鸡盒饭】
+</p>
+</li>
+<li>
+<a href="#"><img src="images/240-240.png" /></a>
+<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
+<span><em>&yen;</em>16</span><br />
+【辣子鸡盒饭】
+</p>
+</li>
+<li>
+<a href="#"><img src="images/240-240.png" /></a>
+<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
+<span><em>&yen;</em>16</span><br />
+【辣子鸡盒饭】
+</p>
+</li>
+</ul>
+</div>
+<div class="clear"></div>
+<div class="footer">
+<p><span>Copyright &copy; 2014 DaoWeir.com All Rights Reserved. </span></p>
+<p>
+<a href="#">关于我们</a><span>|</span>
+<a href="#">客服中心</a><span>|</span>
+<a href="#">购买流程</a><span>|</span>
+<a href="#">法律声明</a><span>|</span>
+<a href="#">诚聘英才</a><span>|</span>
+<a href="#">商务合作</a>
+</p>
+</div>
+</body>
+</html>

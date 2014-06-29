@@ -1,0 +1,279 @@
+div.selector, div.selector span, div.checker span, div.radio span, div.uploader, div.uploader span.action {
+    background-image: url("../images/uniform-dark-sprite.png");
+    background-repeat: no-repeat;
+}
+.selector, .radio, .checker, .uploader, .selector *, .radio *, .checker *, .uploader * {
+    margin: 0;
+    padding: 0;
+}
+div.selector {
+    background-position: -483px -115px;
+    height: 23px;
+    line-height: 23px;
+}
+div.selector span {
+    background-position: right 0;
+    height: 23px;
+    line-height: 24px;
+}
+div.selector select {
+    left: 0;
+    top: 0;
+}
+div.selector:active, div.selector.active {
+    background-position: -483px -138px;
+}
+div.selector:active span, div.selector.active span {
+    background-position: right -23px;
+}
+div.selector.focus, div.selector.hover, div.selector:hover {
+    background-position: -483px -161px;
+}
+div.selector.focus span, div.selector.hover span, div.selector:hover span {
+    background-position: right -46px;
+}
+div.selector.focus:active, div.selector.focus.active, div.selector:hover:active, div.selector.active:hover {
+    background-position: -483px -184px;
+}
+div.selector.focus:active span, div.selector:hover:active span, div.selector.active:hover span, div.selector.focus.active span {
+    background-position: right -69px;
+}
+div.selector.disabled, div.selector.disabled:active, div.selector.disabled.active {
+    background-position: -483px -207px;
+}
+div.selector.disabled span, div.selector.disabled:active span, div.selector.disabled.active span {
+    background-position: right -92px;
+}
+div.checker {
+    height: 16px;
+    width: 16px;
+}
+div.checker input {
+    height: 16px;
+    width: 16px;
+}
+div.checker span {
+    background-position: 0 -230px;
+    height: 16px;
+    width: 16px;
+}
+div.checker:active span, div.checker.active span {
+    background-position: -16px -230px;
+}
+div.checker.focus span, div.checker:hover span {
+    background-position: -32px -230px;
+}
+div.checker.focus:active span, div.checker:active:hover span, div.checker.active:hover span, div.checker.focus.active span {
+    background-position: -48px -230px;
+}
+div.checker span.checked {
+    background-position: -64px -230px;
+}
+div.checker:active span.checked, div.checker.active span.checked {
+    background-position: -80px -230px;
+}
+div.checker.focus span.checked, div.checker:hover span.checked {
+    background-position: -96px -230px;
+}
+div.checker.focus:active span.checked, div.checker:hover:active span.checked, div.checker.active:hover span.checked, div.checker.active.focus span.checked {
+    background-position: -112px -230px;
+}
+div.checker.disabled span, div.checker.disabled:active span, div.checker.disabled.active span {
+    background-position: -128px -230px;
+}
+div.checker.disabled span.checked, div.checker.disabled:active span.checked, div.checker.disabled.active span.checked {
+    background-position: -144px -230px;
+}
+div.radio {
+    height: 16px;
+    width: 16px;
+}
+div.radio input {
+    height: 16px;
+    width: 16px;
+}
+div.radio span {
+    background-position: 0 -246px;
+    height: 16px;
+    width: 16px;
+}
+div.radio:active span, div.radio.active span {
+    background-position: -16px -246px;
+}
+div.radio.focus span, div.radio:hover span {
+    background-position: -32px -246px;
+}
+div.radio.focus:active span, div.radio:active:hover span, div.radio.active:hover span, div.radio.active.focus span {
+    background-position: -48px -246px;
+}
+div.radio span.checked {
+    background-position: -64px -246px;
+}
+div.radio:active span.checked, div.radio.active span.checked {
+    background-position: -80px -246px;
+}
+div.radio.focus span.checked, div.radio:hover span.checked {
+    background-position: -96px -246px;
+}
+div.radio.focus:active span.checked, div.radio:hover:active span.checked, div.radio.focus.active span.checked, div.radio.active:hover span.checked {
+    background-position: -112px -246px;
+}
+div.radio.disabled span, div.radio.disabled:active span, div.radio.disabled.active span {
+    background-position: -128px -246px;
+}
+div.radio.disabled span.checked, div.radio.disabled:active span.checked, div.radio.disabled.active span.checked {
+    background-position: -144px -246px;
+}
+div.uploader {
+}
+div.uploader span.action {
+}
+div.uploader span.filename {
+    margin: 2px 0 2px 2px;
+}
+div.uploader.focus, div.uploader.hover, div.uploader:hover {
+}
+div.uploader.focus span.action, div.uploader.hover span.action, div.uploader:hover span.action {
+}
+div.uploader.active span.action, div.uploader:active span.action {
+}
+div.uploader.focus.active span.action, div.uploader.active:focus span.action, div.uploader.focus:active span.action, div.uploader:focus:active span.action {
+}
+div.uploader.disabled {
+}
+div.uploader.disabled span.action {
+}
+div.selector {
+    width: 190px;
+}
+div.selector select {
+    border: 1px solid #FFFFFF;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    width: 190px;
+}
+div.selector span {
+    color: #E9E9E9;
+    cursor: pointer;
+    font-size: 13px;
+    padding: 0 25px 0 2px;
+    text-shadow: 0 1px 0 #000000;
+    width: 158px;
+}
+div.selector.disabled span {
+    color: #BBBBBB;
+}
+div.checker {
+    margin-right: 10px;
+}
+div.radio {
+    margin-right: 10px;
+}
+div.uploader {
+    cursor: pointer;
+    margin-bottom: 20px;
+    width: 190px;
+}
+div.uploader span.action {
+    background-color: #FFFFFF;
+    text-align: center;
+    text-shadow: 0 1px 0 #FFFFFF;
+    width: 85px;
+}
+div.uploader span.filename {
+    border-right: 1px solid #BBBBBB;
+    color: #777777;
+    font-size: 90%;
+    width: 82px;
+}
+div.uploader input {
+    width: 190px;
+}
+div.uploader.disabled span.action {
+    color: #AAAAAA;
+}
+div.uploader.disabled span.filename {
+    border-color: #DDDDDD;
+    color: #AAAAAA;
+}
+.selector select:focus, .radio input:focus, .checker input:focus, uploader input:focus {
+    outline: 0 none;
+}
+div.selector {
+    overflow: hidden;
+    padding-left: 10px;
+    position: relative;
+}
+div.selector span {
+    display: block;
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+div.selector select {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    height: 25px;
+    opacity: 0;
+    position: absolute;
+}
+div.checker {
+    float: left;
+    position: relative;
+}
+div.checker span {
+    display: block;
+    float: left;
+    text-align: center;
+}
+div.checker input {
+    background: none repeat scroll 0 0 transparent;
+    display: inline-block;
+    opacity: 0;
+}
+div.radio {
+    float: left;
+    position: relative;
+}
+div.radio span {
+    display: block;
+    float: left;
+    text-align: center;
+}
+div.radio input {
+    background: none repeat scroll 0 0 transparent;
+    display: inline-block;
+    opacity: 0;
+    text-align: center;
+}
+div.uploader {
+    float: left;
+    overflow: hidden;
+    position: relative;
+}
+div.uploader span.action {
+    cursor: pointer;
+    display: inline;
+    float: left;
+    overflow: hidden;
+    padding: 2px 0;
+}
+div.uploader span.filename {
+    display: block;
+    float: left;
+    overflow: hidden;
+    padding: 0 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+div.uploader input {
+    border: medium none;
+    bottom: 0;
+    float: right;
+    height: 25px;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}

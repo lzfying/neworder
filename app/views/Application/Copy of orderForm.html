@@ -1,0 +1,105 @@
+#{extends 'main.html' /}
+
+#{script src:"simpleCart.min.js" /}
+ 
+#{ifnot meal?.id}
+    <h3>新建, <span>a new meal</span></h3>
+#{/ifnot}
+#{else}
+    <h3>编辑, <span>this meal</span></h3>
+#{/else}
+<link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/css/chartcss.css'}" />
+<link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/jquery.snippet.css'}" />
+<link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/uniform.dark.css'}" />	
+
+ 
+<script>
+simpleCart({
+checkout: {
+type: "PayPal",
+email: "you@yours.com"
+}
+});
+</script>
+ 
+ 
+<section>
+	<h2 class="">Demo Cart</h2>
+	<style>
+		.simpleCart_items table{
+			border:1px solid #ccc;
+		}
+		.simpleCart_items th{
+			color:#333;
+			text-align:left;
+			padding:10px 30px;
+			border-bottom:1px solid #ccc;
+			background: #ededed;
+			background: -moz-linear-gradient(top,  #f7f7f7 0%, #ededed 100%);
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f7f7f7), color-stop(100%,#ededed));
+			background: -webkit-linear-gradient(top,  #f7f7f7 0%,#ededed 100%);
+			background: -o-linear-gradient(top,  #f7f7f7 0%,#ededed 100%);
+			background: -ms-linear-gradient(top,  #f7f7f7 0%,#ededed 100%);
+			background: linear-gradient(top,  #f7f7f7 0%,#ededed 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#ededed',GradientType=0 );
+		}
+		.simpleCart_items td{
+			padding:10px 30px;
+			vertical-align:middle;
+			border-bottom:1px solid #ccc;
+			
+		}
+		.item-image,
+		.item-image img{width:72px;}
+		.item-name{width:50%;}
+		.item-quantity,
+		.item-quantity input{
+			width:30px;
+			text-align:center;
+		}
+		.item-price,
+		.item-subtotal{width:50px;}
+	</style>
+	<div class="simpleCart_items"></div>
+</section>
+ 
+ 
+#{form @saveOrder(meal?.id)}
+ 
+    #{ifErrors}
+        <p class="error">
+            Please correct these errors.
+        </p>
+    #{/ifErrors}
+     
+    <p>
+        #{field 'name'}
+        <label>菜品:</label>
+        <input type="text" name="${field.name}" 
+           value="${meal?.name}" />
+        <span class="error">#{error 'meal.name'/}</span>
+        #{/field}
+    </p>
+
+    <p>
+        #{field 'type1'}
+        <label>类型:</label>
+        
+          #{select 'meal.type2', value:meal?.type2}
+            #{option 1}中式#{/option}
+            #{option 2}西式#{/option}
+            
+        #{/select}
+  	
+        #{/field}
+    </p>
+    
+     
+    
+#{/form}
+
+<ul class="pure-paginator">
+  
+    <li><a class="pure-button" href="#">购物车</a></li>
+  
+</ul>

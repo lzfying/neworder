@@ -1,0 +1,522 @@
+#{extends 'main.html' /}
+<html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+<link rel="stylesheet" href="@{'/public/stylesheets/cart.css'}">
+
+<style>
+
+		.my_simpleCart_items table{
+			border:1px solid #ccc;
+			margin:0px auto;
+		}
+		.my_simpleCart_items th{
+			color:#333;
+			text-align:left;
+			padding:10px 10px;
+			border-bottom:1px solid #ccc;
+			background: #ededed;
+			background: -moz-linear-gradient(top,  #f7f7f7 0%, #ededed 100%);
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f7f7f7), color-stop(100%,#ededed));
+			background: -webkit-linear-gradient(top,  #f7f7f7 0%,#ededed 100%);
+			background: -o-linear-gradient(top,  #f7f7f7 0%,#ededed 100%);
+			background: -ms-linear-gradient(top,  #f7f7f7 0%,#ededed 100%);
+			background: linear-gradient(top,  #f7f7f7 0%,#ededed 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#ededed',GradientType=0 );
+		}
+		.my_simpleCart_items td{
+			padding:10px 30px;
+			vertical-align:middle;
+			border-bottom:1px solid #ccc;
+			
+		}
+		.item-image,
+		.item-image img{width:72px;}
+		.item-name{width:50%;}
+		.item-quantity,
+		.item-quantity input{
+			width:30px;
+			text-align:center;
+		}
+		.item-price,
+		.item-subtotal{width:50px;}
+
+ .myright {
+    background: none repeat scroll 0 0 #0F91CF;
+    border-spacing: 0;
+    color: #FFFFFF;
+    display: table-cell;
+    margin-top: 0;
+    padding: 40px 0 20px;
+    vertical-align: top;
+    width: 320px;
+}
+
+#side {
+    font-size: 12px;
+    padding: 0 11px 0 10px;
+    width: 299px;
+}
+
+#profile_section {
+    font-size: 12px;
+    height: 34px;
+    text-align: center;
+}
+
+#side .noncollapsible h2.sidebar_title {
+}
+#side .collapsible h2.sidebar_title {
+    background: url("/images/toggle_up_white.png") no-repeat scroll right 23px transparent;
+    cursor: pointer;
+}
+
+.tooltip {
+    background: url("@{'/public/images/bgTooltip.png'}") repeat scroll 0 0 transparent;
+    display: none;
+    height: 41px;
+    left: 50%;
+    margin-left: -71px;
+    padding-top: 2px;
+    position: absolute;
+    top: -30px;
+    width: 144px;
+    z-index: 100;
+}
+
+#cartPopover {
+    background: -moz-linear-gradient(center top , #45484A 0%, #2A2B2C 100%) repeat scroll 0 0 transparent;
+    border: 1px solid #000000;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 3px rgba(0, 0, 0, 0.5);
+    color: #FFFFFF;
+    display: none;
+    font-family: "FreightSansMedium",sans-serif;
+    position: absolute;
+    right: -104px;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+    top: 72px;
+    width: 218px;
+    z-index: 9999;
+}
+
+
+
+#demo{
+	float:right;
+}
+#demoShelf{
+	background: url(../images/bgShelf.png) bottom no-repeat;
+	width: 448px;
+	height: 198px;
+	position: relative;
+}
+#demoShelf .simpleCart_shelfItem{
+	position:absolute;
+	top:-250px;
+	padding-top:15px;
+	z-index:100;
+	transition: transform .3s linear .2s, opacity .8s linear;
+	-moz-transition: -moz-transform .3s linear .2s, opacity .8s linear;
+	-webkit-transition: -webkit-transform .3s linear .2s, opacity .8s linear;
+	-o-transition: -o-transform .3s linear .2s, opacity .8s linear;
+}
+
+.addDemoAnimation{
+	-webkit-transform:scale(0,0);
+	-o-transform:scale(0,0);
+	-moz-transform:scale(0,0);
+	transform:scale(0,0);
+	opacity:.2;
+}
+
+#demoShelf .item_name{
+	display: none;
+}
+#demoShelf .item_image{
+	cursor: pointer;
+}
+
+
+</style>
+
+#{script src:"simpleCart.js" /}
+#{script src:"sidebar-follow.js" /}
+<script>
+/* <![CDATA[ */
+(new SidebarFollow()).init({
+    element: 'sidebar-follow',
+    distanceToTop: 15
+});
+/* ]]> */
+</script>
+
+
+
+<script>
+
+
+$(function(){
+	//encode html entities
+	function htmlDecode(value) {
+	    if (value) {
+	        return $('<div />').text(value).html();
+	    } else {
+	        return '';
+	    }
+	}
+	
+	$('pre.html,pre.feature-html').each(function(){
+		$(this).html(htmlDecode($(this).html()));
+	});
+	
+	$("#demo .simpleCart_shelfItem").mouseenter(function(event) {
+		$(this).find('.tooltip').fadeIn(200);
+	});
+	$("#demo .simpleCart_shelfItem").mouseleave(function(event) {
+		$(this).find('.tooltip').fadeOut(200);
+	});
+	$(".cartInfo").toggle(function(){
+
+		$("#cartPopover").show();
+		$("header .cartInfo").addClass('open');
+	}, function(){
+		$("#cartPopover").hide();
+		$("header .cartInfo").removeClass('open');
+	});
+	
+	
+	$("#demoShelf .simpleCart_shelfItem:eq(0)").css('left', '310px');
+	$("#demoShelf .simpleCart_shelfItem:eq(1)").css('left', '171px');
+	$("#demoShelf .simpleCart_shelfItem:eq(2)").css('left', '29px');
+	$("#demoShelf .simpleCart_shelfItem").delay(500).animateStep({css:{top:'0px'},delay:100,speed:100});
+	$("#demoShelf .simpleCart_shelfItem").click(function(){
+		$(".intro").css('overflow','visible');
+		var clone = $(this).clone(),
+			position = $(this).position(),
+			bezier_params = {
+		    start: { 
+		      x: position.left, 
+		      y: 0, 
+		      angle: -90
+		    },  
+		    end: { 
+		      x:310,
+		      y:-210, 
+		      angle: 180, 
+		      length: .2
+		    }
+		  };
+		
+		clone.appendTo('#demoShelf');
+		clone.find('.tooltip').hide();
+		clone.addClass('addDemoAnimation');
+		clone.animate({path : new $.path.bezier(bezier_params)}, 600);
+		
+	});
+	
+	
+
+});
+
+
+
+simpleCart.currency({
+	  code: "RMB" ,
+	  symbol: "￥" ,
+	  name: "人民币"
+	});
+
+
+
+simpleCart({
+	//Setting the Cart Columns for the sidebar cart display.
+	cartColumns: [
+	//A custom cart column for putting the quantity and increment and decrement items in one div for easier styling.
+	{ view: function(item, column){
+		return "<span>"+item.get('quantity')+"</span>" +
+		"<div>" +
+		"<a href='javascript:;' class='simpleCart_increment'><img src='@{'/public/images/increment.png'}' title='+1' alt='arrow up'/></a>" +
+		"<a href='javascript:;' class='simpleCart_decrement'><img src='@{'/public/images/decrement.png'}' title='-1' alt='arrow down'/></a>" +
+		"</div>";
+	}, attr: 'custom' },
+		//Name of the item
+	{ attr: "name" , label: false },
+		//Subtotal of that row (quantity of that item * the price)
+	{ view: 'currency', attr: "total" , label: false }
+	],
+	cartStyle: 'div'
+});
+</script>
+
+
+<script>
+
+
+
+
+
+
+
+$(function(){
+	$("#submitOrder").click(function(){
+		var str="";
+		for(var i = 1 ; i<$(".item-name").size();i++){
+			var m={} ;
+			m.name= $(".item-name:eq("+i+")").text();
+			m.value= $(".item-name:eq("+i+")").text();
+			str=str+JSON.stringify(m)+"*";
+			
+		}
+/* 		$("#submitOrder").attr({
+			"value":
+		}) */
+		
+		$("#jsonData").attr({
+			"value":str.substring(0,str.length-1)
+		})
+		
+		$("form").submit();
+		
+	});
+	
+	});
+
+
+
+
+
+</script>
+<body>
+
+<div class="banner">
+    <h1 class="banner-head">
+        吃吧.<br>
+        订吧.
+    </h1>
+</div>
+
+<div class="pure-g-r wrap ">
+
+
+<div class="pure-u-4-5">
+    <div class="pricing-tables pure-g">
+    
+    	
+    
+        <div class="pure-u-1 pure-u-med-1-3">
+            <div class="pricing-table pricing-table-free">
+                <div class="pricing-table-header">
+                    <h2>屌丝套餐</h2>
+
+                    <span class="pricing-table-price">
+                        $5 <span>每单</span>
+                    </span>
+                </div>
+
+                <ul class="pricing-table-list">
+                    <li>米饭一份</li>
+                    <li>精品甜点</li>
+                    <li>中式汉堡</li>
+                    <li>鸡腿</li>
+                    <li>稀饭</li>
+                    <li>水果一个</li>
+                </ul>
+
+                <button class="button-choose pure-button">Choose</button>
+            </div>
+        </div>
+
+        <div class="pure-u-1 pure-u-med-1-3">
+            <div class="pricing-table pricing-table-biz pricing-table-selected">
+                <div class="pricing-table-header">
+                    <h2>白富美套餐</h2>
+
+                    <span class="pricing-table-price">
+                        $25 <span>每单</span>
+                    </span>
+                </div>
+
+                <ul class="pricing-table-list">
+                    <li>米饭一份</li>
+                    <li>精品甜点</li>
+                    <li>中式汉堡</li>
+                    <li>鸡腿</li>
+                    <li>稀饭</li>
+                    <li>水果一个</li>
+                </ul>
+
+                <button class="button-choose pure-button"><a href="/orderForm">Choose</a></button>
+            </div>
+        </div>
+
+        <div class="pure-u-1 pure-u-med-1-3">
+            <div class="pricing-table pricing-table-enterprise">
+                <div class="pricing-table-header">
+                    <h2>土豪套餐</h2>
+
+                    <span class="pricing-table-price">
+                        $45 <span>每单</span>
+                    </span>
+                </div>
+
+                <ul class="pricing-table-list">
+                    <li>米饭一份</li>
+                    <li>精品甜点</li>
+                    <li>中式汉堡</li>
+                    <li>鸡腿</li>
+                    <li>稀饭</li>
+                    <li>水果一个</li>
+                </ul>
+
+                <button class="button-choose pure-button">Choose</button>
+            </div>
+        </div>
+    </div> <!-- end pricing-tables -->
+
+    <div class="information pure-g">
+        <div class="pure-u-1 pure-u-med-1-1">
+            <div class="l-box">
+                <h3 class="information-head">今日特惠</h3>
+                <p>
+                    。不同城市、不同送餐范围的菜单有所不同。不同时段产品品项及价格有所不同        </p>
+            </div>
+        </div>
+
+        <div  class="pure-u-1 pure-u-med-1-1">
+           
+                
+         	<div class="my_simpleCart_items"> 
+	<table class="pure-table "  width="98%">
+		<thead>
+			<tr class="headerRow">
+			<th class="item-image"></th>
+			<th class="item-name">Name</th>
+			
+			<th class="item-remove"></th>
+			<th class="item-add"></th>
+			<th class="item-price">Price</th>
+			
+			</tr>
+		</thead>
+		<tbody >
+
+    
+    	#{form @confirmOrder()}
+		
+		#{list items:meals, as:'meal'}
+
+    
+    <tr  class="simpleCart_shelfItem" id="${meal.id}" >
+			<td class="item-image"><img src=""></td>
+			<td class="item-name">${meal.name}</td>
+			
+			
+			<td ><a href="javascript:;" onclick="simpleCart.add({name:'${meal.name}', price: 34.95,size:'tiny',thumb:'e.png'});"">add</a></td>
+			<td class="item-remove" ><a  href="javascript:;" class="simpleCart_remove" id="${meal.id}">Remove</a></td>
+			<td class="item-price">12.99</td></tr>
+		
+		
+		#{field 'jsonData'}
+		<input type="hidden" id= "jsonData"  name="jsonData" value="">
+		#{/field}
+		
+		#{/list}
+		#{/form}
+	
+	</tbody>
+		</table>
+		</div>
+				
+               
+           
+        </div>
+
+        <div class="pure-u-1 pure-u-med-1-1">
+            <div class="l-box">
+                <h3 class="information-head">diy健康午餐</h3>
+                <p>
+                   如果您曾使用我们的订餐服务，请输入您上次使用的电子邮箱或手机号码。                </p>
+            </div>
+        </div>
+
+        <div class="pure-u-1 pure-u-med-1-1">
+            <div class="l-box">
+                <h3 class="information-head">Cancel your plan anytime</h3>
+                <p>
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
+        </div>
+    </div> <!-- end information -->
+    
+    </div>
+    
+    <div class="pure-u-1-5 ">
+    	<div id="sidebar-follow"  class="myright">
+    		<div id="profile_section"> lzfying，今天想吃什么？ </div>
+    	</div>
+    	
+    	<div id='sidebar-follow' style="top: 160px; position: fixed;" >
+    	
+    	<div class="cartInfo">
+			<span class="simpleCart_quantity"></span> 订单 
+		</div>
+		
+		
+		<div id="cartPopover" style="display: none;">
+			<div id="triangle">▲</div>
+			<div class="simpleCart_items">
+				<div>
+				<div>
+					<div class="headerRow">
+						<div class="item-custom"></div>
+						<div class="item-name"></div>
+						<div class="item-total"></div>
+					</div>
+				</div>
+
+				</div>
+			</div>
+			<div id="cartData" class="clearfix">
+			<div class="left">
+				<strong>数量: </strong>
+					<span class="simpleCart_quantity"></span>
+			</div>
+			<div class="right">
+				<strong>餐费: </strong>
+				<span class="simpleCart_total"></span>
+			</div>
+			<div id="popoverButtons" class="clearfix">
+				<a class="hudbtn left" href="/cart/">查看订单</a>
+				<a class="simpleCart_checkout hudbtn primary right" href="javascript:;">结账</a>
+			</div>
+			
+			<a href="javascript:;" class="simpleCart_empty">清空</a>
+			</div>
+		</div>
+		
+		
+
+
+
+
+
+
+
+
+		</div>
+		
+    </div>
+    
+    
+</div> <!-- end l-content -->
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+#{extends 'main.html' /}
+
+#{script src:"simpleCart.min.js" /}
+<link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/sample.css'}" />
+ 
+
+ 
+<script>
+simpleCart({
+checkout: {
+type: "PayPal",
+email: "you@yours.com"
+}
+});
+</script>
+ 
+<div class="l-content">
+<table class="pure-table "  >
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>餐品名</th>
+            <th>价格</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr class="pure-table-odd">
+            <td >1</td>
+            <td class="item_name">Honda</td>
+            <td item-price>221</td>
+           
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td class="item_name">Honda</td>
+            <td item-price>221</td>
+        </tr>
+
+        <tr class="pure-table-odd">
+            <td>3</td>
+            <td class="item_name">Honda</td>
+            <td item-price>56</td>
+        </tr>
+
+        <tr>
+            <td>4</td>
+            <td class="item_name">Honda</td>
+            <td item-price>123</td>
+        </tr>
+
+        <tr class="simpleCart_shelfItem">
+        	<div >
+            <td>5</td>
+            <td class="item_name">Honda</td>
+            <td class="item-quantity"><input class="simpleCart_input" type="text" value="1"></td>
+            
+            <td class="item_price">$35.99</td>
+            <td > <a class="item_add" href="javascript:;">Add to Cart</a></td>
+           </div>
+        </tr>
+
+
+    
+</table>
+
+ 
+     <div class="simpleCart_shelfItem">
+    <h2 class="item_name"> Awesome T-shirt </h2>
+    <p> <input value="1" class="item_Quantity" type="text"><br>
+    <span class="item_price">$35.99</span><br>
+    <a class="item_add" href="javascript:;"> Add to Cart </a></p>
+    </div>
+    
+    
+    <span class="simpleCart_quantity"></span> items - <span class="simpleCart_total"></span>
+<a href="javascript:;" class="simpleCart_checkout">Checkout</a>
+ 
+</div>
+
+

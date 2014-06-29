@@ -1,0 +1,140 @@
+@charset "utf-8";
+/* CSS Document */
+body,p,input,ul,li,h1,h2,h3,h4,h5,h6,dl,dd,dt,button,textarea{margin:0; padding:0; list-style:none; font-family:Microsoft YaHei,SimSun; font-size:14px}
+img{border:none; display:block}
+a{text-decoration:none; outline:none}
+.clear{clear:both; height:0; line-height:0;}
+.fl{float:left}
+.fr{float:right}
+.pd30{padding-bottom:30px}
+.wrap{width:1000px; margin:0 auto; overflow:hidden}
+.header{height:54px; width:100%; padding:20px 0; background:url(../images/headerBg.png); position:fixed;_position:absolute;z-index:1000;top:0; left:0;}
+.logo{height:51px; width:141px; background:url(../images/logo.png) no-repeat;}
+.logo a{display:block; width:100%; height:100%}
+.nav{width:800px; overflow:hidden}
+.nav ul{width:440px; overflow:hidden}
+.nav ul li{float:left; width:110px; height:51px; line-height:51px; background:url(../images/nav_line.png) right center no-repeat; text-align:center}
+.nav ul li.nobg{background:none}
+.nav ul li a{font-size:16px; color:#fff;}
+.nav ul li a:hover{color:#f28e20;}
+.login_reg{width:100px; padding:0 7px; height:51px; background:url(../images/login_reg.png) center no-repeat; line-height:51px; margin-right:50px;}
+.login_reg daobutton{font-size:12px; color:#fff; display:block; width:50%; height:51px; text-align:center; float:left; background:none; border:none; outline:none; cursor:pointer}
+.banner{width:100%;height:604px; background:url(../images/banner.jpg) center top no-repeat}
+.shoppingBox{position:fixed;_position:absolute;z-index:1000; width:220px; padding-top:46px; top:30%; right:0; background:url(../images/shoppingBoxIcon.png) right top no-repeat}
+#shpBox{background:url(../images/shoppingBoxBg.png); overflow:hidden}
+#shpBox ul{width:180px; padding:10px 20px; overflow:hidden}
+#shpBox  ul li{margin:10px 0; border-bottom:1px solid #666; padding-bottom:10px; overflow:hidden}
+#shpBox  ul li img{float:left; width:46px; height:42px;}
+#shpBox  ul li div.txt{width:120px; overflow:hidden;}
+#shpBox  ul li div.txt p{color:#fff; font-size:12px; overflow:hidden; line-height:22px}
+#shpBox  ul li div.txt p strong{font-weight:normal}
+#shpBox  ul li div.txt p span{font-family:arial; color:#f28e20; font-size:12px}
+#shpBox  ul li div.txt p span em{font-family:microsoft yahei; font-style:normal;}
+#shpBox  ul li div.txt p span a {color:#fff}
+#shpBox  ul li div.txt p span a:hover {color:#f28e20}
+#shpBox .check{height:26px; width:180px; padding-bottom:10px; margin:0 auto;}
+#shpBox .check a{display:block; width:90px; height:26px; line-height:26px; background:#f28e20; text-align:center; color:#fff; float:left; font-size:14px}
+#shpBox .check a:hover{background:#dc5a10}
+#shpBox .check p{font-size:12px; color:#fff; float:right; line-height:28px}
+#shpBox .check p span{color:#f28e20; font-family:arial; font-size:16px;}
+#shpBox .check p span em{font-family:microsoft yahei; font-size:12px; font-style:normal; margin-left:2px}
+.taocan h2,.jinritaocan h2,.zhushi h2,.tanglei h2,.xiaochi h2{height:30px; line-height:30px; font-size:18px; color:#c60000; margin:15px 0; padding-left:34px}
+.taocan h2{background:url(../images/taocan.png) left center no-repeat}
+.jinritaocan h2{background:url(../images/jinritaocan.png) left center no-repeat; color:#005602}
+.zhushi h2{background:url(../images/zhushi.png) left center no-repeat; color:#521e0c}
+.tanglei h2{background:url(../images/tanglei.png) left center no-repeat;color:#ff0012}
+.xiaochi h2{background:url(../images/xiaochi.png) left center no-repeat; color:#85030f}
+.taocan ul,.jinritaocan ul,.others ul{width:1020px; overflow:hidden}
+.taocan ul li{width:320px; float:left; margin-right:20px; position:relative}
+.taocan ul li img{width:318px; height:400px; border:1px #ddd solid}
+.taocan ul li p a{display:block; position:absolute; z-index:3; bottom:1px; left:1px; width:318px; padding:0 1px; height:90px; background:url(../images/headerBg.png); text-align:center; color:#fff;line-height:90px; font-size:18px}
+.taocan ul li p a span{margin-left:10px; font-family:Britannic Bold,Elephant Regular; font-size:36px; margin-right:3px}
+.jinritaocan ul li{width:490px; float:left; margin-right:20px; overflow:hidden}
+.jinritaocan ul li img{width:488px; height:260px; border:1px #ddd solid}
+.jinritaocan ul li div.des{height:54px; width:458px; padding:15px; border:1px #ddd solid; border-top:none; overflow:hidden}
+.jinritaocan ul li div.des p{font-size:14px; line-height:30px; color:#363636}
+.jinritaocan ul li div.des p strong{font-size:16px; display:block; padding-left:0}
+.jinritaocan ul li div.des span{display:block; font-size:24x; font-family:arial; margin-left:16px; margin-top:16px; color:#f28e20}
+.jinritaocan ul li div.des span em{font-size:36px; font-family:microsoft yahei; font-style:normal; margin-left:5px}
+.jinritaocan ul li div.des a{display:block; width: 100px; height:28px; background:#F28e20; color:#fff; margin-top:26px; text-align:center; line-height:28px}
+.jinritaocan ul li div.des a:hover{background:#dc5a10}
+.others ul li{width:240px; border:1px #ddd solid; float:left; margin-right:10px}
+.others ul li img{width:240px; height:240px;}
+.others ul li p{height:50px; width:210px; padding:10px; line-height:26px; font-size:14px; color:#363636}
+.others ul li p span{color:#f28c20; font-size:24px; font-family:arial; margin-left:5px}
+.others ul li p span em{font-size:18px; font-family:arial; margin-right:3px; font-style:normal}
+.others ul li p a{display:block; width:80px; height:28px; background:#f28e20; color:#fff; text-align:center; line-height:28px; margin-top:24px}
+.others ul li p a:hover{background:#dc5a10}
+
+
+.footer{height:70px; padding:15px 0 10px; width:100%;background-color:#4a1400;}
+.footer p{text-align:center; color:#ddd; line-height:30px}
+.footer p span{font-family:arial; color:#ddd}
+.footer p a{color:#ddd; margin:0 8px}
+.footer p a:hover{color:#fff; margin:0 8px}
+
+
+.Listbox {
+
+    width:150px;
+
+    border:1px solid #ccc;
+
+    margin-left: 100px;
+
+}
+
+.Listbox li {
+
+    width:150px;
+
+    text-align: center;
+
+}
+
+.shopMenu {
+
+    border:1px solid #ccc;
+
+    width:150px;
+
+    margin-left: 500px;
+
+    text-align: center;
+
+}
+
+.shopMenu{
+
+    margin: 0;
+
+    padding: 0;
+
+    margin:200px 0 0 150px;
+
+}
+
+.shopMenu li{
+
+    text-align: center;
+
+    width: 150px;
+
+    height: 150px;
+
+    line-height: 150px;
+
+}
+
+#box {
+
+    height: 120px;
+
+    width: 126px;
+
+    position: absolute;
+
+}
+
+
+

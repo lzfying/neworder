@@ -1,0 +1,13 @@
+#{extends 'admin.html' /}
+
+<h3>Welcome ${user}, <span>you have written ${meals.size() ?: 'no'}  so far</span></h3>
+
+#{list items:meals, as:'meal'}
+    <p class="post ${post_parity}">
+        <a href="@{form(meal.id)}">${meal.name}</a>
+    </p>
+#{/list}
+
+<p id="newPost" >
+    <a href="@{form()}"><span>+</span> write a new meal</a>
+</p>
