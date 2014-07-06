@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DAOWEIR</title>
+<link rel="stylesheet" href="@{'/public/Style/main.css'}">
+#{script src:"jquery-1.7.1.min.js" /}
+<script type="text/javascript">
+$(document).ready(function(){
+
+				
+			$("#focus .input_txt").each(function(){
+					var thisVal=$(this).val();
+					//判断文本框的值是否为空，有值的情况就隐藏提示语，没有值就显示
+					if(thisVal!=""){
+							$(this).siblings("span").hide();
+						}else{
+							$(this).siblings("span").show();
+						}
+					//聚焦型输入框验证	
+					$(this).focus(function(){
+							$(this).siblings("span").hide();
+						}).blur(function(){
+								var val=$(this).val();
+								if(val!=""){
+									$(this).siblings("span").hide();
+								}else{
+									$(this).siblings("span").show();
+								}	
+						});
+				})
+				
+		})
+</script>
+</head>
+<body style="background-color=transparent">
+<div class="loginBox-top"></div>
+<div class="loginBoxBg">
+<div class="login">
+<div class="left">
+<h2><em><a href="#">没有账号？马上注册！</a></em>账号登录</h2>
+<form class="border_radius" id="focus"  method="post" action="#">
+    	<label><span>用户名/邮箱</span><input type="text" class="input_txt" name="adminname" maxlength="26" /></label>
+        <label><span>密码</span><input type="password" class="input_txt input_pass" name="adminpass" maxlength="30"/></label>   
+        <label><input type="submit" value="登录" class="input_submit" /><em><a href="#">忘记密码？</a></em></label>
+</form>
+</div>
+<div class="right">
+<h2>合作账号登录</h2>
+<ul>
+<li class="qq"><a href="#">腾讯微博</a></li>
+<li class="qq2"><a href="#">腾讯QQ</a></li>
+<li class="weixin"><a href="#">微信账号</a></li>
+<li class="xinlang"><a href="#">新浪微博</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="loginBox-bottom"></div>
+</body>
+</html>

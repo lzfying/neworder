@@ -16,7 +16,7 @@
 <script>
 $(document).ready(function() {
     $(".log").on('click' , function(){
-		popWin.showWin("630","360","","login.html");
+		popWin.showWin("630","360","","/login");
 	});
 	 $(".regi").on('click' , function(){
 		popWin.showWin("410","500","","/reg");
@@ -215,15 +215,26 @@ simpleCart({
         <li class="nobg"><a href="#">今日特惠</a></li>
         </ul>
         #{if user}
-   <div class="login_reg" style="float: right;">
-        <daobutton class="log"><a href="@{Admin.index()}">${user}</a> </daobutton>
-        <daobutton class="regi">注册</daobutton>
+   
+           <div class="welcome fr">   
+     <p>欢迎您 ,<a class="more"  id="more" href="#">${user.username}</a>
+     <span id="more-list">
+     <a href="">这是列表一</a>
+     <a href="">这是列表二</a>
+     <a href="">这是列表3</a>
+     <a href="">这是列表4</a>
+     <a href="">这是列表5</a>
+     </span>
+     
+     <a href="@{Mod.logout()}">Logout</a>
+</p>
+
         </div>
 #{/if} 
 #{else}
-<div class="login_reg fr">
-        <daobutton><a href="@{Admin.index()}">登陆1</a> </daobutton>
-        <daobutton>注册1</daobutton>
+<div class="login_reg " style="float: right;">
+        <daobutton class="log">登陆</daobutton>
+        <daobutton class="regi">注册</daobutton>
         </div>
 #{/else}
        

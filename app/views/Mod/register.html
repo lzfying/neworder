@@ -30,21 +30,25 @@ $(document).ready(function(){
 						});
 				})
 				
+					
 		})
+		
+		
+		
 </script>
 </head>
 <body style="background-color:transparent">
 <div class="register-top"></div>
 <div class="register">
 <h2><i><a href="#">已注册用户登录</a></i>账号注册</h2>
-<form class="border_radius" id="focus"  method="post" action="#">
+<form class="border_radius" id="focus"  method="post" action="/registerUser">
     	<label><p>用户名</p><span>用户名/邮箱</span><input type="text" class="reg input_txt" name="adminname" maxlength="26" /></label>
         <label><p>密码</p><span>密码</span><input type="password" class="reg input_txt input_pass" name="adminpass" maxlength="30"/></label>   
         <label><p>确认密码</p><span>再次输入一遍密码</span><input type="password" class="reg input_txt input_pass" name="adminpass" maxlength="30"/></label>   
         <label><p>验证码</p><span>不分大小写</span><input type="text" class="reg input_txt input_code" name="code" maxlength="5"/><div class="code"><img src="images/code.jpg" /></div></label>   
 <!--        <p class="terms"><input  type="checkbox"/>我已经同意相关条款</p>-->        
 <label class="label_check" for="checkbox-01"><input name="sample-checkbox-01" id="checkbox-01" value="1" type="checkbox"  />我已经同意相关条款</label>        
-       <p class="sub"><input type="submit" value="注册" class="input_submit" /></p>
+       <p class="sub"><input type="button" value="注册" class="input_submit" onclick="submitP();" /></p>
 </form>
 </div>
 <div class="register-bottom"></div>
@@ -99,8 +103,39 @@ $(document).ready(function(){
             if (safari) inp.click();
         };
     };
+    
+    
+    
+	function submitP(){
+		
+//$("#focus").submit();
+
+$.ajax({
+                cache: true,
+                type: "POST",
+                url:"/registerUser",
+                data:$('#focus').serialize(),// 你的formid
+                async: false,
+                error: function(request) {
+                    alert("Connection error");
+                },
+                success: function(data) {
+                	alert("ssswwwwrr");
+                	parent.location.href="/index2";
+                }
+            });
+
+
+$("#mask,#maskTop").fadeOut(function() {
+    $(this).remove();
+
+});
+
+
+		//parent.location.reload(); 
+		//self.parent.location.reload()
+	}		
 </script>
-<script type="text/javascript" src="Scripts/ga.js"></script>
-<script type="text/javascript">var pageTracker = _gat._getTracker("UA-301801-11"); pageTracker._trackPageview();</script>
+
 </body>
 </html>
