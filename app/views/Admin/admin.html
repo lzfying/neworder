@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>到位儿订餐管理系统</title>
+    <link rel="stylesheet" type="text/css" href="@{'/public/jquery-easyui/themes/easyui.css'}">
+    <link rel="stylesheet" type="text/css" href="@{'/public/jquery-easyui/themes/icon.css'}">
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.0.min.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.easyui.min.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/easyui-lang-zh_CN.js'}"></script>
+</head>
+<body class="easyui-layout">
+    <div data-options="region:'north',border:false" style="height:60px;background:#B3DFDA;padding:10px">到位订餐管理系统</div>
+    <div data-options="region:'west',split:true,title:'功能列表'" style="width:150px;padding:10px;">
+        <ul id="functree" class="easyui-tree" data-options="url:'/admin/treenode',method:'get'"></ul> 
+    </div>
+    <div id="content" data-options="region:'center',border:false">
+        <div id="tabs" class="easyui-tabs"></div>
+    </div>
+</body>
+<script type="text/javascript">
+$('#functree').tree({
+    onClick: function(node){
+        Open(node.text,node.action);
+    }
+});
+function Open(text, url) {
+    if ($("#tabs").tabs('exists', text)) {
+        $('#tabs').tabs('select', text);
+    } else {
+        $('#tabs').tabs('add', {
+            title : text,
+            border: false,
+            closable : true,
+//            href:'/admin/orderadmin'
+            content:'<iframe scrolling="no" frameborder="0"  src="'+url+'" style="width:100%;height:900px;"></iframe>'
+        });
+    }
+}
+
+</script>
+</html>

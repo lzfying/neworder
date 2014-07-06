@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="@{'/public/jquery-easyui/themes/easyui.css'}">
+<link rel="stylesheet" type="text/css" href="@{'/public/jquery-easyui/themes/icon.css'}">
+<script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.0.min.js'}"></script>
+<script type="text/javascript" src="@{'/public/javascripts/jquery.easyui.min.js'}"></script>
+<script type="text/javascript" src="@{'/public/javascripts/easyui-lang-zh_CN.js'}"></script>
+</head>
+<body>
+    <table id="datas" class="easyui-datagrid" style="border: false; width: auto; height: auto" data-options="pagination:true,singleSelect:true,url:'/admin/meal/getMeals',method:'get',toolbar:'#tb'">
+        <thead>
+            <tr>
+                <th data-options="field:'ck',checkbox:true"></th>
+                <th data-options="field:'name',width:150,align:'center'">菜品名称</th>
+                <th data-options="field:'type',width:130,align:'center'">类别</th>
+                <th data-options="field:'price',width:50,align:'center'">价格</th>
+                <th data-options="field:'discount',width:130,align:'center'">折扣</th>
+                <th data-options="field:'daynum',width:80,align:'center'">单日订购数量</th>
+                <th data-options="field:'totalnum',width:240,align:'center'">订购总量</th>
+                <th data-options="field:'des',width:240,align:'center'">菜品描述</th>
+                <th data-options="field:'pic',width:240,align:'center'">菜品图片</th>
+                <th data-options="field:'comments',width:240,align:'center'">菜品评论</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="tb" style="border: false; padding: 5px; height: auto">
+        <div style="margin-bottom: 5px">
+            <a id="add" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加菜品</a>
+            <a id="edit" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑菜品</a> 
+            <a id="delete" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除菜品</a>
+        </div>
+    </div>
+    <div id="editdialog" style="padding:5px;width:600px;height:300px;top:100px" closed="true">
+       #{form @AdminMeals.saveMeal(), id:'dataform'}
+            <table cellpadding="5">
+                <tr>
+                    <td>菜品名称：</td>
+                    <td><input id="name" class="easyui-validatebox textbox" type="text" name="meal.name" data-options="required:true" style="width:150px" /></td>
+                    <td>类别:</td>
+                    <td><input class="easyui-combobox" name="meal.type.mealType" data-options="url:'/admin/meal/getmealtype',method:'get',valueField:'value',textField:'text',panelHeight:'auto'"></td>
+                </tr>
+                <tr>
+                    <td>菜品价格</td>
+                    <td><input id="price" class="easyui-validatebox textbox" type="text" name="meal.price.price" data-options="required:true" style="width:150px" /></td>
+                    <td>菜品折扣:</td>
+                    <td><input id="discount" class="easyui-validatebox textbox" type="text" name="meal.price.discount" data-options="required:true" style="width:150px"></input></td>
+                </tr>
+                <tr>
+                    <td>菜品描述</td>
+                    <td><input id="desc" class="easyui-validatebox textbox" type="text" name="meal.des" data-options="required:true" style="width:150px" /></td>
+                    <!-- 
+                    <td>菜品图片:</td>
+                    <td><input class="easyui-validatebox textbox" type="text" name="meal" data-options="required:true" style="width:150px"></input></td>
+                     -->
+                </tr>
+            </table>
+            <input type="hidden" name="meal.id" id="meal.id"/>
+        #{/form}
+    </div> 
+    <script type="text/javascript">
+        $("#add").click(function() {
+            $('#editdialog').dialog('open');
+        });
+        
+        $("#edit").click(function() {
+            var rows = $('#datas').datagrid('getSelections');
+            if (rows.length == 0) {
+                alert("请先选择需要编辑的条目！")
+            }
+            var id = "id=" + rows[0].id;
+            $.ajax({
+                url:'/admin/meal/getMealInfo',  
+                type:'GET',
+                data:id,
+                success:function(data){
+                    var obj = JSON.parse(data);
+                    $('#dataform').form('load',{
+                    	'meal.id':obj.id,
+                    	'meal.name':obj.name,
+                    	'meal.price.price':obj.price,
+                    	'meal.type.mealType':obj.type,
+                    	'meal.price.discount':obj.discount,
+                    	'meal.des':obj.des
+                    });
+                    $("#editdialog").dialog("open");
+                    
+                },  
+                error:function() {  
+                    alert("编辑失败，请重试！");  
+                }  
+            });
+        });
+    
+        $("#delete").click(function() {
+            var rows = $('#datas').datagrid('getSelections');
+            var ids = "";
+            for(var i=0; i<rows.length; i++){
+                ids += "id="+ rows[i].id
+                if (i != rows.length - 1) {
+                    ids+="&"
+                }
+            }
+            
+            $.ajax({
+                url:'/admin/meal/deleteMeal',  
+                type:'POST',
+                data:ids,  
+                success:function(data){  
+                    $("#editdialog").dialog("close");
+                    $("#datas").datagrid("reload");
+                    alert("删除成功！");
+                },  
+                error:function(){  
+                    alert("删除失败，请重试！");  
+                }  
+            });
+        });
+        
+        $("#query").click(function() {
+            startdate=$('#startdate').datebox("getValue");
+            enddate=$('#enddate').datebox("getValue");
+            $('#datas').datagrid('load', { 
+                startdate: startdate,
+                enddate: enddate 
+            });
+        });
+        
+        $('#editdialog').dialog({
+            title : '菜品编辑',
+            buttons : [
+            {
+                text : '保存',
+                iconCls : 'icon-save',
+                handler : function() {
+//                  $('#orderform').submit();
+                    var form = $("#dataform"); 
+                    $.ajax({  
+                        url:form.attr('action'),  
+                        type:form.attr('method'),  
+                        data:form.serialize(),  
+                        success:function(data){  
+                            $("#editdialog").dialog("close");
+                            $("#datas").datagrid("reload");
+                            alert("提交成功！");
+                        },  
+                        error:function(){  
+                            alert("提交失败，请重试！");  
+                        }  
+                    });
+                }
+            }, {
+                text : '取消',
+                iconCls : 'icon-cancel',
+                handler : function() {
+                    $('#editdialog').dialog('close');
+                }
+            }]
+        });
+        
+        
+    </script>
+</body>
+</html>

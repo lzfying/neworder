@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="@{'/public/jquery-easyui/themes/easyui.css'}">
+<link rel="stylesheet" type="text/css" href="@{'/public/jquery-easyui/themes/icon.css'}">
+<script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.0.min.js'}"></script>
+<script type="text/javascript" src="@{'/public/javascripts/jquery.easyui.min.js'}"></script>
+<script type="text/javascript" src="@{'/public/javascripts/easyui-lang-zh_CN.js'}"></script>
+</head>
+<body>
+    <table id="datas" class="easyui-datagrid" style="border: false; width: auto; height: auto" data-options="pagination:true,singleSelect:true,url:'/admin/user/getUsers',method:'get',toolbar:'#tb'">
+        <thead>
+            <tr>
+                <th data-options="field:'ck',checkbox:true"></th>
+                <th data-options="field:'username',width:100,align:'center'">用户名</th>
+                <th data-options="field:'email',width:130,align:'center'">邮箱</th>
+                <th data-options="field:'sex',width:40,align:'center',formatter:function(val,rec){
+                    if (val == '1') {
+                        return '男';
+                    } else if (val == '2') {
+                        return '女';
+                    }
+                }">性别</th>
+                <th data-options="field:'realname',width:100,align:'center'">真实姓名</th>
+                <th data-options="field:'address',width:500,align:'center',formatter:function(val,rec){
+                    var address = '<table>';                    
+                    for (i=0;i<val.length;i++) {
+                        address+='<tr>'
+                        address+='<td>地址：</td><td width=300 align=left>' + val[i].address + '</td>' + '<td>电话：</td><td width=200 align=left>'+val[i].phone+'</td>';
+                        address+='</tr>'
+                    }
+                    address += '</table>'
+                    return address;
+                }">地址</th>
+                <th data-options="field:'ordernum',width:60,align:'center'">订单数量</th>
+                <th data-options="field:'others',width:200,align:'center'">备注</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="tb" style="border: false; padding: 5px; height: auto">
+        <div style="margin-bottom: 5px">
+            <a id="add" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
+            <a id="edit" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</a> 
+            <a id="delete" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+        </div>
+    </div>
+    <div id="editdialog" style="padding:5px;width:600px;height:300px;top:100px" closed="true">
+       #{form @AdminUsers.saveUser(), id:'dataform'}
+            <table cellpadding="5">
+                <tr>
+                    <td>用户名：</td>
+                    <td><input id="username" class="easyui-validatebox textbox" type="text" name="user.username" data-options="required:true" style="width:150px" /></td>
+                    <td>邮箱:</td>
+                    <td><input id="email" type="text" name="user.email" data-options="required:true" style="width:150px"></td>
+                </tr>
+                <tr>
+                    <td>真实姓名</td>
+                    <td><input id="realname" class="easyui-validatebox textbox" type="text" name="user.userDetail.realname" data-options="required:true" style="width:150px" /></td>
+                    <td>性别:</td>
+                    <td>
+                    <select id="sex" name="user.userDetail.sex" style="width:150px;">
+                        <option value="1">男</option>
+                        <option value="2">女</option>
+                    </select>
+                </tr>
+            </table>
+            <input type="hidden" name="user.id" id="user.id"/>
+        #{/form}
+            <table cellpadding="5">
+                <tr>
+                    <td>地址：</td>
+                    <td>
+                    <select id="input_area" name="input_area">
+                        <option value="370199" selected="selected">高新区</option>
+                        <option value="370102">历下区</option>
+                    </select>
+                    </td>
+                    <td><input class="easyui-validatebox textbox" type="text" id="input_address" name="input_address" data-options="required:false" style="width:150px"></input></td>
+                    <td>电话:</td>
+                    <td><input class="easyui-validatebox textbox" type="text" id="input_phone" name="input_phone" data-options="required:false" style="width:150px"></input></td>
+                    <td><input type="button" value="确定" onClick="chooseAddress()"></td>
+                </tr>
+            </table>
+            <table id="addressdatas"  class="easyui-datagrid" style="border: false; width: auto; height: auto" data-options="singleSelect: true,onClickRow:onClickRow">
+                <thead>
+                    <tr>
+                        <th data-options="field:'id',width:0,hidden:true">ID</th>
+                        <th data-options="field:'area',width:50,align:'center',
+                        editor:{
+                            type:'combobox',
+                            options:{
+                                valueField:'code',
+                                textField:'name',
+                                method: 'get',
+                                url:'/admin/dic/getAreaInfo',
+                                required:true
+                            }
+                        }">行政区</th>
+                        <th data-options="field:'address',width:180,align:'center',editor:'text'">地址</th>
+                        <th data-options="field:'phone',width:80,align:'center',editor:'numberbox'">电话</th>
+                        <th data-options="field:'oper',width:60,align:'center'">操作</th>
+                    </tr>
+                </thead>
+            </table>
+    </div> 
+    <script type="text/javascript">
+    var editIndex = undefined;
+	    function endEditing(){
+	        if (editIndex == undefined){return true}
+	        if ($('#addressdatas').datagrid('validateRow', editIndex)){
+	            var ed = $('#addressdatas').datagrid('getEditor', {index:editIndex,field:'code'});
+	            var name = $(ed.target).combobox('getText');
+	            $('#addressdatas').datagrid('getRows')[editIndex]['name'] = name;
+	            $('#addressdatas').datagrid('endEdit', editIndex);
+	            editIndex = undefined;
+	            return true;
+	        } else {
+	            return false;
+	        }
+	    }
+
+	    function onClickRow(index){
+	        if (editIndex != index){
+	            if (endEditing()){
+	                $('#addressdatas').datagrid('selectRow', index)
+	                        .datagrid('beginEdit', index);
+	                editIndex = index;
+	            } else {
+	                $('#addressdatas').datagrid('selectRow', editIndex);
+	            }
+	        }
+	    }
+    
+	    function chooseAddress() {
+	        var input_address = $('#input_address').val();
+	        var input_area = $('#input_area').val();
+	        var input_phone = $('#input_phone').val();
+	        
+	        var index = $('#addressdatas').datagrid('getRows').length;
+	        var row = $('#addressdatas').datagrid('appendRow',{
+	        	area:input_area,
+	        	address:input_address,
+	        	phone:input_phone,
+	            oper:"<a onclick='deleteaddressrow("+index+")'><font color='0000ff'>删除</font></a>"
+	        });
+	        $('#input_address').val('');
+	        $('#input_phone').val('');
+	    }
+	    
+	    function deleteaddressrow(row) {
+	        $('#addressdatas').datagrid('deleteRow',row);
+	    }
+    
+        $("#add").click(function() {
+        	$('#dataform').form('clear');
+            $('#editdialog').dialog('open');
+        });
+        
+        $("#edit").click(function() {
+            var rows = $('#datas').datagrid('getSelections');
+            if (rows.length == 0) {
+                alert("请先选择需要编辑的条目！")
+            }
+            var id = "id=" + rows[0].id;
+            $.ajax({
+                url:'/admin/user/getUserInfo',  
+                type:'GET',
+                data:id,
+                success:function(data){
+                	
+                	$('#addressdatas').datagrid({
+                        data: []
+                    });
+                	
+                    var obj = JSON.parse(data);
+                    var sex = obj.sex;
+                    $('#sex').val(sex);
+                    $('#dataform').form('load',{
+                    	'user.id':obj.id,
+                    	'user.username':obj.username,
+                    	'user.userDetail.realname':obj.realname,
+                    	'user.email':obj.email
+                    });
+                    
+                    var address = obj.address;
+                    for (i=0;i<address.length;i++) {
+                        var r = address[i];
+                        var index = $('#addressdatas').datagrid('getRows').length;
+                        var mealrow = $('#addressdatas').datagrid('appendRow',{
+                            id:r.id,
+                            area:r.area,
+                            address:r.address,
+                            phone:r.phone,
+                            oper:"<a onclick='deleteaddressrow("+index+")'><font color='0000ff'>删除</font></a>"
+                        });
+                    }
+                    
+                    $("#editdialog").dialog("open");
+                    
+                },  
+                error:function() {  
+                    alert("编辑失败，请重试！");  
+                }  
+            });
+        });
+    
+        $("#delete").click(function() {
+            var rows = $('#datas').datagrid('getSelections');
+            var ids = "";
+            for(var i=0; i<rows.length; i++){
+                ids += "id="+ rows[i].id
+                if (i != rows.length - 1) {
+                    ids+="&"
+                }
+            }
+            
+            $.ajax({
+                url:'/admin/user/deleteUser',  
+                type:'POST',
+                data:ids,  
+                success:function(data){  
+                    $("#editdialog").dialog("close");
+                    $("#datas").datagrid("reload");
+                    alert("删除成功！");
+                },  
+                error:function(){  
+                    alert("删除失败，请重试！");  
+                }  
+            });
+        });
+        
+        $("#query").click(function() {
+            startdate=$('#startdate').datebox("getValue");
+            enddate=$('#enddate').datebox("getValue");
+            $('#datas').datagrid('load', { 
+                startdate: startdate,
+                enddate: enddate 
+            });
+        });
+        
+        $('#editdialog').dialog({
+            title : '订单编辑',
+            buttons : [
+            {
+                text : '保存',
+                iconCls : 'icon-save',
+                handler : function() {
+//                  $('#orderform').submit();
+                    var useraddr = '';
+                    var rows = $('#addressdatas').datagrid('getRows');
+                    
+                    
+                    for (i=0;i<rows.length;i++) {
+                    	var row = rows[i];
+                    	useraddr += '&'
+                    	useraddr += 'user.userDetail.address['+i+'].address='+row.address;
+                    	useraddr += '&';
+                    	useraddr += 'user.userDetail.address['+i+'].phone='+row.phone;
+                    	useraddr += '&';
+                    	useraddr += 'user.userDetail.address['+i+'].area='+row.area;
+                    }
+
+
+                    var form = $("#dataform"); 
+                    $.ajax({  
+                        url:form.attr('action'),  
+                        type:form.attr('method'),  
+                        data:form.serialize() + useraddr,  
+                        success:function(data){  
+                            $("#editdialog").dialog("close");
+                            $("#datas").datagrid("reload");
+                            alert("提交成功！");
+                        },  
+                        error:function(){  
+                            alert("提交失败，请重试！");  
+                        }  
+                    });
+                }
+            }, {
+                text : '取消',
+                iconCls : 'icon-cancel',
+                handler : function() {
+                    $('#editdialog').dialog('close');
+                }
+            }]
+        });
+        
+        
+    </script>
+</body>
+</html>
