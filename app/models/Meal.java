@@ -11,7 +11,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
 import play.data.validation.MaxSize;
 import play.data.validation.Required;
 import play.db.jpa.Model;
@@ -24,34 +23,22 @@ public class Meal extends Model{
     @MaxSize(200)
     public String name;
 	
-	//@Required
-    @MaxSize(100)
-    public String type;//中式or西式 
-	
-	//@Required
-    @MaxSize(100)
-    public String type2;//口味
-	
-	//@Required
-    @MaxSize(100)
-    public String type3;//
-	
+    @OneToOne(cascade=CascadeType.ALL)
+    public MealType type;//菜品类别，主食、汤类、饮料
 	
     @MaxSize(255)
     public String url;
     
-    public int orderDayNum;//单日订购数量
+    public String des;
     
+    @OneToOne(cascade=CascadeType.ALL)
+    public Price price;
     
-    public int orderTotalNum;//订购总量
-    
-    @OneToOne
-    public MealDesc mealDesc;
-    
-    
-    @OneToMany(mappedBy="meal", cascade=CascadeType.ALL)
+    @OneToMany(cascade=CascadeType.PERSIST)
     public List<Comment> comments;
     
+    @ManyToOne
+    public ComboDetail combodetail;
  
     @ManyToMany(cascade=CascadeType.PERSIST)
     public Set<MyTag> tags;

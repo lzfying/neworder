@@ -1,9 +1,16 @@
 package models;
 
-import play.db.jpa.*;
-import play.data.validation.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-import javax.persistence.*;
+import play.data.validation.Email;
+import play.data.validation.Match;
+import play.data.validation.MaxSize;
+import play.data.validation.MinSize;
+import play.data.validation.Required;
+import play.db.jpa.Model;
 
 
 
@@ -26,12 +33,10 @@ public class User extends Model {
     @Required
     public String email;
     
-    
-    
     @Required
-    @OneToOne(mappedBy="user", cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.ALL)
     public UserDetail userDetail;
-   
+
     public User(String name, String password, String username,String email) {
     	this.email = email;
         this.password = password;
@@ -39,7 +44,6 @@ public class User extends Model {
     }
     
     public User(String name, String password, String username,UserDetail userDetail) {
-        
         this.password = password;
         this.username = username;
         this.userDetail= userDetail;

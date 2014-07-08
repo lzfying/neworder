@@ -9,9 +9,10 @@ public class Security extends Secure.Security {
         return AdminUser.connect(username, password) != null;
     }
     
-    static boolean check(String profile) {System.out.println("cccc"+"admin".equals(profile));
+    static boolean check(String profile) {
+//    	System.out.println("cccc"+"admin".equals(profile));
         if("admin".equals(profile)) {
-        	System.out.println("ccssssss"+AdminUser.find("byUserName", connected()).<AdminUser>first().isAdmin);
+//        	System.out.println("ccssssss"+AdminUser.find("byUserName", connected()).<AdminUser>first().isAdmin);
             return AdminUser.find("byUserName", connected()).<AdminUser>first().isAdmin;
         }
         return false;

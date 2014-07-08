@@ -17,7 +17,9 @@ public class Comment extends Model{
 	@ManyToOne
     @Required
 	public  Meal meal ;
-	
+
+	@ManyToOne
+	public Combo combo;
 	
 	@Required
 	public String author ;

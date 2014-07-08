@@ -1,7 +1,11 @@
 package models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -18,38 +22,31 @@ public class UserDetail extends Model{
     public String realname;
 	
 	
-    @MaxSize(100)
-    public String address;
-	
-	
-    @MaxSize(100)
-    public String post;
-	
-	
-    @MaxSize(100)
-    public String tel;
-	
-  
-    @MaxSize(100)
-    public String phone;
-	
+    @OneToMany(cascade=CascadeType.ALL)
+    public List<UserAddress> address;
 	
 	
     @Email
     public String mail;
 	
 	@Required
-    @MaxSize(2)
-    public String sex;
+    @MaxSize(1)
+    public int sex;
 	
-	@OneToOne
+	@OneToOne(mappedBy="userDetail", cascade=CascadeType.ALL)
     @Required
     @JoinColumn(name="user_id")
 	public User user;
 	
-	
 	public int point=0;//积分
 	
-	
+	public UserDetail(String realname, List<UserAddress> address, String mail, int sex, User user, int point) {
+		this.realname = realname;
+		this.address = address;
+		this.mail = mail;
+		this.sex = sex;
+		this.user = user;
+		this.point = point;
+	}
 
 }
