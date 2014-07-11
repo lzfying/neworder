@@ -67,11 +67,11 @@ a{text-decoration:none; outline:none}
 .others ul li p a:hover{background:#dc5a10}
 
 
-.footer{height:70px; padding:15px 0 10px; width:100%;background-color:#4a1400;}
-.footer p{text-align:center; color:#ddd; line-height:30px}
-.footer p span{font-family:arial; color:#ddd}
-.footer p a{color:#ddd; margin:0 8px}
-.footer p a:hover{color:#fff; margin:0 8px}
+.mainfooter{height:70px; padding:15px 0 10px; width:100%;background-color:#4a1400;}
+.mainfooter p{text-align:center; color:#ddd; line-height:30px}
+.mainfooter p span{font-family:arial; color:#ddd}
+.mainfooter p a{color:#ddd; margin:0 8px}
+.mainfooter p a:hover{color:#fff; margin:0 8px}
 
 
 .Listbox {

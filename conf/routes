@@ -66,3 +66,17 @@ GET     /images/                                staticDir:public/images
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
+
+
+#Mod
+GET     /index2					Mod.index
+
+GET     /reg					Mod.register
+GET     /login_1				Mod.login
+GET     /cart                                   Mod.cart
+
+POST    /registerUser				Mod.registerUser
+
+POST    /order                        		Mod.order
+
+
