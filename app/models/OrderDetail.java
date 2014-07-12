@@ -24,5 +24,7 @@ public class OrderDetail extends Model {
 	public int totalNum;
 	
 	public String des;
+	
+	public String mealName;
 
 }

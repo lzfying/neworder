@@ -1173,7 +1173,15 @@
 						data['item_options_' + counter] = options_list.join(", ");
 					});
 					
-				
+					/*********************/
+					
+					data['value_addr']=document.getElementById("value_addr").value;
+					data['value_tel']=document.getElementById("value_tel").value;
+					data['value_tel_bk']=document.getElementById("value_tel_bk").value;
+					data['value_time']=document.getElementById("value_time").value;
+					
+					
+					/*********************/
 
 					// check for return and success URLs in the options
 					if (opts.success) {

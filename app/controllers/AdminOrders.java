@@ -81,7 +81,7 @@ public class AdminOrders extends Controller {
         obj.addProperty("tel", order.receiver_tel);
         obj.addProperty("name", order.receiver_name);
         obj.addProperty("others", order.receiver_other);
-        obj.addProperty("area", order.area);
+//        obj.addProperty("area", order.area);
         
         if (order.orderDetails != null && order.orderDetails.size() > 0) {
         	StringBuffer sb = new StringBuffer();
@@ -136,7 +136,7 @@ public class AdminOrders extends Controller {
         		saveOrder.payWay = order.payWay;
         		saveOrder.orderstate = order.orderstate;
         		saveOrder.orderPrice = order.orderPrice;
-        		saveOrder.area = order.area;
+//        		saveOrder.area = order.area;
         		saveOrder.orderDetails.clear();
         	}
     	} else {
