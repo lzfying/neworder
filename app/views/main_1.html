@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DAOWEIR</title>
+<link rel="stylesheet" href="@{'/public/Style/main.css'}">
+<link rel="stylesheet" href="@{'/public/stylesheets/cart.css'}">
+#{script src:"jquery-1.7.1.min.js" /}
+#{script src:"jquery.tools-1.2.5.toolbox.expose.min.js" /}
+
+#{script src:"simpleCart.js" /}
+#{script src:"popwin.js" /}
+</head>
+
+
+
+
+
+
+<body>
+<div class="header">
+    <div class="wrap">
+        <div class="logo fl">
+        <a href="/"></a>
+        </div>
+        <div class="nav style="float: right;"">
+        <ul class="fl">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">套餐</a></li>
+        <li><a href="#">单点</a></li>
+        <li class="nobg"><a href="#">今日特惠</a></li>
+        </ul>
+        #{if user}
+   
+           <div class="welcome fr">   
+     <p>欢迎您 ,<a class="more"  id="more" href="#">${user.username}</a>
+     <span id="more-list">
+     <a href="">这是列表一</a>
+     <a href="">这是列表二</a>
+     <a href="">这是列表3</a>
+     <a href="">这是列表4</a>
+     <a href="">这是列表5</a>
+     </span>
+     
+     <a href="@{Mod.logout()}">Logout</a>
+     
+     
+</p>
+
+        </div>
+#{/if} 
+#{else}
+<div class="login_reg " style="float: right;">
+        <daobutton class="log">登陆</daobutton>
+        <daobutton class="regi">注册</daobutton>
+        </div>
+#{/else}
+       <a href="@{Admin.index()}">后台登录</a> 
+        </div>
+    </div>
+</div>
+<div class="banner"></div>
+  #{doLayout /}
+  
+  <div class="mainfooter">
+<p><span>Copyright &copy; 2014 DaoWeir.com All Rights Reserved. </span></p>
+<p>
+<a href="#">关于我们</a><span>|</span>
+<a href="#">客服中心</a><span>|</span>
+<a href="#">购买流程</a><span>|</span>
+<a href="#">法律声明</a><span>|</span>
+<a href="#">诚聘英才</a><span>|</span>
+<a href="#">商务合作</a>
+</p>
+</div>
+</body>
+</html>

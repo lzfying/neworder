@@ -1,17 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>DAOWEIR</title>
-<link rel="stylesheet" href="@{'/public/Style/main.css'}">
-<link rel="stylesheet" href="@{'/public/stylesheets/cart.css'}">
-#{script src:"jquery-1.7.1.min.js" /}
-#{script src:"jquery.tools-1.2.5.toolbox.expose.min.js" /}
-#{script src:"Headroom.js" /}
-#{script src:"jQuery.headroom.js" /}
-#{script src:"simpleCart.js" /}
-#{script src:"popwin.js" /}
-</head>
+#{extends 'main_1.html' /}
+
 
 <script>
 $(document).ready(function() {
@@ -21,9 +9,9 @@ $(document).ready(function() {
 	 $(".regi").on('click' , function(){
 		popWin.showWin("410","500","","/reg");
 	});
-		 $(".shoppingBox").on('click' , function(){
-		popWin.showWin("696","700","","shoppinBox.html");
-	});
+ 	//	 $(".shoppingBox").on('click' , function(){
+	//	popWin.showWin("696","700","","shoppinBox.html");
+	//});
 
 });
 $(function(){
@@ -52,8 +40,6 @@ $(document).ready(function(){
 	});
 });
 </script>
-
-
 
 <script> 
 
@@ -133,37 +119,6 @@ $(function(){
 		$("header .cartInfo").removeClass('open');
 	});
 	
-	
-//	$("#demoShelf .simpleCart_shelfItem:eq(0)").css('left', '310px');
-//	$("#demoShelf .simpleCart_shelfItem:eq(1)").css('left', '171px');
-//	$("#demoShelf .simpleCart_shelfItem:eq(2)").css('left', '29px');
-//	$("#demoShelf .simpleCart_shelfItem").delay(500).animateStep({css:{top:'0px'},delay:100,speed:100});
-/* 	$("#demoShelf .simpleCart_shelfItem").click(function(){
-		$(".intro").css('overflow','visible');
-		var clone = $(this).clone(),
-			position = $(this).position(),
-			bezier_params = {
-		    start: { 
-		      x: position.left, 
-		      y: 0, 
-		      angle: -90
-		    },  
-		    end: { 
-		      x:310,
-		      y:-210, 
-		      angle: 180, 
-		      length: .2
-		    }
-		  };
-		
-		clone.appendTo('#demoShelf');
-		clone.find('.tooltip').hide();
-		clone.addClass('addDemoAnimation');
-		clone.animate({path : new $.path.bezier(bezier_params)}, 600);
-		
-	}); */
-	
-	
 
 });
 
@@ -201,47 +156,6 @@ simpleCart({
 	cartStyle: 'div'
 });
 </script>
-<body>
-<div class="header">
-    <div class="wrap">
-        <div class="logo fl">
-        <a href="/"></a>
-        </div>
-        <div class="nav style="float: right;"">
-        <ul class="fl">
-        <li><a href="#">首页</a></li>
-        <li><a href="#">套餐</a></li>
-        <li><a href="#">单点</a></li>
-        <li class="nobg"><a href="#">今日特惠</a></li>
-        </ul>
-        #{if user}
-   
-           <div class="welcome fr">   
-     <p>欢迎您 ,<a class="more"  id="more" href="#">${user.username}</a>
-     <span id="more-list">
-     <a href="">这是列表一</a>
-     <a href="">这是列表二</a>
-     <a href="">这是列表3</a>
-     <a href="">这是列表4</a>
-     <a href="">这是列表5</a>
-     </span>
-     
-     <a href="@{Mod.logout()}">Logout</a>
-</p>
-
-        </div>
-#{/if} 
-#{else}
-<div class="login_reg " style="float: right;">
-        <daobutton class="log">登陆</daobutton>
-        <daobutton class="regi">注册</daobutton>
-        </div>
-#{/else}
-       
-        </div>
-    </div>
-</div>
-<div class="banner"></div>
 
 
 
@@ -275,11 +189,11 @@ simpleCart({
 				<span class="simpleCart_total"></span>
 			</div>
 			<div id="popoverButtons" class="clearfix">
-				<a class="hudbtn left" href="/cart/">查看订单</a>
+				<a class="hudbtn left" href="/cart">查看订单</a>
 				<a class="simpleCart_checkout hudbtn primary right" href="javascript:;">结账</a>
 			</div>
+			<a class="simpleCart_empty" href="javascript:;">清空</a>
 			
-			<a href="javascript:;" class="simpleCart_empty">清空</a>
 			</div>
 		</div>
 	
@@ -341,9 +255,9 @@ simpleCart({
 </li> 
 <li>
 <a href="#"><img src="images/240-240.png" /></a>
-<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
+<p><a class="fr" href="javascript:;" id='2'   onclick="showcart();simpleCart.add({name:'红烧牛肉', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
 <span><em>&yen;</em>16</span><br />
-【辣子鸡盒饭2】
+【红烧牛肉】
 </p>
 </li>
 <li>
@@ -431,16 +345,6 @@ simpleCart({
 </ul>
 </div>
 <div class="clear"></div>
-<div class="footer">
-<p><span>Copyright &copy; 2014 DaoWeir.com All Rights Reserved. </span></p>
-<p>
-<a href="#">关于我们</a><span>|</span>
-<a href="#">客服中心</a><span>|</span>
-<a href="#">购买流程</a><span>|</span>
-<a href="#">法律声明</a><span>|</span>
-<a href="#">诚聘英才</a><span>|</span>
-<a href="#">商务合作</a>
-</p>
-</div>
+
 </body>
 </html>

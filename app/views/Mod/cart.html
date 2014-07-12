@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DAOWEIR</title>
+<link rel="stylesheet" href="@{'/public/Style/main.css'}">
+<link rel="stylesheet" href="@{'/public/stylesheets/cart_style.css'}">
+
+#{script src:"jquery-1.7.1.min.js" /}
+
+
+#{script src:"simpleCart.js" /}
+
+</head>
+
+<script>
+
+
+$(function(){
+	//encode html entities
+	function htmlDecode(value) {
+	    if (value) {
+	        return $('<div />').text(value).html();
+	    } else {
+	        return '';
+	    }
+	}
+	
+	$('pre.html,pre.feature-html').each(function(){
+		$(this).html(htmlDecode($(this).html()));
+	});
+	
+	$("#demo .simpleCart_shelfItem").mouseenter(function(event) {
+		$(this).find('.tooltip').fadeIn(200);
+	});
+	$("#demo .simpleCart_shelfItem").mouseleave(function(event) {
+		$(this).find('.tooltip').fadeOut(200);
+	});
+	$(".cartInfo").toggle(function(){
+
+		$("#cartPopover").show();
+		$("header .cartInfo").addClass('open');
+	}, function(){
+		$("#cartPopover").hide();
+		$("header .cartInfo").removeClass('open');
+	});
+
+});
+
+
+
+simpleCart.currency({
+	  code: "RMB" ,
+	  symbol: "￥" ,
+	  name: "人民币"
+	});
+
+
+
+simpleCart({
+	//Setting the Cart Columns for the sidebar cart display.
+	cartColumns: [
+	//A custom cart column for putting the quantity and increment and decrement items in one div for easier styling.
+	{ view: function(item, column){
+		return "<span>"+item.get('quantity')+"</span>" +
+		"<div>" +
+		"<a href='javascript:;' class='simpleCart_increment'><img src='@{'/public/images/increment.png'}' title='+1' alt='arrow up'/></a>" +
+		"<a href='javascript:;' class='simpleCart_decrement'><img src='@{'/public/images/decrement.png'}' title='-1' alt='arrow down'/></a>" +
+		"</div>";
+	}, attr: 'custom',label: '数量' },
+		//Name of the item
+	{ attr: "name" , label: '美食篮子' },
+	{ attr: "price" , label: '单价' },
+		//Subtotal of that row (quantity of that item * the price)
+	{ view: 'currency', attr: "total" , label: false }
+	],
+	beforeCheckout:function(){
+		
+		this.extra_data={ 
+
+			 storename: "Bob's cool plumbing store",
+			 cartid: "12321321"
+			 };
+		
+	//	alert("ssss");
+	},
+	 checkout: {
+		 type: "SendForm" ,
+		// url: "https://mapi.alipay.com/gateway.do?_input_charset=utf-8"
+		 url: "/order?test=1"
+		 },
+		 
+		 
+	extra_data:{
+		 storename: "Bob's cool plumbing store",
+		 cartid: "12321321"},	 
+	cartStyle: 'table'
+});
+
+
+
+function mycheckout(){
+	document.getElementById("value_addr").value=document.getElementById("input_addr").value;
+	document.getElementById("value_tel").value=document.getElementById("input_tel").value;
+	document.getElementById("value_tel_bk").value=document.getElementById("input_baktel").value;
+	simpleCart.checkout();
+	//simpleCart.SendForm( );
+	/* simpleCart.checkout.SendForm( {
+			extra_data: {
+
+			 storename: "Bob's cool plumbing store",
+			 cartid: "12321321"
+			 }
+			 }); */
+	
+	
+	
+}
+
+</script>
+<body >
+<div class="header">
+    <div class="wrap">
+        <div class="logo fl">
+        <a href="/"></a>
+        </div>
+        <div class="nav style="float: right;"">
+        <ul class="fl">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">套餐</a></li>
+        <li><a href="#">单点</a></li>
+        <li class="nobg"><a href="#">今日特惠</a></li>
+        </ul>
+        #{if user}
+   
+           <div class="welcome fr">   
+     <p>欢迎您 ,<a class="more"  id="more" href="#">${user.username}</a>
+     <span id="more-list">
+     <a href="">这是列表一</a>
+     <a href="">这是列表二</a>
+     <a href="">这是列表3</a>
+     <a href="">这是列表4</a>
+     <a href="">这是列表5</a>
+     </span>
+     
+     <a href="@{Mod.logout()}">Logout</a>
+</p>
+
+        </div>
+#{/if} 
+#{else}
+<div class="login_reg " style="float: right;">
+        <daobutton class="log">登陆</daobutton>
+        <daobutton class="regi">注册</daobutton>
+        </div>
+#{/else}
+       
+        </div>
+    </div>
+</div>
+
+<div class="banner"></div>
+
+
+       <div class="wrap taocan">
+	
+		<h2>订单确认</h2>
+				<div  class="simpleCart_items">
+		
+		</div>
+		
+		<footer class="ctable-footer group">
+		<div class="float-r">
+		
+		<div class="cart-summary basket_info">
+		
+			<div class="simpleCart_quantity">份美食</div>
+			<span id="total_price_basket" class="simpleCart_total"></span>
+			
+			
+		</div>
+		
+		</div>
+					
+		</footer>
+		
+		<div id="module_addr" class="relative">
+<div id="module_address" class="cart-module caddress-module group">
+<h3 class="cmodule-title">
+<i class="icon-cmodule address"></i>
+送达地址：
+</h3>
+<div class="cmodule-content">
+
+
+<div class="caddr-edit-field edit_field">
+<input class="addr row_addr_edit" id="input_addr" type="text" value="" placeholder="外卖送到的地址">
+<input class="tel row_tel_edit" id="input_tel"  type="tel" value="" placeholder="手机号码">
+<input class="bk row_baktel_edit" id="input_baktel" type="text" value="" placeholder="备选电话（选填）">
+
+</div>
+</div>
+</div>
+
+
+<div id="module_time" class="cart-module ctime-module group">
+<h3 class="cmodule-title">
+<i class="icon-cmodule time"></i>
+送达时间：
+</h3>
+</div>
+
+<div id="module_payment" class="cart-module cpayment-module group">
+<h3 class="cmodule-title">
+<i class="icon-cmodule payment"></i>
+支付方式：
+</h3>
+
+
+<div class="cmodule-content">
+<div class="cart-payment">
+<a id="offline_pay_btn" class="cpayment-choice ui_selected " data-payonline="0"> 餐到付款 </a>
+<a id="online_pay_btn" class="cpayment-choice ui_disabled" title="" data-toggle="bs-tooltip" data-payonline="1" data-original-title=" 当前餐厅不支持在线支付功能 ">在线支付</a>
+</div>
+</div>
+
+</div>
+
+<form id="checkout_form" method="post" action="/order">
+
+<button id="confirm_order" class="ui-btn ui_submit btn-cart-checkout" onclick="mycheckout();" data-loading="正在提交…" type="button">确认下单</button>
+
+<input id="value_note" type="hidden" value="" name="note">
+<input id="value_addr" type="hidden" value="111" name="address">
+<input id="value_tel" type="hidden" value="" name="phone">
+<input id="value_tel_bk" type="hidden" value="" name="phone-bk">
+<input id="value_inv" type="hidden" value="" name="invoice">
+<input id="value_time" type="hidden" value="" name="deliver_time">
+<input id="value_payonline" type="hidden" value="0" name="is_online_paid">
+
+
+</form>
+
+</div>
+</div>
+
+<div class="mainfooter">
+<p><span>Copyright &copy; 2014 DaoWeir.com All Rights Reserved. </span></p>
+<p>
+<a href="#">关于我们</a><span>|</span>
+<a href="#">客服中心</a><span>|</span>
+<a href="#">购买流程</a><span>|</span>
+<a href="#">法律声明</a><span>|</span>
+<a href="#">诚聘英才</a><span>|</span>
+<a href="#">商务合作</a>
+</p>
+</div>
+
+
+</body>
+</html>
