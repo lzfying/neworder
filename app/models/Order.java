@@ -24,7 +24,7 @@ public class Order extends Model{
 	
 	@Required
 	@ManyToOne
-	public User User;
+	public User user;
 	
 	@Required
 	@ManyToMany(cascade=CascadeType.PERSIST)
@@ -49,7 +49,7 @@ public class Order extends Model{
 	
 	public Order(User user,String orderNum,String  receiver_name,String receiver_addr,String receiver_tel,String receiver_other,String payWay){
 		
-		this.User=user;
+		this.user=user;
 		this.orderNum = orderNum;
 		this.receiver_name =receiver_name;
 		this.receiver_addr = receiver_addr;
@@ -75,7 +75,7 @@ public Order(String orderNum,String  receiver_name){
 	public Order(User user,String orderNum,String receiver_addr,String receiver_tel,String receiver_other,String payWay){
 
 	
-		this.User=user;
+		this.user=user;
 		this.orderNum = orderNum;
 		
 		this.receiver_addr = receiver_addr;

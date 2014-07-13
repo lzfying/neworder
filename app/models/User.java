@@ -33,6 +33,11 @@ public class User extends Model {
     @Required
     public String email;
     
+    
+    @Email
+    @Required
+    public String tel;
+    
     @Required
     @OneToOne(cascade=CascadeType.ALL)
     public UserDetail userDetail;
@@ -41,6 +46,12 @@ public class User extends Model {
     	this.email = email;
         this.password = password;
         this.username = username;
+    }
+    
+    public User(String username,String password,String tel) {
+        this.password = password;
+        this.username = username;
+        this.tel=tel;
     }
     
     public User(String name, String password, String username,UserDetail userDetail) {

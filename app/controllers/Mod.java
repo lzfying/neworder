@@ -11,7 +11,6 @@ import java.util.Map;
 
 import java.util.Set;
 
-
 import models.Meal;
 import models.Order;
 import models.OrderDetail;
@@ -33,7 +32,7 @@ public class Mod extends Controller{
 	
 	public static	java.text.DateFormat format = new java.text.SimpleDateFormat("yyyyMMddhhmmss");
 	    
-	    static User connected() {
+	 static User connected() {
 	        if(renderArgs.get("user") != null) {
 	            return renderArgs.get("user", User.class);
 	        }
@@ -101,12 +100,20 @@ public class Mod extends Controller{
 		
 		int itemCount =0;
 		
+		
+		
 		itemCount= Integer.parseInt(params.get("itemCount")) ;
 	       
 	        String s = format.format(new Date());
 	        addr=params.get("value_addr");
 	        tel=params.get("value_tel");
 	        bak_tel=params.get("value_tel_bk");
+	        
+	        User user = connected();
+			 if(user == null) {
+				 user = new User( tel,  "123456",  tel);
+				 user.save();
+		     }    
 		
 		Order order = new Order(connected(),s,addr,tel,bak_tel,"offline");
 		for(int i=1;i<itemCount+1;i++){
@@ -118,7 +125,7 @@ public class Mod extends Controller{
 
 		}
 		
-		
+		order.user=user;
 		order.save();
 	
    
@@ -151,7 +158,26 @@ public class Mod extends Controller{
 	}
 	
 	
-	
+	public static void profile(){
+		
+		
+		User user = connected();
+       
+		if(user != null){
+			renderArgs.put("user", user);
+			List<Order> orders = Order.find("byUser", user).fetch();
+			
+			render(orders);
+			
+		}else{
+			
+			index("");
+		}
+		
+		
+		
+		
+	}
 	
 
 }
