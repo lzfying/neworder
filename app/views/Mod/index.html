@@ -1,45 +1,7 @@
 #{extends 'main_1.html' /}
+<link rel="stylesheet" href="@{'/public/stylesheets/cart.css'}">
+#{script src:"simpleCart.js" /}
 
-
-<script>
-$(document).ready(function() {
-    $(".log").on('click' , function(){
-		popWin.showWin("630","360","","/login");
-	});
-	 $(".regi").on('click' , function(){
-		popWin.showWin("410","500","","/reg");
-	});
- 	//	 $(".shoppingBox").on('click' , function(){
-	//	popWin.showWin("696","700","","shoppinBox.html");
-	//});
-
-});
-$(function(){
-	$(".others li").find(".box").hide();
-	$(".others li").hover(function(){
-		$(this).find(".box").show();
-	},function(){
-		$(this).find(".box").hide();
-	});
-});
-$(document).ready(function(){
-		$(this).find(".index").show();
-		$(this).find(".on-hover").hide();
-	$(".hover").hover(function(){
-     	$(this).find(".index").hide();
-    	$(this).find(".on-hover").show();
-		$(this).css("z-index","999");
-    	$(this).animate({width:"1000px",left:"0px"});
-    	$(this).children().animate({marginLeft:"0px"});
-	},function(){
-		$(this).find(".index").show();
-		$(this).find(".on-hover").hide();
-    	$(".h0").animate({left:"0",width:"320px"},function(){$(this).css("z-index","0");});
-    	$(".h1").animate({left:"340px",width:"320px"},function(){$(this).css("z-index","0");});
-    	$(".h2").animate({left:"680px",width:"320px"},function(){$(this).css("z-index","0");});
-	});
-});
-</script>
 
 <script> 
 
