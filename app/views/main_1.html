@@ -6,9 +6,8 @@
 <link rel="stylesheet" href="@{'/public/Style/main.css'}">
 
 #{script src:"jquery-1.7.1.min.js" /}
+
 #{script src:"popwin.js" /}
-
-
 
 </head>
 
@@ -16,7 +15,7 @@
 <script>
 $(document).ready(function() {
     $(".log").on('click' , function(){
-		popWin.showWin("630","360","","/login");
+		popWin.showWin("630","360","","/login_1");
 	});
 	 $(".regi").on('click' , function(){
 		popWin.showWin("410","500","","/reg");
