@@ -151,7 +151,7 @@ a{text-decoration:none; outline:none}
 .register label p{position:absolute; left:0; top:0; color:#fff; width:65px; text-align:right; line-height:30px; padding-right:5px}
 .register input.reg{outline:none; padding:0; margin:0; border:none; text-indent:10px; position:absolute; display:block; left:70px}
 .register span{position:absolute;float:left;line-height:36px;left:80px;color:#ccc;cursor:text;font-size:14px; z-index:999}
-.register .input_txt{width:220px;height:36px; line-height:36px; font-size:14px; background:#fff; color:#333; font-family:arial}
+.register .input_txt{width:220px;height:30px; line-height:36px; font-size:14px; background:#fff; color:#333; font-family:arial}
 .register .input_pass{background-position:10px -36px}
 .register .input_code,.register .code{width:100px; height:36px;}
 .register .code{position:absolute; left:190px; top:0}
@@ -241,66 +241,75 @@ a{text-decoration:none; outline:none}
 .welcome p span a:hover{background:#dc5a0f}
 .welcome p img{float:right; margin:15px 5px}
 
+/*Inside*/
+.inside{width:1000px; margin:0 auto}
+.top{width:100%; height:54px; padding:20px 0; background:#2c0c01}
+.welcome{color:#ff;}
+.welcome p{color:#fff; line-height:30px; margin-top:15px; height:30px; position:relative; background:url(../images/sanjiao.png) right 15px no-repeat; }
+.welcome p a{color:#f28e20; margin:0 5px;}
+.welcome p a.more{padding-right:8px}
 
-*LoginBox*/
-.loginBoxBg{width:567px;  overflow:hidden; padding:22px 30px;background:url(../images/box-bg.png) repeat-y}
-.loginBox-top,.loginBox-bottom{width:627px; height:18px; background:url(../images/Box-top-Bg.png) no-repeat}
-.loginBox-bottom{background:url(../images/Box-bottom-Bg.png) no-repeat}
-.login{overflow:hidden}
-.login .left{width:280px; float:left;}
-.login .left h2,.register h2{font-size:18px; margin-bottom:30px; color:#fff; font-weight:normal}
-.login .left h2 em{font-size:14px; color:#fff; float:right; font-style:normal; line-height:30px; color:#f28e20}
-.login .left h2 em a{color:#f28e20;}
-.login .left h2 em a:hover{color:#f27800}
-.login .left label{display:block;height:36px;position:relative;margin:20px 0;}
-.login .left label em{position:absolute; right:10px; top:0; display:block; font-style:normal; line-height:36px; color:#fff}
-.login .left label em a{color:#fff}
-.login .left label em a:hover{color:#f27800}
-.login .left input{outline:none; padding:0; margin:0; border:none}
-.login .left span{position:absolute;float:left;line-height:36px;left:10px;color:#ccc;cursor:text;font-size:14px; text-indent:40px}
-.login .left .input_txt{width:220px;height:36px; line-height:36px; font-size:14px; background:url(../images/login_icon.png) 10px 0  no-repeat #fff; padding-left:50px; color:#333; font-family:arial}
-.login .left .input_pass{background-position:10px -36px}
-.login .left .input_submit{height:36px; line-height:36px; font-size:14px; font-family:microsoft yahei; width:120px; background:#f28e1f; color:#fff; border:none; cursor:pointer; outline:none}
-.login .left .input_submit:hover{background-color:#dc5a0f}
-.login .right{float:right; width:220px;}
-.login .right h2{font-size:14px; color:#fff;  text-align:right; font-weight:normal;  margin-bottom:15px}
-.login .right ul li{width:90px; height:40px; float:left; margin-top:20px; font-size:14px; color:#fff; padding-top:30px; text-align:center; margin-left:15px}
-.login .right ul li a{color:#fff}
-.login .right ul li a:hover{color:#f27800}
-.login .right ul li.qq{background:url(../images/qq.png) center top no-repeat}
-.login .right ul li.qq2{background:url(../images/QQ2.png) center top no-repeat}
-.login .right ul li.weixin{background:url(../images/xinlang.png) center top no-repeat}
-.login .right ul li.xinlang{background:url(../images/weixin.png) center top no-repeat}
-.check{color:#fff;overflow:hidden;}
-.check h2{font-size:16px; color:#fff;font-weight:normal; text-align:right; margin-right:20px}
-.check h2.checkout{font-family:arial; color:#f28e1f; font-size:20px; }
-.check h2.checkout span{color:#fff; font-size:14px; font-family:microsoft yahei; margin-right:5px}
-.check h2 i{font-family:arial; font-style:normal; margin:0 5px; }
-.check h2 span{color:#f28e1f}
-.check h3,.check h4{font-size:16px; color:#fff; font-weight:normal;}
-.check h4{font-size:14px; margin-top:10px}
-.check h4 a{color:#fff; display:block; margin-left:10px}
-.check h4 a:hover{color:#f27800}
-.check h3 span{font-size:20px; color:#f27800; font-family:arial}
-.check label{line-height:26px; display:block;margin-top:15px;}
-.check label input{color:#fff;cursor:pointer}
-.check .line{ border-bottom:1px dashed #999; width:100%; margin:20px 0}
-.check label span{margin-left:10px; cursor:pointer}
-.check a{color:#f28e1f; display:block; margin-top:15px; margin-bottom:15px}
-.check a:hover{color:#fff}
-.check .bank{overflow:hidden; margin-bottom:10px}
-.check .bank label{width:160px; float:left; margin-right:15px; margin-top:20px;cursor:pointer}
-.check .bank label input{float:left; margin-top:8px;*margin-top:5px; }
-.check .bank label img{float:right; width:140px;}
-.check  input.pay{display:block; width:140px; height:36px; line-height:36px; background:#f28e1f; float:right; color:#fff; border:0; font-size:16px; margin-right:20px; margin-top:20px; display:block; cursor:pointer}
-.check  input.pay:hover{background:#dc5a0f}
-.check h5{color:#f28e1f; background:url(../images/gou.png) no-repeat; line-height:43px; width:145px; padding-left:55px; margin:0 auto; font-size:30px; font-weight:normal; margin-top:50px;}
-.check h6{text-align:center; font-weight:normal; margin-top:15px; font-size:16px;}
-.check h6 span{font-family:arial;color:#f28e1f}
-.payOut{width:380px; margin:20px auto}
-.payOut a{display:block; float:left; color:#fff; margin-right:50px; line-height:36px;width:140px; height:36px;}
-.payOut a:hover{color:#f28e1f}
-.payOut a.goon{ background:#f28e1f; text-align:center; font-size:16px; color:#fff; text-decoration:none}
-.payOut a.goon:hover,.payOut a.onfoucs{background:#dc5a0f; cursor:pointer}
+.welcome p span{display:none; width:120px; height:300px; overflow:hidden; position:absolute; right:0;top:30px;z-index:9999}
+.welcome p span a{display:block; width:120px; height:34px; background:#f28e20; text-align:center; line-height:34px; color:#fff; border-bottom:1px #eca251 solid}
+.welcome p span a:hover{background:#dc5a0f}
+.welcome p img{float:right; margin:15px 5px}
+.wrap h2.item{background:url(../images/item-icon.png) no-repeat; height:42px; line-height:42px; padding-left:50px; font-size:16px; color:#333; font-weight:normal; margin-bottom:10px; overflow:hidden}
+.insideLeft{width:190px; float:left; overflow:hidden}
+.insideLeft ul.navlist{border:1px #ddd solid; overflow:hidden; }
+.insideLeft ul.navlist h2{padding:10px 20px; color:#dc5a0f; border-bottom:1px solid #ddd; font-size:16px; font-weight:normal; }
+.insideLeft ul.navlist li a{display:block; padding:5px 0; color:#5a5a5a; text-indent:20px; margin-top:8px}
+.insideLeft ul.navlist li a:hover,.insideLeft ul li a.focus{background:#dc5a0f; color:#fff}
+.insideLeft ul.commend,.productLeft ul.commend2{overflow:hidden;}
+.insideLeft ul.commend li,.productLeft ul.commend2 li{margin-top:10px; overflow:hidden}
+.insideLeft ul.commend li img{width:190px; height:170px;}
+.productLeft ul.commend2 li img{width:210px; height:188px}
+.insideLeft ul.commend li p,.productLeft ul.commend2 li p{line-height:24px}
+.insideLeft ul.commend li p a,.productLeft ul.commend2 li p a{color:#5a5a5a;}
+.insideLeft ul.commend li P a:hover,.productLeft ul.commend2 li p a:hover{color:#f27800}
+.insideRight{width:780px; float:right; overflow:hidden}
+.insideRight h2,.productRight h2{text-indent:30px; background:#EEE;  height:38px; line-height:38px; margin-bottom:15px; color:#393939; border-bottom:1px #dcdcdc solid; position:relative; font-weight:normal}
+.insideRight h2 span,.productRight h2 span{display:block; width:130px; height:38px; background:url(../images/orange.png) no-repeat; color:#fff; font-size:16px; position:absolute; top:1px; left:0}
+.insideRight h2 em{font-style:normal; color:#333; float:left; display:block; text-indent:0; text-align:center}
+.myitem{width:778px; border:1px solid #ddd;overflow:hidden; padding:20px 0; margin:15px 0}
+.myitem.orangeBox,.myitem:hover{border:1px solid #f27800}
+.insideRight .itemContent{width:320px; padding:0 15px;overflow:hidden}
+.insideRight .itemContent-price{width:440px; padding:0 14px; overflow:hidden; border-right:1px dashed #ddd}
+.insideRight .itemContent-price ul li{margin-bottom:10px; padding-bottom:15px; border-bottom:1px dashed #ddd; overflow:hidden}
+.insideRight .itemContent-price ul li p.item-content{line-height:24px; text-indent:0; width:200px; overflow:hidden}
+.insideRight .itemContent-price ul li p.item-content strong a{color:#f27800}
+.insideRight .itemContent-price ul li img{float:left; margin-right:20px; height:85px; width:85px}
+.insideRight .unitPrice{width:100px; padding:0 10px;overflow:hidden}
+.insideRight .unitPrice p{font-family:arial; text-align:center; line-height:85px; text-indent:0}
+.insideRight .total{width:100px; padding:0 10px; overflow:hidden; color:#5a5a5a; text-align:center}
+.insideRight .total p{text-indent:0; font-family:arial; color:#f27800; font-size:18px; line-height:85px; }
+.insideRight .state{width:160px; padding:0 14px;overflow:hidden; color:#5a5a5a; text-align:center}
+.insideRight .state p{text-indent:0; overflow:hidden;}
+.insideRight .state input{display:block; width:90px; height:30px; color:#fff; background:#f28e1f; text-align:center; margin:5px auto; border:0; cursor:pointer;}
+.insideRight .state input:hover{background:#dc5a0f}
+.insideRight .state p.date{background:url(../images/clock.png) left center no-repeat; color:#999;  font-family:arial; text-align:left; padding-left:24px;}
+.insideRight p{color:#5a5a5a; line-height:28px; text-indent:20px;}
+.insideRight p strong{font-size:16px; color:#f27800; font-weight:normal;  display:block;}
+.insideRight .page{clear:both; overflow:hidden; margin-top:20px}
+.insideRight .page a{display:block; padding:1px 10px; color:#5a5a5a; border:1px #ccc solid; float:right; margin-left:20px}
+.insideRight .page a:hover{color:#333; border:1px solid #f27800}
+
+
+
+
+
+/*验证提示效果*/
+label.error{
+    background-color: #f2dede;
+    border: 1px solid #eed3d7;
+    color: #b94a48;
+    padding: 1px 10px;
+    position: relative;
+    right: 0;
+   	HEIGHT: 20px;
+   	WIDTH: 180px;
+    TOP: -43px;
+    margin-right:40px;
+    float:right;
+     }
 
 
