@@ -10,7 +10,14 @@
 
 
 $(document).ready(function(){
-	 $("#focus").validate();
+	 $("#focus").validate({
+		 
+		 
+		   invalidHandler: function(form, validator) {  //不通过回调 
+		       return false; 
+		          } 
+		 
+	 });
 	 
 	 jQuery.extend(jQuery.validator.messages, {
 	        required: "必选字段",
@@ -143,7 +150,6 @@ $.ajax({
                     alert("Connection error");
                 },
                 success: function(data) {
-                	
                 	parent.location.href="/index2";
                 }
             });
