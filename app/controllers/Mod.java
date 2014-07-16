@@ -5,16 +5,13 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-
-
-
 import java.util.Set;
 
 import models.Meal;
 import models.Order;
 import models.OrderDetail;
 import models.User;
+import models.UserAddress;
 import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.Scope.Params;
@@ -32,7 +29,7 @@ public class Mod extends Controller{
 	
 	public static	java.text.DateFormat format = new java.text.SimpleDateFormat("yyyyMMddhhmmss");
 	    
-	 static User connected() {
+	static User connected() {
 	        if(renderArgs.get("user") != null) {
 	            return renderArgs.get("user", User.class);
 	        }
@@ -64,9 +61,9 @@ public class Mod extends Controller{
 	
 	public static void registerUser(String adminname,String adminpass,String email){
 		System.out.println("122333userName ::"+adminname);
-		//System.out.println("password ::"+password);
-		
-		User user = new User(adminname, adminpass, adminname, email);
+		System.out.println("password ::"+adminpass);
+		System.out.println("email ::"+email);
+		User user = new User( adminname, adminpass, email);
 		user.save();
 		session.put("user", adminname);
 		renderArgs.put("user", user);
@@ -74,7 +71,14 @@ public class Mod extends Controller{
 	}
 
 	
-	public static void login(){
+	public static void login(String adminname,String adminpass){
+		
+        User user = User.find("byUsernameAndPassword", adminname, adminpass).first();
+        if(user != null) {
+            session.put("user", user.username);
+            flash.success("Welcome, " + user.username);
+                
+        }
 		render();
 	}
 	public static void loginUser(){
@@ -129,7 +133,7 @@ public class Mod extends Controller{
 		order.save();
 	
    
-        index("");
+		profile();
     }
 	
 	public static void workByEntry(Map<Object, Object> map) {
@@ -159,8 +163,6 @@ public class Mod extends Controller{
 	
 	
 	public static void profile(){
-		
-		
 		User user = connected();
        
 		if(user != null){
@@ -174,10 +176,108 @@ public class Mod extends Controller{
 			index("");
 		}
 		
+	}
+	
+	
+	public static void personal(){
+		User user = connected();
+		if(user != null){
+			renderArgs.put("user", user);
+			render();
+			
+		}else{
+			index("");
+		}
 		
+	}
+	
+	public static void address(){
+		System.out.println("**********");
+		User user = connected();
+		if(user != null){
+			renderArgs.put("user", user);
+			render();
+			
+		}else{
+			
+			index("");
+		}
 		
 		
 	}
 	
-
+	public static void saveaddress(UserAddress userAddress){
+		
+		User user = connected();
+	       
+		if(user != null){
+			renderArgs.put("user", user);
+			userAddress.phone=params.get("phone")==null?"":params.get("phone");
+			userAddress.address=params.get("address")==null?"":params.get("address");
+			userAddress.bakphone=params.get("bakphone")==null?"":params.get("bakphone");
+			user.address.add(userAddress);
+			user.save();
+			address();
+			
+		}else{
+			
+			index("");
+		}
+		
+	}
+	
+	
+	public static void editaddress(Long id){
+		User user = connected();
+	       
+		if(user != null){
+			renderArgs.put("user", user);
+			UserAddress userAddress = UserAddress.findById(id);
+			render(userAddress);
+			
+		}else{
+			
+			index("");
+		}
+		
+	}
+	
+	
+	public static void deladdress(Long id){
+		User user = connected();
+	       
+		if(user != null){
+			renderArgs.put("user", user);
+			for(int i=0;i<user.address.size();i++){
+				UserAddress u = user.address.get(i);
+				if(u.id==id){
+					user.address.remove(u);
+					
+				}
+				
+			}
+			user.save();
+			
+			address();
+			
+		}else{
+			
+			index("");
+		}
+		
+	}
+	
+	
+	public static void checkUser(String name){
+		System.out.println("vvvvvv "+name);
+		User user =User.find("byUsername", name).first();
+		if(user!=null){
+			response.print(false);
+		}else{
+			response.print(true);
+			
+		}
+		
+	}
+	
 }
