@@ -12,16 +12,69 @@
 $(document).ready(function(){
 	 $("#focus").validate({
 		 
-		 
+		  onsubmit:true,
 		   invalidHandler: function(form, validator) {  //不通过回调 
+			   
 		       return false; 
-		          } 
+		          } ,
+		          
+		   rules:{ email: {
+			    required: true,
+			    email: true
+			   },
+			   adminname: {
+				    required: true,
+				    minlength: 3,
+				    remote:{                                          //验证用户名是否存在
+			               type:"GET",
+			               url:"/checkUser",             //servlet
+			               data:{
+			                 name:function(){return $("#adminname").val();}
+			               } 
+			              } 
+				   },
+			   adminpass: {
+				    required: true,
+				    minlength: 6
+				   },
+			   adminpass_1: {
+				    required: true,
+				    minlength: 6,
+				    equalTo: "#adminpass"
+				   }
+		          
+		   },        
+		          
+		   submitHandler:function(){
+			   
+			   $.ajax({
+	                cache: true,
+	                type: "POST",
+	                url:"/registerUser",
+	                data:$('#focus').serialize(),// 你的formid
+	                async: false,
+	                error: function(request) {
+	                    alert("Connection error");
+	                },
+	                success: function(data) {
+	                	
+	                	parent.location.href="/index2";
+	                }
+	            });
+			   
+			  
+			   $("#mask,#maskTop").fadeOut(function() {
+           	    $(this).remove();
+
+           		});
+			  
+		   }       
 		 
 	 });
 	 
 	 jQuery.extend(jQuery.validator.messages, {
 	        required: "必选字段",
-	  remote: "请修正该字段",
+	  remote: "用户名已经被注册",
 	  email: "请输入正确格式的电子邮件",
 	  url: "请输入合法的网址",
 	  date: "请输入合法的日期",
@@ -72,13 +125,13 @@ $(document).ready(function(){
 <div class="register">
 <h2><i><a href="#">已注册用户登录</a></i>账号注册</h2>
 <form class="border_radius" id="focus"  method="post" action="/registerUser">
-    	<label><p>用户名</p><span>用户名/邮箱</span><input type="text" class="reg input_txt "  required="" minlength="2"   name="adminname" maxlength="26" /></label>
-        <label><p>密码</p><span>密码</span><input type="password" class="reg input_txt input_pass" name="adminpass" maxlength="30"/></label>   
-        <label><p>确认密码</p><span>再次输入一遍密码</span><input type="password" class="reg input_txt input_pass"  equalTo='#adminpass' name="adminpass_1" maxlength="30"/></label>   
-        <label><p>电子邮箱</p><span>请输入正确的Email地址</span><input type="text" class="reg input_txt " name="email" maxlength="30"/></label>   
+    	<label><p>用户名</p><span>用户名/邮箱</span><input type="text" class="reg input_txt "   minlength="3" id="adminname"   name="adminname" maxlength="26" /></label>
+        <label><p>密码</p><span>密码</span><input type="password" class="reg input_txt input_pass" id="adminpass" name="adminpass" maxlength="30"/></label>   
+        <label><p>确认密码</p><span>再次输入一遍密码</span><input type="password" class="reg input_txt input_pass"  id="adminpass_1" name="adminpass_1" maxlength="30"/></label>   
+        <label><p>电子邮箱</p><span>请输入正确的Email地址</span><input type="text" class="reg input_txt "  id="email" name="email" maxlength="30"/></label>   
 <!--        <p class="terms"><input  type="checkbox"/>我已经同意相关条款</p>-->        
 <label class="label_check" for="checkbox-01"><input name="sample-checkbox-01" id="checkbox-01" value="1" type="checkbox"  checked />我已经同意相关条款</label>        
-       <p class="sub"><input type="button" value="注册" class="input_submit" onclick="submitP();" /></p>
+       <p class="sub"><input type="submit" value="注册" class="input_submit" " /></p>
 </form>
 </div>
 <div class="register-bottom"></div>
