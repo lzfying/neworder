@@ -1,13 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>DAOWEIR</title>
-<link rel="stylesheet" href="@{'/public/Style/main.css'}">
 
+#{extends 'main_1.html' /}
 <link rel="stylesheet" href="@{'/public/stylesheets/cart_style.css'}">
 <link rel="stylesheet" href="@{'/public/stylesheets/tip-yellow/tip-yellow.css'}" type="text/css" />
-#{script src:"jquery-1.7.1.min.js" /}
+
 
 #{script src:"jquery.poshytip.min.js" /}
 #{script src:"simpleCart.js" /}
@@ -87,16 +82,7 @@ simpleCart({
 		//Subtotal of that row (quantity of that item * the price)
 	{ view: 'currency', attr: "total" , label: false }
 	],
-	beforeCheckout:function(){
-		
-		this.extra_data={ 
-
-			 storename: "Bob's cool plumbing store",
-			 cartid: "12321321"
-			 };
-		
-	//	alert("ssss");
-	},
+	
 	 checkout: {
 		 type: "SendForm" ,
 		// url: "https://mapi.alipay.com/gateway.do?_input_charset=utf-8"
@@ -118,9 +104,9 @@ simpleCart({
 function mycheckout(){
 	
 
- $('#input_addr').poshytip('show'); 
+// $('#input_addr').poshytip('show'); 
 	
-	return false;
+	//return false;
 	document.getElementById("value_addr").value=document.getElementById("input_addr").value;
 	document.getElementById("value_tel").value=document.getElementById("input_tel").value;
 	document.getElementById("value_tel_bk").value=document.getElementById("input_baktel").value;
@@ -140,47 +126,7 @@ function mycheckout(){
 
 </script>
 <body >
-<div class="header">
-    <div class="wrap">
-        <div class="logo fl">
-        <a href="/"></a>
-        </div>
-        <div class="nav style="float: right;"">
-        <ul class="fl">
-        <li><a href="#">首页</a></li>
-        <li><a href="#">套餐</a></li>
-        <li><a href="#">单点</a></li>
-        <li class="nobg"><a href="#">今日特惠</a></li>
-        </ul>
-        #{if user}
-   
-           <div class="welcome fr">   
-     <p>欢迎您 ,<a class="more"  id="more" href="#">${user.username}</a>
-     <span id="more-list">
-     <a href="">这是列表一</a>
-     <a href="">这是列表二</a>
-     <a href="">这是列表3</a>
-     <a href="">这是列表4</a>
-     <a href="">这是列表5</a>
-     </span>
-     
-     <a href="@{Mod.logout()}">Logout</a>
-</p>
 
-        </div>
-#{/if} 
-#{else}
-<div class="login_reg " style="float: right;">
-        <daobutton class="log">登陆</daobutton>
-        <daobutton class="regi">注册</daobutton>
-        </div>
-#{/else}
-       
-        </div>
-    </div>
-</div>
-
-<div class="banner"></div>
 
 
        <div class="wrap taocan">
@@ -195,8 +141,10 @@ function mycheckout(){
 		
 		<div class="cart-summary basket_info">
 		
-			<div class="simpleCart_quantity">份美食</div>
-			<span id="total_price_basket" class="simpleCart_total"></span>
+			
+			<font color="red"><span class="simpleCart_quantity">11</span></font>&nbsp;<span >份美食</span>&nbsp;&nbsp;&nbsp;
+			<span >账单</span>
+			<font color="red"><span id="total_price_basket" class="simpleCart_total"></span></font>
 			
 			
 		</div>
