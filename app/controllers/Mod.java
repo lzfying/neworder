@@ -60,9 +60,7 @@ public class Mod extends Controller{
 	}
 	
 	public static void registerUser(String adminname,String adminpass,String email){
-		System.out.println("122333userName ::"+adminname);
-		System.out.println("password ::"+adminpass);
-		System.out.println("email ::"+email);
+		
 		User user = new User( adminname, adminpass, email);
 		user.save();
 		session.put("user", adminname);
@@ -192,7 +190,7 @@ public class Mod extends Controller{
 	}
 	
 	public static void address(){
-		System.out.println("**********");
+
 		User user = connected();
 		if(user != null){
 			renderArgs.put("user", user);
@@ -269,7 +267,7 @@ public class Mod extends Controller{
 	
 	
 	public static void checkUser(String name){
-		System.out.println("vvvvvv "+name);
+
 		User user =User.find("byUsername", name).first();
 		if(user!=null){
 			response.print(false);

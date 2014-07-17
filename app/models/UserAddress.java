@@ -17,5 +17,6 @@ public class UserAddress extends Model {
     public String area;
     public String address;
     public String phone;
+    public String bakphone;
 
 }

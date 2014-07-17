@@ -1,9 +1,13 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import play.data.validation.Email;
 import play.data.validation.Match;
@@ -34,13 +38,18 @@ public class User extends Model {
     public String email;
     
     
-    @Email
+  
     @Required
     public String tel;
     
     @Required
     @OneToOne(cascade=CascadeType.ALL)
     public UserDetail userDetail;
+    
+    
+    @OneToMany(cascade=CascadeType.ALL)
+    public List<UserAddress> address;
+    
 
     public User(String name, String password, String username,String email) {
     	this.email = email;

@@ -300,10 +300,10 @@ a{text-decoration:none; outline:none}
 /*验证提示效果*/
 label.error{
     background-color: #f2dede;
-    border: 1px solid #eed3d7;
+    border: 0px solid #eed3d7;
     color: #b94a48;
     padding: 1px 10px;
-    position: relative;
+    position: absolute;
     right: 0;
    	HEIGHT: 20px;
    	WIDTH: 180px;
@@ -311,5 +311,208 @@ label.error{
     margin-right:40px;
     float:right;
      }
+
+
+
+
+.mod-setting-profile {
+    padding: 18px 20px;
+}
+
+.mod-setting-profile .setting-profile-title {
+    border-bottom: 2px solid #f2f2f2;
+    color: #999;
+    font-size: 24px;
+    line-height: 1;
+    padding-bottom: 11px;
+}
+.yahei {
+    font-family: "microsoft yahei","微软雅黑",Tahoma,Arial,Helvetica,STHeiti;
+}
+
+
+.setting-profile-form {
+    color: #666;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.setting-profile-table {
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.setting-profile-form th {
+    font-weight: normal;
+    padding: 14px 10px 0 0;
+    text-align: right;
+    width: 90px;
+}
+
+.setting-profile-form td.line30 {
+    line-height: 30px;
+}
+.setting-profile-form td {
+    padding: 7px 0 8px;
+}
+
+.setting-profile-form .profile-gender {
+    margin: 0 25px 0 3px;
+    vertical-align: middle;
+}
+
+.setting-profile-form td.line30 {
+    line-height: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+#profile .main-content {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid #ccc;
+    float: right;
+    min-height: 537px;
+    width: 700px;
+}
+
+#profile .content-inner {
+    padding: 15px;
+}
+
+#profile .content-inner > h3 {
+    background: none repeat scroll 0 0 #eff8ff;
+    border-left: 5px solid #08c;
+    font: bold 14px/30px tahoma,sans-serif;
+    margin: 10px 0;
+    padding-left: 10px;
+}
+
+
+.insideRight h2, .productRight h2 {
+    background: none repeat scroll 0 0 #eee;
+    border-bottom: 1px solid #dcdcdc;
+    color: #393939;
+    font-weight: normal;
+    height: 38px;
+    line-height: 38px;
+    margin-bottom: 15px;
+    position: relative;
+    text-indent: 30px;
+}
+
+
+
+#profile .profile-address .address-table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+.table-bordered {
+    border-radius: 0;
+}
+.table-bordered {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-collapse: separate;
+    border-color: #ddd #ddd #ddd -moz-use-text-color;
+    border-image: none;
+    border-radius: 4px;
+    border-style: solid solid solid none;
+    border-width: 1px 1px 1px 0;
+}
+.table {
+    margin-bottom: 18px;
+    width: 100%;
+}
+table {
+    
+}
+table {
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0;
+    max-width: 100%;
+}
+
+.table-bordered th, .table-bordered td {
+    border-left: 1px solid #ddd;
+}
+.table th, .table td {
+    border-top: 1px solid #ddd;
+    line-height: 18px;
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.ui-form-horizontal > label {
+    display: inline-block;
+    margin: 0 0 0 20px;
+    width: 80px;
+}
+label {
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+label, input, button, select, textarea {
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 18px;
+}
+
+
+
+
+
+.ui-form-horizontal > input {
+    margin: 0;
+    width: 300px;
+}
+input, textarea, .uneditable-input {
+    margin-left: 0;
+}
+input, textarea {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+}
+input, textarea, select, .uneditable-input {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color: #555;
+    display: inline-block;
+    font-size: 13px;
+    height: 18px;
+    line-height: 18px;
+    margin-bottom: 9px;
+    padding: 4px;
+    width: 210px;
+}
+input, button, select, textarea {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+label, input, button, select, textarea {
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 18px;
+}
+button, input {
+    line-height: normal;
+}
+button, input, select, textarea {
+    font-size: 100%;
+    margin: 0;
+    vertical-align: middle;
+}
 
 

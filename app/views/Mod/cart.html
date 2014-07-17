@@ -6,10 +6,10 @@
 <link rel="stylesheet" href="@{'/public/Style/main.css'}">
 
 <link rel="stylesheet" href="@{'/public/stylesheets/cart_style.css'}">
-
+<link rel="stylesheet" href="@{'/public/stylesheets/tip-yellow/tip-yellow.css'}" type="text/css" />
 #{script src:"jquery-1.7.1.min.js" /}
 
-
+#{script src:"jquery.poshytip.min.js" /}
 #{script src:"simpleCart.js" /}
 </head>
 
@@ -44,6 +44,19 @@ $(function(){
 		$("#cartPopover").hide();
 		$("header .cartInfo").removeClass('open');
 	});
+	
+	
+	$('#input_addr').poshytip({
+		content: '请填写详细地址',
+		showOn: 'none',
+		alignTo: 'target',
+	alignX: 'inner-left',
+	 
+	//alignY: 'center',
+		offsetX: 0,
+		offsetY: 5
+	});
+	
 
 });
 
@@ -99,7 +112,15 @@ simpleCart({
 
 
 
+
+
+
 function mycheckout(){
+	
+
+ $('#input_addr').poshytip('show'); 
+	
+	return false;
 	document.getElementById("value_addr").value=document.getElementById("input_addr").value;
 	document.getElementById("value_tel").value=document.getElementById("input_tel").value;
 	document.getElementById("value_tel_bk").value=document.getElementById("input_baktel").value;
@@ -194,6 +215,9 @@ function mycheckout(){
 
 
 <div class="caddr-edit-field edit_field">
+
+
+
 <input class="addr row_addr_edit" id="input_addr" type="text" value="" placeholder="外卖送到的地址">
 <input class="tel row_tel_edit" id="input_tel"  type="tel" value="" placeholder="手机号码">
 <input class="bk row_baktel_edit" id="input_baktel" type="text" value="" placeholder="备选电话（选填）">
