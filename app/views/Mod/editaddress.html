@@ -1,0 +1,94 @@
+#{extends 'main_1.html' /}
+<div class="wrap pt20 pd20" >
+<h2 class="item">我的订单</h2>
+<div class="insideLeft">
+<ul class="navlist">
+<h2>我的到位儿</h2>
+<li><a href="#">我的购物车</a></li>
+<li><a href="#">订单详情</a></li>
+<li><a href="#">历史订单</a></li>
+<li><a  href="#">我的资料</a></li>
+<li><a href="#">关于到位儿</a></li>
+<li><a class="focus" href="#">我的地址</a></li>
+</ul>
+
+
+</div>
+
+<div class="insideRight" id="#profile">
+
+	<div class="main-content" >
+		<div class="content-header">
+		<h2>管理我的地址</h2>
+	</div>
+
+	<div class="content-inner profile-address">
+	<h3>已经保存的送餐地址</h3>
+	<table class="address-table table table-bordered">
+	<thead>
+	<tr>
+		<th class="col-address">地址</th>
+		<th class="col-phone">手机号码</th>
+		<th class="col-phone-bk">备选电话</th>
+		<th class="col-action">操作</th>
+	</tr>
+	</thead>
+
+	
+	<tbody>
+	 #{list user.address, as:'addr'}
+	<tr>
+<td class="col-address">${addr.address}</td>
+<td class="col-phone">${addr.phone}</td>
+<td class="col-phone-bk">${addr.bakphone}</td>
+<td class="col-action">
+<a href="/profile/setDefaultAddress/id/7037241">设为默认</a>
+|
+<a href="/address/edit/${addr.id}">编辑</a>
+|
+<a class="gray_link" href="/address/del/${addr.id}">删除</a>
+</td>
+</tr>
+#{/list}
+	
+	</tbody>
+	</table>
+	
+	<h3>新增/编辑送餐地址</h3>
+	<form id="add_address_form" class="ui-form-horizontal" action="/saveaddress" method="post" name="address" novalidate="novalidate">
+	
+	<input id="address_id" type="hidden" name="address[id]">
+<input id="address__csrf_token" type="hidden" value="606ef455e8fafdf326707b7a251ebd5d" name="address[_csrf_token]">
+<input id="address_entry_id" type="hidden" name="address[entry_id]">
+<label for="address_address">
+<span class="required-mark">*</span>
+详细地址
+</label>
+<input id="address" type="text" name="address" value =${userAddress.address}>
+<p>（请填写真实详细的送餐地址）</p>
+<label for="address_phone">
+<span class="required-mark">*</span>
+手机号码
+</label>
+<input id="phone" type="text" name="phone" value =${userAddress.phone}>
+<p>（请保证外卖员能打通该号码）</p>
+<label for="address_phone_bk">备用电话</label>
+<input id="bakphone" type="text" name="bakphone" value =${userAddress.bakphone}>
+<p>（备用电话方便外卖员能联系到您）</p>
+<div class="ui-form-footer">
+<button id="add_address_submit" class="btn btn-yellow">保存</button>
+</div>
+	</form>
+	
+	
+	</div>
+
+
+</div>
+
+</div>
+       
+</div>
+</div>
+
+
