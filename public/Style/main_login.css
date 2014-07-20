@@ -1,0 +1,518 @@
+@charset "utf-8";
+/* CSS Document */
+body,p,input,ul,li,h1,h2,h3,h4,h5,h6,dl,dd,dt,button,textarea{margin:0; padding:0; list-style:none; font-family:Microsoft YaHei,SimSun; font-size:14px}
+img{border:none; display:block}
+a{text-decoration:none; outline:none}
+.clear{clear:both; height:0; line-height:0;}
+.fl{float:left}
+.fr{float:right}
+.pd30{padding-bottom:30px}
+.wrap{width:1000px; margin:0 auto; overflow:hidden}
+.header{height:54px; width:100%; padding:20px 0; background:url(../images/headerBg.png); position:fixed;_position:absolute;z-index:1000;top:0; left:0;}
+.logo{height:51px; width:141px; background:url(../images/logo.png) no-repeat;}
+.logo a{display:block; width:100%; height:100%}
+.nav{width:800px; overflow:hidden}
+.nav ul{width:440px; overflow:hidden}
+.nav ul li{float:left; width:110px; height:51px; line-height:51px; background:url(../images/nav_line.png) right center no-repeat; text-align:center}
+.nav ul li.nobg{background:none}
+.nav ul li a{font-size:16px; color:#fff;}
+.nav ul li a:hover{color:#f28e20;}
+.login_reg{width:100px; padding:0 7px; height:51px; background:url(../images/login_reg.png) center no-repeat; line-height:51px; margin-right:50px;}
+.login_reg daobutton{font-size:12px; color:#fff; display:block; width:50%; height:51px; text-align:center; float:right; background:none; border:none; outline:none; cursor:pointer}
+.banner{width:100%;height:604px; background:url(../images/banner.jpg) center top no-repeat}
+.shoppingBox{position:fixed;_position:absolute;z-index:1000; width:220px; padding-top:46px; top:30%; right:0; background:url(../images/shoppingBoxIcon.png) right top no-repeat}
+#shpBox{background:url(../images/shoppingBoxBg.png); overflow:hidden}
+#shpBox ul{width:180px; padding:10px 20px; overflow:hidden}
+#shpBox  ul li{margin:10px 0; border-bottom:1px solid #666; padding-bottom:10px; overflow:hidden}
+#shpBox  ul li img{float:left; width:46px; height:42px;}
+#shpBox  ul li div.txt{width:120px; overflow:hidden;}
+#shpBox  ul li div.txt p{color:#fff; font-size:12px; overflow:hidden; line-height:22px}
+#shpBox  ul li div.txt p strong{font-weight:normal}
+#shpBox  ul li div.txt p span{font-family:arial; color:#f28e20; font-size:12px}
+#shpBox  ul li div.txt p span em{font-family:microsoft yahei; font-style:normal;}
+#shpBox  ul li div.txt p span a {color:#fff}
+#shpBox  ul li div.txt p span a:hover {color:#f28e20}
+#shpBox .check{height:26px; width:180px; padding-bottom:10px; margin:0 auto;}
+#shpBox .check a{display:block; width:90px; height:26px; line-height:26px; background:#f28e20; text-align:center; color:#fff; float:left; font-size:14px}
+#shpBox .check a:hover{background:#dc5a10}
+#shpBox .check p{font-size:12px; color:#fff; float:right; line-height:28px}
+#shpBox .check p span{color:#f28e20; font-family:arial; font-size:16px;}
+#shpBox .check p span em{font-family:microsoft yahei; font-size:12px; font-style:normal; margin-left:2px}
+.taocan h2,.jinritaocan h2,.zhushi h2,.tanglei h2,.xiaochi h2{height:30px; line-height:30px; font-size:18px; color:#c60000; margin:15px 0; padding-left:34px}
+.taocan h2{background:url(../images/taocan.png) left center no-repeat}
+.jinritaocan h2{background:url(../images/jinritaocan.png) left center no-repeat; color:#005602}
+.zhushi h2{background:url(../images/zhushi.png) left center no-repeat; color:#521e0c}
+.tanglei h2{background:url(../images/tanglei.png) left center no-repeat;color:#ff0012}
+.xiaochi h2{background:url(../images/xiaochi.png) left center no-repeat; color:#85030f}
+.taocan ul,.jinritaocan ul,.others ul{width:1020px; overflow:hidden}
+.taocan ul li{width:320px; float:left; margin-right:20px; position:relative}
+.taocan ul li img{width:318px; height:400px; border:1px #ddd solid}
+.taocan ul li p a{display:block; position:absolute; z-index:3; bottom:1px; left:1px; width:318px; padding:0 1px; height:90px; background:url(../images/headerBg.png); text-align:center; color:#fff;line-height:90px; font-size:18px}
+.taocan ul li p a span{margin-left:10px; font-family:Britannic Bold,Elephant Regular; font-size:36px; margin-right:3px}
+.jinritaocan ul li{width:490px; float:left; margin-right:20px; overflow:hidden}
+.jinritaocan ul li img{width:488px; height:260px; border:1px #ddd solid}
+.jinritaocan ul li div.des{height:54px; width:458px; padding:15px; border:1px #ddd solid; border-top:none; overflow:hidden}
+.jinritaocan ul li div.des p{font-size:14px; line-height:30px; color:#363636}
+.jinritaocan ul li div.des p strong{font-size:16px; display:block; padding-left:0}
+.jinritaocan ul li div.des span{display:block; font-size:24x; font-family:arial; margin-left:16px; margin-top:16px; color:#f28e20}
+.jinritaocan ul li div.des span em{font-size:36px; font-family:microsoft yahei; font-style:normal; margin-left:5px}
+.jinritaocan ul li div.des a{display:block; width: 100px; height:28px; background:#F28e20; color:#fff; margin-top:26px; text-align:center; line-height:28px}
+.jinritaocan ul li div.des a:hover{background:#dc5a10}
+.others ul li{width:240px; border:1px #ddd solid; float:left; margin-right:10px}
+.others ul li img{width:240px; height:240px;}
+.others ul li p{height:50px; width:210px; padding:10px; line-height:26px; font-size:14px; color:#363636}
+.others ul li p span{color:#f28c20; font-size:24px; font-family:arial; margin-left:5px}
+.others ul li p span em{font-size:18px; font-family:arial; margin-right:3px; font-style:normal}
+.others ul li p a{display:block; width:80px; height:28px; background:#f28e20; color:#fff; text-align:center; line-height:28px; margin-top:24px}
+.others ul li p a:hover{background:#dc5a10}
+
+
+.mainfooter{height:70px; padding:15px 0 10px; width:100%;background-color:#4a1400;}
+.mainfooter p{text-align:center; color:#ddd; line-height:30px}
+.mainfooter p span{font-family:arial; color:#ddd}
+.mainfooter p a{color:#ddd; margin:0 8px}
+.mainfooter p a:hover{color:#fff; margin:0 8px}
+
+
+.Listbox {
+
+    width:150px;
+
+    border:1px solid #ccc;
+
+    margin-left: 100px;
+
+}
+
+.Listbox li {
+
+    width:150px;
+
+    text-align: center;
+
+}
+
+.shopMenu {
+
+    border:1px solid #ccc;
+
+    width:150px;
+
+    margin-left: 500px;
+
+    text-align: center;
+
+}
+
+.shopMenu{
+
+    margin: 0;
+
+    padding: 0;
+
+    margin:200px 0 0 150px;
+
+}
+
+.shopMenu li{
+
+    text-align: center;
+
+    width: 150px;
+
+    height: 150px;
+
+    line-height: 150px;
+
+}
+
+#box {
+
+    height: 120px;
+
+    width: 126px;
+
+    position: absolute;
+
+}
+
+
+
+
+/*Register*/
+.register-top,.register-bottom{width:410px; height:18px; background:url(../images/register-top.png) no-repeat}
+.register-bottom{background:url(../images/register-bottom.png) no-repeat}
+.register{overflow:hidden; background:url(../images/registerBg.png) repeat-y; padding:22px 40px; width:330px}
+.register h2{margin-bottom:20px; overflow:hidden}
+.register h2 i{float:right; font-size:14px; font-style:normal }
+.register h2 i a{ color:#f28e20;}
+.register h2 i a:hover{color:#fff;}
+.register label{display:block;height:36px;position:relative;margin:20px 0;}
+.register label p{position:absolute; left:0; top:0; color:#fff; width:65px; text-align:right; line-height:30px; padding-right:5px}
+.register input.reg{outline:none; padding:0; margin:0; border:none; text-indent:10px; position:absolute; display:block; left:70px}
+.register span{position:absolute;float:left;line-height:36px;left:80px;color:#ccc;cursor:text;font-size:14px; z-index:999}
+.register .input_txt{width:220px;height:30px; line-height:36px; font-size:14px; background:#fff; color:#333; font-family:arial}
+.register .input_pass{background-position:10px -36px}
+.register .input_code,.register .code{width:100px; height:36px;}
+.register .code{position:absolute; left:190px; top:0}
+.register .input_submit{height:30px; line-height:30px; font-size:16px; font-family:microsoft yahei; width:180px; background:#f28e1f; color:#fff; border:none; cursor:pointer; outline:none}
+.register .input_submit:hover{background-color:#dc5a0f}
+.register p.terms{text-align:center; margin:20px auto; color:#fff;}
+.register p.terms input{margin-right:6px;}
+.register p.sub{text-align:center; margin:0 auto; width:180px;} 
+.register label.label_check{text-align:center; margin:20px auto; color:#fff; display:block; width:190px; margin:0 auto; cursor:pointer}
+
+.has-js .label_radio{ background: url(../images/radio-off.png) left center no-repeat; text-indent:15px; cursor:pointer }
+.has-js .label_check{ background: url(../images/check-off.png) no-repeat; }
+.has-js label.c_on{ background: url(../images/check-on.png) no-repeat; }
+.has-js label.r_on{ background: url(../images/radio-on.png) left center no-repeat; }
+.has-js .label_check input,.has-js .label_radio input{ position: absolute; left: -9999px; }
+
+
+/*LoginBox*/
+.loginBoxBg{width:567px;  overflow:hidden; padding:22px 30px;background:url(../images/box-bg.png) repeat-y}
+.loginBox-top,.loginBox-bottom{width:627px; height:18px; background:url(../images/Box-top-Bg.png) no-repeat}
+.loginBox-bottom{background:url(../images/Box-bottom-Bg.png) no-repeat}
+.login{overflow:hidden}
+.login .left{width:280px; float:left;}
+.login .left h2,.register h2{font-size:18px; margin-bottom:30px; color:#fff; font-weight:normal}
+.login .left h2 em{font-size:14px; color:#fff; float:right; font-style:normal; line-height:30px; color:#f28e20}
+.login .left h2 em a{color:#f28e20;}
+.login .left h2 em a:hover{color:#f27800}
+.login .left label{display:block;height:36px;position:relative;margin:20px 0;}
+.login .left label em{position:absolute; right:10px; top:0; display:block; font-style:normal; line-height:36px; color:#fff}
+.login .left label em a{color:#fff}
+.login .left label em a:hover{color:#f27800}
+.login .left input{outline:none; padding:0; margin:0; border:none}
+.login .left span{position:absolute;float:left;line-height:36px;left:10px;color:#ccc;cursor:text;font-size:14px; text-indent:40px}
+.login .left .input_txt{width:220px;height:36px; line-height:36px; font-size:14px; background:url(../images/login_icon.png) 10px 0  no-repeat #fff; padding-left:50px; color:#333; font-family:arial}
+.login .left .input_pass{background-position:10px -36px}
+.login .left .input_submit{height:36px; line-height:36px; font-size:14px; font-family:microsoft yahei; width:120px; background:#f28e1f; color:#fff; border:none; cursor:pointer; outline:none}
+.login .left .input_submit:hover{background-color:#dc5a0f}
+.login .right{float:right; width:220px;}
+.login .right h2{font-size:14px; color:#fff;  text-align:right; font-weight:normal;  margin-bottom:15px}
+.login .right ul li{width:90px; height:40px; float:left; margin-top:20px; font-size:14px; color:#fff; padding-top:30px; text-align:center; margin-left:15px}
+.login .right ul li a{color:#fff}
+.login .right ul li a:hover{color:#f27800}
+.login .right ul li.qq{background:url(../images/qq.png) center top no-repeat}
+.login .right ul li.qq2{background:url(../images/QQ2.png) center top no-repeat}
+.login .right ul li.weixin{background:url(../images/xinlang.png) center top no-repeat}
+.login .right ul li.xinlang{background:url(../images/weixin.png) center top no-repeat}
+.check{color:#fff;overflow:hidden;}
+.check h2{font-size:16px; color:#fff;font-weight:normal; text-align:right; margin-right:20px}
+.check h2.checkout{font-family:arial; color:#f28e1f; font-size:20px; }
+.check h2.checkout span{color:#fff; font-size:14px; font-family:microsoft yahei; margin-right:5px}
+.check h2 i{font-family:arial; font-style:normal; margin:0 5px; }
+.check h2 span{color:#f28e1f}
+.check h3,.check h4{font-size:16px; color:#fff; font-weight:normal;}
+.check h4{font-size:14px; margin-top:10px}
+.check h4 a{color:#fff; display:block; margin-left:10px}
+.check h4 a:hover{color:#f27800}
+.check h3 span{font-size:20px; color:#f27800; font-family:arial}
+.check label{line-height:26px; display:block;margin-top:15px;}
+.check label input{color:#fff;cursor:pointer}
+.check .line{ border-bottom:1px dashed #999; width:100%; margin:20px 0}
+.check label span{margin-left:10px; cursor:pointer}
+.check a{color:#f28e1f; display:block; margin-top:15px; margin-bottom:15px}
+.check a:hover{color:#fff}
+.check .bank{overflow:hidden; margin-bottom:10px}
+.check .bank label{width:160px; float:left; margin-right:15px; margin-top:20px;cursor:pointer}
+.check .bank label input{float:left; margin-top:8px;*margin-top:5px; }
+.check .bank label img{float:right; width:140px;}
+.check  input.pay{display:block; width:140px; height:36px; line-height:36px; background:#f28e1f; float:right; color:#fff; border:0; font-size:16px; margin-right:20px; margin-top:20px; display:block; cursor:pointer}
+.check  input.pay:hover{background:#dc5a0f}
+.check h5{color:#f28e1f; background:url(../images/gou.png) no-repeat; line-height:43px; width:145px; padding-left:55px; margin:0 auto; font-size:30px; font-weight:normal; margin-top:50px;}
+.check h6{text-align:center; font-weight:normal; margin-top:15px; font-size:16px;}
+.check h6 span{font-family:arial;color:#f28e1f}
+.payOut{width:380px; margin:20px auto}
+.payOut a{display:block; float:left; color:#fff; margin-right:50px; line-height:36px;width:140px; height:36px;}
+.payOut a:hover{color:#f28e1f}
+.payOut a.goon{ background:#f28e1f; text-align:center; font-size:16px; color:#fff; text-decoration:none}
+.payOut a.goon:hover,.payOut a.onfoucs{background:#dc5a0f; cursor:pointer}
+
+
+.welcome{color:#ff;}
+.welcome p{color:#fff; line-height:30px; margin-top:15px; height:30px; position:relative; background:url(/images/sanjiao.png) right 15px no-repeat; }
+.welcome p a{color:#f28e20; margin:0 5px;}
+.welcome p a.more{padding-right:8px}
+
+.welcome p span{display:none; width:120px; height:300px; overflow:hidden; position:absolute; right:0;top:30px;z-index:9999}
+.welcome p span a{display:block; width:120px; height:34px; background:#f28e20; text-align:center; line-height:34px; color:#fff; border-bottom:1px #eca251 solid}
+.welcome p span a:hover{background:#dc5a0f}
+.welcome p img{float:right; margin:15px 5px}
+
+/*Inside*/
+.inside{width:1000px; margin:0 auto}
+.top{width:100%; height:54px; padding:20px 0; background:#2c0c01}
+.welcome{color:#ff;}
+.welcome p{color:#fff; line-height:30px; margin-top:15px; height:30px; position:relative; background:url(../images/sanjiao.png) right 15px no-repeat; }
+.welcome p a{color:#f28e20; margin:0 5px;}
+.welcome p a.more{padding-right:8px}
+
+.welcome p span{display:none; width:120px; height:300px; overflow:hidden; position:absolute; right:0;top:30px;z-index:9999}
+.welcome p span a{display:block; width:120px; height:34px; background:#f28e20; text-align:center; line-height:34px; color:#fff; border-bottom:1px #eca251 solid}
+.welcome p span a:hover{background:#dc5a0f}
+.welcome p img{float:right; margin:15px 5px}
+.wrap h2.item{background:url(../images/item-icon.png) no-repeat; height:42px; line-height:42px; padding-left:50px; font-size:16px; color:#333; font-weight:normal; margin-bottom:10px; overflow:hidden}
+.insideLeft{width:190px; float:left; overflow:hidden}
+.insideLeft ul.navlist{border:1px #ddd solid; overflow:hidden; }
+.insideLeft ul.navlist h2{padding:10px 20px; color:#dc5a0f; border-bottom:1px solid #ddd; font-size:16px; font-weight:normal; }
+.insideLeft ul.navlist li a{display:block; padding:5px 0; color:#5a5a5a; text-indent:20px; margin-top:8px}
+.insideLeft ul.navlist li a:hover,.insideLeft ul li a.focus{background:#dc5a0f; color:#fff}
+.insideLeft ul.commend,.productLeft ul.commend2{overflow:hidden;}
+.insideLeft ul.commend li,.productLeft ul.commend2 li{margin-top:10px; overflow:hidden}
+.insideLeft ul.commend li img{width:190px; height:170px;}
+.productLeft ul.commend2 li img{width:210px; height:188px}
+.insideLeft ul.commend li p,.productLeft ul.commend2 li p{line-height:24px}
+.insideLeft ul.commend li p a,.productLeft ul.commend2 li p a{color:#5a5a5a;}
+.insideLeft ul.commend li P a:hover,.productLeft ul.commend2 li p a:hover{color:#f27800}
+.insideRight{width:780px; float:right; overflow:hidden}
+.insideRight h2,.productRight h2{text-indent:30px; background:#EEE;  height:38px; line-height:38px; margin-bottom:15px; color:#393939; border-bottom:1px #dcdcdc solid; position:relative; font-weight:normal}
+.insideRight h2 span,.productRight h2 span{display:block; width:130px; height:38px; background:url(../images/orange.png) no-repeat; color:#fff; font-size:16px; position:absolute; top:1px; left:0}
+.insideRight h2 em{font-style:normal; color:#333; float:left; display:block; text-indent:0; text-align:center}
+.myitem{width:778px; border:1px solid #ddd;overflow:hidden; padding:20px 0; margin:15px 0}
+.myitem.orangeBox,.myitem:hover{border:1px solid #f27800}
+.insideRight .itemContent{width:320px; padding:0 15px;overflow:hidden}
+.insideRight .itemContent-price{width:440px; padding:0 14px; overflow:hidden; border-right:1px dashed #ddd}
+.insideRight .itemContent-price ul li{margin-bottom:10px; padding-bottom:15px; border-bottom:1px dashed #ddd; overflow:hidden}
+.insideRight .itemContent-price ul li p.item-content{line-height:24px; text-indent:0; width:200px; overflow:hidden}
+.insideRight .itemContent-price ul li p.item-content strong a{color:#f27800}
+.insideRight .itemContent-price ul li img{float:left; margin-right:20px; height:85px; width:85px}
+.insideRight .unitPrice{width:100px; padding:0 10px;overflow:hidden}
+.insideRight .unitPrice p{font-family:arial; text-align:center; line-height:85px; text-indent:0}
+.insideRight .total{width:100px; padding:0 10px; overflow:hidden; color:#5a5a5a; text-align:center}
+.insideRight .total p{text-indent:0; font-family:arial; color:#f27800; font-size:18px; line-height:85px; }
+.insideRight .state{width:160px; padding:0 14px;overflow:hidden; color:#5a5a5a; text-align:center}
+.insideRight .state p{text-indent:0; overflow:hidden;}
+.insideRight .state input{display:block; width:90px; height:30px; color:#fff; background:#f28e1f; text-align:center; margin:5px auto; border:0; cursor:pointer;}
+.insideRight .state input:hover{background:#dc5a0f}
+.insideRight .state p.date{background:url(../images/clock.png) left center no-repeat; color:#999;  font-family:arial; text-align:left; padding-left:24px;}
+.insideRight p{color:#5a5a5a; line-height:28px; text-indent:20px;}
+.insideRight p strong{font-size:16px; color:#f27800; font-weight:normal;  display:block;}
+.insideRight .page{clear:both; overflow:hidden; margin-top:20px}
+.insideRight .page a{display:block; padding:1px 10px; color:#5a5a5a; border:1px #ccc solid; float:right; margin-left:20px}
+.insideRight .page a:hover{color:#333; border:1px solid #f27800}
+
+
+
+
+
+/*验证提示效果*/
+label.error{
+    background-color: #f2dede;
+    border: 0px solid #eed3d7;
+    color: #b94a48;
+    padding: 1px 10px;
+    position: absolute;
+    right: 110;
+   	HEIGHT: 120px;
+   	WIDTH: 120px;
+    TOP: -20px;
+    margin-right:140px;
+    float:right;
+     }
+
+
+
+
+.mod-setting-profile {
+    padding: 18px 20px;
+}
+
+.mod-setting-profile .setting-profile-title {
+    border-bottom: 2px solid #f2f2f2;
+    color: #999;
+    font-size: 24px;
+    line-height: 1;
+    padding-bottom: 11px;
+}
+.yahei {
+    font-family: "microsoft yahei","微软雅黑",Tahoma,Arial,Helvetica,STHeiti;
+}
+
+
+.setting-profile-form {
+    color: #666;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.setting-profile-table {
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.setting-profile-form th {
+    font-weight: normal;
+    padding: 14px 10px 0 0;
+    text-align: right;
+    width: 90px;
+}
+
+.setting-profile-form td.line30 {
+    line-height: 30px;
+}
+.setting-profile-form td {
+    padding: 7px 0 8px;
+}
+
+.setting-profile-form .profile-gender {
+    margin: 0 25px 0 3px;
+    vertical-align: middle;
+}
+
+.setting-profile-form td.line30 {
+    line-height: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+#profile .main-content {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid #ccc;
+    float: right;
+    min-height: 537px;
+    width: 700px;
+}
+
+#profile .content-inner {
+    padding: 15px;
+}
+
+#profile .content-inner > h3 {
+    background: none repeat scroll 0 0 #eff8ff;
+    border-left: 5px solid #08c;
+    font: bold 14px/30px tahoma,sans-serif;
+    margin: 10px 0;
+    padding-left: 10px;
+}
+
+
+.insideRight h2, .productRight h2 {
+    background: none repeat scroll 0 0 #eee;
+    border-bottom: 1px solid #dcdcdc;
+    color: #393939;
+    font-weight: normal;
+    height: 38px;
+    line-height: 38px;
+    margin-bottom: 15px;
+    position: relative;
+    text-indent: 30px;
+}
+
+
+
+#profile .profile-address .address-table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+.table-bordered {
+    border-radius: 0;
+}
+.table-bordered {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-collapse: separate;
+    border-color: #ddd #ddd #ddd -moz-use-text-color;
+    border-image: none;
+    border-radius: 4px;
+    border-style: solid solid solid none;
+    border-width: 1px 1px 1px 0;
+}
+.table {
+    margin-bottom: 18px;
+    width: 100%;
+}
+table {
+    
+}
+table {
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0;
+    max-width: 100%;
+}
+
+.table-bordered th, .table-bordered td {
+    border-left: 1px solid #ddd;
+}
+.table th, .table td {
+    border-top: 1px solid #ddd;
+    line-height: 18px;
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.ui-form-horizontal > label {
+    display: inline-block;
+    margin: 0 0 0 20px;
+    width: 80px;
+}
+label {
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+label, input, button, select, textarea {
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 18px;
+}
+
+
+
+
+
+.ui-form-horizontal > input {
+    margin: 0;
+    width: 300px;
+}
+input, textarea, .uneditable-input {
+    margin-left: 0;
+}
+input, textarea {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+}
+input, textarea, select, .uneditable-input {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color: #555;
+    display: inline-block;
+    font-size: 13px;
+    height: 18px;
+    line-height: 18px;
+    margin-bottom: 9px;
+    padding: 4px;
+    width: 210px;
+}
+input, button, select, textarea {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+label, input, button, select, textarea {
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 18px;
+}
+button, input {
+    line-height: normal;
+}
+button, input, select, textarea {
+    font-size: 100%;
+    margin: 0;
+    vertical-align: middle;
+}
+
+
