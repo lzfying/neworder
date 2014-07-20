@@ -1,3 +1,5 @@
 # You can specialize this file for each language.
 # For example, for French create a messages.fr file
 #
+validation.error=密码错误
+validation.equals=用户名或密码错误

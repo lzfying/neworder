@@ -73,6 +73,7 @@ GET     /index2					Mod.index
 
 GET     /reg					Mod.register
 GET     /login_1				Mod.login
+POST     /login_1				Mod.login
 GET     /cart                   Mod.cart
 
 GET     /profile                Mod.profile
@@ -90,4 +91,6 @@ POST    /order                  Mod.order
 
 GET     /checkUser               	Mod.checkUser
 
+POST    /checkUserLogin               	Mod.checkUserLogin
+POST    /savepersonal               	Mod.savepersonal
 
