@@ -4,12 +4,12 @@
 <div class="insideLeft">
 <ul class="navlist">
 <h2>我的到位儿</h2>
-<li><a href="#">我的购物车</a></li>
-<li><a href="#">订单详情</a></li>
+
+<li><a href="/profile">订单详情</a></li>
 <li><a href="#">历史订单</a></li>
-<li><a class="focus" href="#">我的资料</a></li>
+<li><a class="focus" href="/personal">我的资料</a></li>
+<li><a href="/address">我的地址</a></li>
 <li><a href="#">关于到位儿</a></li>
-<li><a href="#">我的地址</a></li>
 </ul>
 
 
@@ -21,26 +21,28 @@
 		<h2>我的资料</h2>
 		</div>
 		
-		<form id="add_address_form" class="ui-form-horizontal" action="/saveaddress" method="post" name="address" novalidate="novalidate">
+		<form id="add_address_form" class="ui-form-horizontal" action="/savepersonal" method="post" name="address" novalidate="novalidate">
 	
-	<input id="address_id" type="hidden" name="address[id]">
-<input id="address__csrf_token" type="hidden" value="606ef455e8fafdf326707b7a251ebd5d" name="address[_csrf_token]">
-<input id="address_entry_id" type="hidden" name="address[entry_id]">
-<label for="address_address">
+	
+<label for="realname">
 <span class="required-mark"></span>
-昵称
+真实姓名:
 </label>
-<input id="address" type="text" name="address">
-<p>（请填写真实详细的送餐地址）</p>
-<label for="address_phone">
+<input id="realname" type="text" name="realname" value="${user.userDetail.realname}">
+<p>（请填写真实您的姓名）</p>
+<label for="sex">
 <span class="required-mark"></span>
-电子邮箱
+性别:
 </label>
-<input id="phone" type="text" name="phone">
-<p>（请保证外卖员能打通该号码）</p>
-<label for="address_phone_bk">备用电话</label>
-<input id="bakphone" type="text" name="bakphone">
-<p>（备用电话方便外卖员能联系到您）</p>
+<select id="sex" name="sex">
+<option value="1">男</option>
+<option value="0">女</option>
+
+</select>
+<p>（请填写您的性别，以便我们更好的为您服务）</p>
+<label for="address_phone_bk">您的积分:</label>
+<input id="point" type="text" name="point" readonly="readonly"  >
+<p>&nbsp;</p>
 <div class="ui-form-footer">
 <button id="add_address_submit" class="btn btn-yellow">保存</button>
 </div>

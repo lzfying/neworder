@@ -48,11 +48,11 @@ public class Mod extends Controller{
 	        if(user != null) {
 	            renderArgs.put("user", user);
 	        }
-    	//List<Meal> meals = Meal.all().fetch(0, 10);
+    	List<Meal> meals = Meal.all().fetch(0, 10);
     	
-        //render(meals);
+        render(meals);
 		System.out.println("*******");
-        render();
+       // render();
     }
 	
 	public static void register(){
@@ -75,9 +75,12 @@ public class Mod extends Controller{
         if(user != null) {
             session.put("user", user.username);
             flash.success("Welcome, " + user.username);
-                
+            
+        }else{
+        	//response.print(true);
         }
-		render();
+        render();
+		
 	}
 	public static void loginUser(){
 		render();
@@ -153,7 +156,6 @@ public class Mod extends Controller{
 		    key = iter.next();
 
 		    value = (String) map.get(key);
-		    System.out.println("::::"+key);
 		  //  System.out.println("::::"+value);
 
 		}
@@ -277,5 +279,41 @@ public class Mod extends Controller{
 		}
 		
 	}
+	
+	
+	public static void savepersonal(String realname, int sex){
+		
+		User user = connected();
+		if(user != null){
+			renderArgs.put("user", user);
+			user.userDetail.realname=realname;
+			user.userDetail.sex=sex;
+			user.userDetail.save();
+			personal();
+		}else{
+			
+			index("");
+		}
+		
+		
+		
+		
+	}
+	
+	
+	public static void checkUserLogin(String name,String password){
+
+		User user = User.find("byUsernameAndPassword", name, password).first();
+		if(user!=null){
+			response.print(true);
+		}else{
+			response.print(false);
+			
+		}
+		
+	}
+	
+	
+	
 	
 }

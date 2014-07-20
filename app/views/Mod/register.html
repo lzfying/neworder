@@ -114,8 +114,15 @@ $(document).ready(function(){
 				})
 				
 					
-		})
+		});
 		
+		
+function tologin(){
+	
+	
+	parent.mainlogin();
+}
+
 		
 		
 </script>
@@ -123,7 +130,7 @@ $(document).ready(function(){
 <body style="background-color:transparent">
 <div class="register-top"></div>
 <div class="register">
-<h2><i><a href="#">已注册用户登录</a></i>账号注册</h2>
+<h2><i><a href="#" onclick="tologin();">已注册用户登录</a></i>账号注册</h2>
 <form class="border_radius" id="focus"  method="post" action="/registerUser">
     	<label><p>用户名</p><span>用户名/邮箱</span><input type="text" class="reg input_txt "   minlength="3" id="adminname"   name="adminname" maxlength="26" /></label>
         <label><p>密码</p><span>密码</span><input type="password" class="reg input_txt input_pass" id="adminpass" name="adminpass" maxlength="30"/></label>   

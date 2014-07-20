@@ -23,6 +23,8 @@ $(document).ready(function() {
  	//	 $(".shoppingBox").on('click' , function(){
 	//	popWin.showWin("696","700","","shoppinBox.html");
 	//});
+ 	
+ 	
 
 });
 $(function(){
@@ -50,6 +52,18 @@ $(document).ready(function(){
     	$(".h2").animate({left:"680px",width:"320px"},function(){$(this).css("z-index","0");});
 	});
 });
+
+function mainlogin(){
+	
+	$("#mask,#maskTop").fadeOut(function() {
+	    $(this).remove();
+
+	});
+	setTimeout(function(){popWin.showWin("630","360","","/login_1");},500);
+	//popWin.showWin("630","360","","/login_1");
+		
+}
+
 </script>
 
 
@@ -72,11 +86,10 @@ $(document).ready(function(){
            <div class="welcome fr">   
      <p>欢迎您 ,<a class="more"  id="more" href="#">${user.username}</a>
      <span id="more-list">
-     <a href="">这是列表一</a>
-     <a href="">这是列表二</a>
-     <a href="">这是列表3</a>
-     <a href="">这是列表4</a>
-     <a href="">这是列表5</a>
+     <a href="/profile">我的订单</a>
+     <a href="/personal">详细资料</a>
+     <a href="/address">我的地址</a>
+     
      </span>
      
      <a href="@{Mod.logout()}">Logout</a>
@@ -100,6 +113,24 @@ $(document).ready(function(){
   #{doLayout /}
   
   <div class="mainfooter">
+  
+  <script>
+  var oMore=document.getElementById('more');
+	var oList=document.getElementById('more-list');
+	var timer=null;
+	oList.onmouseover=oMore.onmouseover=function()
+	{
+		clearTimeout(timer);
+		oList.style.display='block';
+	};
+	oList.onmouseout=oMore.onmouseout=function()
+	{
+		timer=setTimeout(function(){
+			oList.style.display='none';
+		},200)//200是时间可以改变
+	};
+  
+  </script>
 <p><span>Copyright &copy; 2014 DaoWeir.com All Rights Reserved. </span></p>
 <p>
 <a href="#">关于我们</a><span>|</span>
