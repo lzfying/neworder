@@ -168,14 +168,13 @@ simpleCart({
 <div class="wrap taocan" >
 <h2>套餐</h2>
 <ul>
-<li><a href="#"><img src="images/taocan320-400.png" /></a>
-<p><a href="#">屌丝套餐 <span>18</span>元</a></p>
+ #{list combos, as:'combo'}
+ <li><a href="#"><img src="images/taocan320-400.png" /></a>
+<p><a href="#">${combo.name} <span>${combo.price.price}</span>元</a></p>
 </li>
-<li><a href="#"><img src="images/taocan320-400.png" /></a>
-<p><a href="#">屌丝套餐 <span>28</span>元</a></p>
-</li>
-<li><a href="#"><img src="images/taocan320-400.png" /></a>
-<p><a href="#">屌丝套餐 <span>58</span>元</a></p>
+ #{/list}
+
+
 </li>
 </ul>
 </div>
@@ -208,34 +207,18 @@ simpleCart({
 <div class="wrap zhushi others">
 <h2>主食</h2>
 <ul>
+#{list meals, as:'meal'}
 <li>
 <a href="#"><img src="images/240-240.png" id='img_1' /></a>
-<p><a class="fr" href="javascript:;" id='1'   onclick="showcart();simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
-<span><em>&yen;</em>16</span><br />
-【辣子鸡盒饭1】
+<p><a class="fr" href="javascript:;" id='${meal.id}'   onclick="showcart();simpleCart.add({name:'${meal.name}', price: ${meal.price.price},size:'tiny',thumb:'e.png'});">立即订购</a>
+<span><em>&yen;</em>${meal.price.price}</span><br />
+【${meal.name}】
 </p>
 </li> 
-<li>
-<a href="#"><img src="images/240-240.png" id='img_2'/></a>
-<p><a class="fr" href="javascript:;" id='2'   onclick="showcart();simpleCart.add({name:'红烧牛肉', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
-<span><em>&yen;</em>16</span><br />
-【红烧牛肉】
-</p>
-</li>
-<li>
-<a href="#"><img src="images/240-240.png" /></a>
-<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
-<span><em>&yen;</em>16</span><br />
-【辣子鸡盒饭3】
-</p>
-</li>
-<li>
-<a href="#"><img src="images/240-240.png" /></a>
-<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
-<span><em>&yen;</em>16</span><br />
-【辣子鸡盒饭4】
-</p>
-</li>
+
+ #{/list}
+
+
 </ul>
 </div>
 <div class="clear"></div>

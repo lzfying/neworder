@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import models.Combo;
 import models.Meal;
 import models.Order;
 import models.OrderDetail;
@@ -50,7 +51,9 @@ public class Mod extends Controller{
 	        }
     	List<Meal> meals = Meal.all().fetch(0, 10);
     	
-        render(meals);
+    	List<Combo> combos = Combo.all().fetch(0, 3);
+    	
+        render(meals,combos);
 		System.out.println("*******");
        // render();
     }
