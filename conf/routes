@@ -80,7 +80,7 @@ GET     /profile                Mod.profile
 GET     /personal               Mod.personal
 GET     /address               	Mod.address
 GET     /address/edit/{id}      Mod.editaddress
-
+GET     /address/setaddr/{id}      Mod.setdefault
 GET     /address/del/{id}      Mod.deladdress
 
 

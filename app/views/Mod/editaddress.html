@@ -9,7 +9,7 @@
 <li><a href="#">历史订单</a></li>
 <li><a  href="#">我的资料</a></li>
 <li><a href="#">关于到位儿</a></li>
-<li><a class="focus" href="#">我的地址</a></li>
+<li><a class="focus" href="#">我的地址11</a></li>
 </ul>
 
 
@@ -42,7 +42,17 @@
 <td class="col-phone">${addr.phone}</td>
 <td class="col-phone-bk">${addr.bakphone}</td>
 <td class="col-action">
-<a href="/profile/setDefaultAddress/id/7037241">设为默认</a>
+%{
+    if(addr.defvalue=="N"){
+}%
+<a href="/address/setaddr/${addr.id}">设为默认</a>
+%{
+      } else {
+}%
+<a href="/address/setaddr/${addr.id}"><font color="red">默认地址</font></a>
+%{
+   }
+}%
 |
 <a href="/address/edit/${addr.id}">编辑</a>
 |
@@ -57,7 +67,7 @@
 	<h3>新增/编辑送餐地址</h3>
 	<form id="add_address_form" class="ui-form-horizontal" action="/saveaddress" method="post" name="address" novalidate="novalidate">
 	
-	<input id="address_id" type="hidden" name="address[id]">
+	<input id="address_id" type="hidden" name="address_id" value=${userAddress.id}>
 <input id="address__csrf_token" type="hidden" value="606ef455e8fafdf326707b7a251ebd5d" name="address[_csrf_token]">
 <input id="address_entry_id" type="hidden" name="address[entry_id]">
 <label for="address_address">

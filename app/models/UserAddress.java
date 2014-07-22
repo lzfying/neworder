@@ -2,6 +2,7 @@ package models;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -18,5 +19,7 @@ public class UserAddress extends Model {
     public String address;
     public String phone;
     public String bakphone;
+    
+    public String defvalue ="N" ;
 
 }

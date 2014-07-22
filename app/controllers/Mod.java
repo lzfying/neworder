@@ -96,10 +96,18 @@ public class Mod extends Controller{
 	
 	public static void cart(){
 		 User user = connected();
+		 UserAddress addr = new UserAddress();
 	        if(user != null) {
 	            renderArgs.put("user", user);
+	            List<UserAddress> ls = user.address;
+				for(UserAddress u:ls){
+					if(u.defvalue.equals("Y")){
+						addr=u;
+					}
+				}
+	       
 	        }
-		render();
+		render(addr);
 	}
 	
 	public static void order(String name) {
@@ -215,17 +223,52 @@ public class Mod extends Controller{
 	       
 		if(user != null){
 			renderArgs.put("user", user);
+			Long addr_id=Long.parseLong(params.get("address_id")==null?"19999":params.get("address_id"));
 			userAddress.phone=params.get("phone")==null?"":params.get("phone");
 			userAddress.address=params.get("address")==null?"":params.get("address");
 			userAddress.bakphone=params.get("bakphone")==null?"":params.get("bakphone");
-			user.address.add(userAddress);
+			
+			UserAddress address= UserAddress.findById(addr_id);
+			if(address==null){
+				user.address.add(userAddress);
+				
+			}else{
+				user.address.remove(address);
+				user.address.add(userAddress);
+			}
 			user.save();
+		
 			address();
 			
 		}else{
 			
 			index("");
 		}
+		
+	}
+	
+	
+	public static void setdefault(Long id){
+		
+		User user = connected();
+		if(user != null){
+			renderArgs.put("user", user);
+			List<UserAddress> ls = user.address;
+			for(UserAddress u:ls){
+				if(u.defvalue.equals("Y")){
+					u.defvalue="N";
+					u.save();
+				}
+			}
+			UserAddress userAddress = UserAddress.findById(id);
+			userAddress.defvalue="Y";
+			userAddress.save();
+			address();
+		}else{
+			index("");
+		}
+		
+		
 		
 	}
 	

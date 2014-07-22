@@ -44,7 +44,17 @@
 <td class="col-phone">${addr.phone}</td>
 <td class="col-phone-bk">${addr.bakphone}</td>
 <td class="col-action">
-<a href="/profile/setDefaultAddress/id/7037241">设为默认</a>
+%{
+    if(addr.defvalue=="N"){
+}%
+<a href="/address/setaddr/${addr.id}">设为默认</a>
+%{
+   } else {
+}%
+ <a href="/address/setaddr/${addr.id}"><font color="red">默认地址</font></a>
+%{
+   }
+}%
 |
 <a href="/address/edit/${addr.id}">编辑</a>
 |

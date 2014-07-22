@@ -51,6 +51,16 @@ $(function(){
 		offsetX: 0,
 		offsetY: 5
 	});
+	$('#input_tel').poshytip({
+		content: '请填写真实的电话号码',
+		showOn: 'none',
+		alignTo: 'target',
+	alignX: 'inner-left',
+	 
+	//alignY: 'center',
+		offsetX: 0,
+		offsetY: 5
+	});
 	
 
 });
@@ -104,12 +114,25 @@ simpleCart({
 function mycheckout(){
 	
 
-// $('#input_addr').poshytip('show'); 
+ 
 	
 	//return false;
 	document.getElementById("value_addr").value=document.getElementById("input_addr").value;
 	document.getElementById("value_tel").value=document.getElementById("input_tel").value;
 	document.getElementById("value_tel_bk").value=document.getElementById("input_baktel").value;
+	if(document.getElementById("value_addr").value==""){
+		
+		$('#input_addr').poshytip('show'); 
+		return;
+		
+	}
+	if(document.getElementById("value_tel").value==""){
+		
+		$('#input_tel').poshytip('show'); 
+		return;
+		
+	}
+	
 	simpleCart.checkout();
 	//simpleCart.SendForm( );
 	/* simpleCart.checkout.SendForm( {
@@ -123,6 +146,9 @@ function mycheckout(){
 	
 	
 }
+
+
+
 
 </script>
 <body >
@@ -166,9 +192,13 @@ function mycheckout(){
 
 
 
-<input class="addr row_addr_edit" id="input_addr" type="text" value="" placeholder="外卖送到的地址">
-<input class="tel row_tel_edit" id="input_tel"  type="tel" value="" placeholder="手机号码">
-<input class="bk row_baktel_edit" id="input_baktel" type="text" value="" placeholder="备选电话（选填）">
+<input class="addr row_addr_edit" id="input_addr" type="text" value="${addr.address}" placeholder="外卖送到的地址">
+
+
+
+<input class="tel row_tel_edit" id="input_tel"  type="tel" value="${addr.phone}" placeholder="手机号码">
+<input class="bk row_baktel_edit" id="input_baktel" type="text" value="${addr.bakphone}" placeholder="备选电话（选填）">
+
 
 </div>
 </div>
