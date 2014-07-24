@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import models.Combo;
@@ -16,6 +17,7 @@ import models.UserAddress;
 import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.Scope.Params;
+import smscode.SendTemplateSMS;
 
 public class Mod extends Controller{
 	
@@ -360,6 +362,73 @@ public class Mod extends Controller{
 	}
 	
 	
+	
+	
+	public static void confirm(String tel){
+		System.out.println("dddff"+tel);
+		String randomnum= getFixLenthString(6);
+		System.out.println("   GGGGG   "+randomnum);
+		SendTemplateSMS s = new SendTemplateSMS();
+		s.resendSMSCode(tel, randomnum, "1");
+			session.put("smscode", randomnum);
+			
+			render(tel);
+		
+			
+			index("");
+		
+		
+		
+		
+	}
+	
+	
+	
+	/* 
+	 * 返回长度为【strLength】的随机数，在前面补0 
+	 */  
+	private static String getFixLenthString(int strLength) {  
+	      
+	    Random rm = new Random();  
+	      
+	    // 获得随机数  
+	    double pross = (1 + rm.nextDouble()) * Math.pow(10, strLength);  
+	  
+	    // 将获得的获得随机数转化为字符串  
+	    String fixLenthString = String.valueOf(pross);  
+	  
+	    // 返回固定的长度的随机数  
+	    return fixLenthString.substring(1, strLength + 1);  
+	}  
+	 
+	 
+	public static void sendSMS(String tel){
+		
+		String randomnum= getFixLenthString(6);
+		System.out.println("   GGGGG "+randomnum);
+		SendTemplateSMS s = new SendTemplateSMS();
+		if(s.resendSMSCode(tel, randomnum, "1")){
+			session.put("smscode", randomnum);
+			renderJSON("{su:true}");
+			
+		}else{
+			renderJSON("{su:false}");
+			
+		}
+		
+	}
+	
+	public static void confirmSms(String code){
+		String lcode = session.get("smscode")==null?"":session.get("smscode");
+		if(code.equals(lcode)){
+			
+			renderJSON("{\"messages\":true}");
+		}else{
+			renderJSON("{\"messages\":false}");
+			
+		}
+		
+	}
 	
 	
 }

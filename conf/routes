@@ -93,4 +93,6 @@ GET     /checkUser               	Mod.checkUser
 
 POST    /checkUserLogin               	Mod.checkUserLogin
 POST    /savepersonal               	Mod.savepersonal
-
+GET     /confirm               	Mod.confirm
+GET     /sendSMS               	Mod.sendSMS
+GET     /confirmSms               	Mod.confirmSms

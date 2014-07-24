@@ -5,6 +5,7 @@
 
 
 #{script src:"jquery.poshytip.min.js" /}
+#{script src:"layer.min.js" /}
 #{script src:"simpleCart.js" /}
 </head>
 
@@ -62,6 +63,7 @@ $(function(){
 		offsetY: 5
 	});
 	
+	
 
 });
 
@@ -112,9 +114,9 @@ simpleCart({
 
 
 function mycheckout(){
+	var telnum = document.getElementById("input_tel").value;
 	
 
- 
 	
 	//return false;
 	document.getElementById("value_addr").value=document.getElementById("input_addr").value;
@@ -133,7 +135,17 @@ function mycheckout(){
 		
 	}
 	
-	simpleCart.checkout();
+	$.layer({
+	    type: 2,
+	    border: [0],
+	    title: false,
+	    shadeClose: true,
+	    closeBtn: false,
+	    iframe: {src : '/confirm?tel='+telnum},
+	    area: ['760px', '300px']
+	});
+	
+	//simpleCart.checkout();
 	//simpleCart.SendForm( );
 	/* simpleCart.checkout.SendForm( {
 			extra_data: {
@@ -148,6 +160,12 @@ function mycheckout(){
 }
 
 
+
+function suborder(){
+	simpleCart.checkout();
+	
+	
+}
 
 
 </script>
@@ -230,7 +248,7 @@ function mycheckout(){
 
 <form id="checkout_form" method="post" action="/order">
 
-<button id="confirm_order" class="ui-btn ui_submit btn-cart-checkout" onclick="mycheckout();" data-loading="正在提交…" type="button">确认下单</button>
+<button id="confirm_order" class="ui-btn ui_submit btn-cart-checkout"   onclick="mycheckout();" data-loading="正在提交…" type="button">确认下单</button>
 
 <input id="value_note" type="hidden" value="" name="note">
 <input id="value_addr" type="hidden" value="111" name="address">
