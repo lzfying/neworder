@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="@{'/public/Style/confirm.css'}">
+#{script src:"jquery-1.8.3.min.js" /}
+#{script src:"layer.min.js" /}
+<script>
+function countDown(obj,second){
+	
+    // 如果秒数还是大于0，则表示倒计时还没结束
+    if(second>=0){
+          // 获取默认按钮上的文字
+          if(typeof buttonDefaultValue === 'undefined' ){
+            buttonDefaultValue =  obj.defaultValue;
+        }
+          
+         
+        // 按钮置为不可点击状态
+        obj.disabled = true;            
+        // 按钮里的内容呈现倒计时状态
+        obj.text(second);
+        // 时间减一
+        second--;
+        // 一秒后重复执行
+        setTimeout(function(){countDown(obj,second);},1000);
+    // 否则，按钮重置为初始状态
+    }else{
+        // 按钮置未可点击状态
+       $("#sigincheck").on('click', function(){
+    	   layer.load('努力重发短信中。。。', 3);
+    	   $.ajax({
+               cache: true,
+               type: "GET",
+               url:"/confirm?tel=${tel}",
+               
+               async: false,
+               error: function(request) {
+                   alert("Connection error");
+               },
+               success: function(data) {
+               	
+               
+               }
+           });
+    	   
+    	   
+		
+		});
+        // 按钮里的内容恢复初始状态
+        obj.text('');
+    }   
+}
+$(document).ready(function(){
+	  
+	 $("#codeagain").on('click', function(){
+		 var code= $("#smscode").val();
+		 if(code==""){
+			 
+			 return;
+			 
+		 }else{
+			 $.ajax({
+	              cache: true,
+	              type: "GET",
+	              url:"/confirmSms?code="+code,
+	              
+	              async: false,
+	              error: function(request) {
+	                  alert("Connection error");
+	              },
+	              success: function(data) {
+	            	  parent.suborder();
+	              
+	              }
+	          });
+			 
+		 }
+		 
+		 
+		 
+	 });
+	
+	
+	
+	
+	countDown($("#retime"),10);
+
+});
+
+
+
+	
+
+
+</script>
+
+<body class="night cart-wide bs-modal-open">
+
+<div class="bs-modal-content">
+<div class="bs-modal-header with-underline">
+<h4 class="bs-modal-title">用户手机验证</h4>
+</div>
+
+<div class="bs-modal-body">
+<p class="ui-alert warning" style="margin-top:10px">
+<i class="icon-warning"></i>
+您的手机首次在此电脑下单，请先验证手机号码。
+</p>
+<h5 class="checkout-auth-title">
+验证码已发送至
+<span class="auth_tel">${tel}</span>
+</h5>
+<div class="group">
+<div class="checkout-auth-fillform">
+<input class="checkout-auth-input vcode_input" type="text" placeholder="请输入短信验证码" maxlength="6" id="smscode">
+<a class="checkout-auth-btn btn-send vcode_send " role="button" id="sigincheck">
+重新发送
+<span class="countdown vcode_countdown " id ="retime">0</span>
+</a>
+</div>
+<a class="ui-btn btn-submit checkout-auth-btn vcode_confirm" id="codeagain" role="button">提交验证</a>
+</div>
+<p class="mt10 mb20"> </p>
+<div class="checkout-auth-dialing">
+<p class="mb5">
+收不到短信？使用
+<a class="dialing-btn voice_btn">
+语音验证码
+<span class="resend_voice ui_hide">
+</a>
+</p>
+<p class="clear-margin voice_tip ui_hide">
+电话拨打中…请留意来自
+<span class="dialing-number">021-54332216</span>
+的电话
+</p>
+</div>
+</div>
+</div>
+
+</body>
+</html>
