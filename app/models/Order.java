@@ -89,6 +89,7 @@ public Order(String orderNum,String  receiver_name){
 	
 	
 	public Order addOrderDetail(OrderDetail orderDetail){
+		this.orderDetails= new ArrayList<OrderDetail>();   
 		this.orderDetails.add(orderDetail);
 		this.save();
 		return this;
