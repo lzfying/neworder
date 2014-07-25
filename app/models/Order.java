@@ -89,6 +89,7 @@ public class Order extends Model{
 	
 	
 	public Order addOrderDetail(OrderDetail orderDetail){
+		this.orderDetails= new ArrayList<OrderDetail>();   
 		this.orderDetails.add(orderDetail);
 		this.save();
 		return this;
