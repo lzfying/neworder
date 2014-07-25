@@ -28,15 +28,15 @@
 <span class="required-mark"></span>
 真实姓名:
 </label>
-<input id="realname" type="text" name="realname" value="${user.userDetail.realname}">
+<input id="realname" type="text" name="realname" value="${user.userDetail?.realname}">
 <p>（请填写真实您的姓名）</p>
 <label for="sex">
 <span class="required-mark"></span>
 性别:
 </label>
 <select id="sex" name="sex">
-<option value="1">男</option>
-<option value="0">女</option>
+<option value="1" ${user.userDetail?.sex?'selected' : ''} >男</option>
+<option value="0" ${user.userDetail?.sex?'' : 'selected'}>女</option>
 
 </select>
 <p>（请填写您的性别，以便我们更好的为您服务）</p>

@@ -8,12 +8,15 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
 import models.Combo;
 import models.Meal;
 import models.Order;
 import models.OrderDetail;
 import models.User;
 import models.UserAddress;
+import models.UserDetail;
 import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.Scope.Params;
@@ -30,6 +33,8 @@ public class Mod extends Controller{
 //	        }
 //	    }
 	
+	static SendTemplateSMS sms = new SendTemplateSMS();
+	
 	public static	java.text.DateFormat format = new java.text.SimpleDateFormat("yyyyMMddhhmmss");
 	    
 	static User connected() {
@@ -45,7 +50,6 @@ public class Mod extends Controller{
 	    }
 	
 	public static void index(String from) {
-		System.out.println("this is "+from);
 		
 		  User user = connected();
 	        if(user != null) {
@@ -101,13 +105,16 @@ public class Mod extends Controller{
 		 UserAddress addr = new UserAddress();
 	        if(user != null) {
 	            renderArgs.put("user", user);
-	            List<UserAddress> ls = user.address;
-				for(UserAddress u:ls){
-					if(u.defvalue.equals("Y")){
-						addr=u;
-					}
-				}
-	       
+	            
+	            if(user.address!=null&&user.address.size()>0){
+	            	List<UserAddress> ls = user.address;
+	            	 for(UserAddress u:ls){
+	 					if(u.defvalue.equals("Y")){
+	 						addr=u;
+	 					}
+	 				}
+	            }
+			
 	        }
 		render(addr);
 	}
@@ -142,7 +149,6 @@ public class Mod extends Controller{
 			order.addOrderDetail(orderDetail);
 
 		}
-		
 		order.user=user;
 		order.save();
 	
@@ -333,9 +339,18 @@ public class Mod extends Controller{
 		
 		User user = connected();
 		if(user != null){
+			//UserDetail useDetail = new UserDetail(realname,sex,user);
+			UserDetail useDetail = user.userDetail;
+			if(useDetail!=null){
+				useDetail.realname=realname;
+				useDetail.sex=sex;
+			}else{
+				useDetail = new UserDetail(realname,sex,user);
+				
+			}
+			
 			renderArgs.put("user", user);
-			user.userDetail.realname=realname;
-			user.userDetail.sex=sex;
+			user.userDetail= useDetail;
 			user.userDetail.save();
 			personal();
 		}else{
@@ -368,8 +383,8 @@ public class Mod extends Controller{
 		System.out.println("dddff"+tel);
 		String randomnum= getFixLenthString(6);
 		System.out.println("   GGGGG   "+randomnum);
-		SendTemplateSMS s = new SendTemplateSMS();
-		s.resendSMSCode(tel, randomnum, "1");
+		
+		sms.resendSMSCode(tel, randomnum, "1");
 			session.put("smscode", randomnum);
 			
 			render(tel);
@@ -406,8 +421,8 @@ public class Mod extends Controller{
 		
 		String randomnum= getFixLenthString(6);
 		System.out.println("   GGGGG "+randomnum);
-		SendTemplateSMS s = new SendTemplateSMS();
-		if(s.resendSMSCode(tel, randomnum, "1")){
+		
+		if(sms.resendSMSCode(tel, randomnum, "1")){
 			session.put("smscode", randomnum);
 			renderJSON("{su:true}");
 			

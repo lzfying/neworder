@@ -42,7 +42,7 @@ public class Order extends Model{
 	
 	public String payWay;
 	
-	public String orderstate;
+	public String orderstate="0";//0:未处理 1：已发货 2：已签收 3：完成交易
 	
 	public int orderPrice;
 	
@@ -61,13 +61,13 @@ public class Order extends Model{
 		
 	}
 	
-public Order(String orderNum,String  receiver_name){
+	public Order(String orderNum,String  receiver_name){
 		
 		
 		this.orderNum = orderNum;
 		this.receiver_name =receiver_name;
 		
-		//this.date = new Date();
+		this.date = new Date();
 		this.orderDetails= new ArrayList<OrderDetail>();  
 		
 	}

@@ -48,5 +48,12 @@ public class UserDetail extends Model{
 		this.user = user;
 		this.point = point;
 	}
+	
+	public UserDetail(String realname,  int sex, User user) {
+		this.realname = realname;
+		this.user = user;
+		this.sex = sex;
+		
+	}
 
 }
