@@ -21,12 +21,14 @@
 				<th data-options="field:'tel',width:100,align:'center'">联系电话</th>
 				<th data-options="field:'content',width:100,align:'center'">内容</th>
 				<th data-options="field:'state',width:60,align:'center',formatter:function(val,rec){
-				    if (val == '1') {
+				    if (val == '0') {
 				        return '已下单';
-				    } else if (val == '2') {
+				    } else if (val == '1') {
 				        return '正在配送';
-				    } else if (val == '3') {
+				    } else if (val == '2') {
 				        return '已送达';
+				    } else if (val == '3') {
+				        return '交易完成'
 				    }
 				}">订单状态</th>
 				<th data-options="field:'others',width:200,align:'center'">备注</th>
@@ -41,6 +43,7 @@
 			订单日期: <input id="startdate" class="easyui-datebox" style="width: 80px">
             至: <input id="enddate" class="easyui-datebox" style="width: 80px">
             <a id="query" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+            <a id="reload" class="easyui-linkbutton" iconCls="icon-reload">刷新</a>
 		</div>
 	</div>
 	<div id="editdialog" style="padding:5px;width:600px;height:auto;top:100px" closed="true" >
@@ -79,9 +82,9 @@
 		            <td>订单状态：</td>
 		            <td>
 		              <select id="order.orderstate" name="order.orderstate" class="easyui-combobox" data-options="editable:false">
-		                  <option value ="1">已下单</option>
-		                  <option value ="2">正在配送</option>
-		                  <option value ="3">已送达</option>
+		                  <option value ="0">已下单</option>
+		                  <option value ="1">正在配送</option>
+		                  <option value ="2">已送达</option>
 		              </select>
 		            </td>
 		            <td>选择菜品：</td>
@@ -147,7 +150,7 @@
 					var obj = JSON.parse(data);
 					$('#orderform').form('load',{
                         'order.orderNum':obj.paymentid,
-                        'order.orderstate':'1',
+                        'order.orderstate':'0',
                         'order.area':'370199'
                     });
 //				    $('#order.orderstate').combobox('select', '1');
@@ -247,6 +250,10 @@
                     alert("提交失败，请重试！");  
                 }  
             });
+		});
+		
+		$("#reload").click(function() {
+			$("#orderdatas").datagrid("reload");
 		});
 		
 		$("#query").click(function() {

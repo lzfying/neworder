@@ -24,6 +24,11 @@
                 }">性别</th>
                 <th data-options="field:'realname',width:100,align:'center'">真实姓名</th>
                 <th data-options="field:'address',width:500,align:'center',formatter:function(val,rec){
+                    
+                    if (typeof(val) == 'undefined') {
+                        return '';
+                    }
+                                    
                     var address = '<table>';                    
                     for (i=0;i<val.length;i++) {
                         address+='<tr>'

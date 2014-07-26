@@ -46,7 +46,6 @@ public class Order extends Model{
 	
 	public Double orderPrice=0.0;
 	
-	
 	public Order(User user,String orderNum,String  receiver_name,String receiver_addr,String receiver_tel,String receiver_other,String payWay){
 		
 		this.user=user;
@@ -89,7 +88,6 @@ public class Order extends Model{
 	
 	
 	public Order addOrderDetail(OrderDetail orderDetail){
-		//this.orderDetails= new ArrayList<OrderDetail>();   
 		this.orderDetails.add(orderDetail);
 		this.save();
 		return this;

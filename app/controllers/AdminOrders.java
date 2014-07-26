@@ -2,6 +2,7 @@ package controllers;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -155,6 +156,9 @@ public class AdminOrders extends Controller {
     				if(saveOrder != null) {
     					saveOrder.addOrderDetail(detail);
     				} else {
+    					if (order.orderDetails == null) {
+    						order.orderDetails = new ArrayList<OrderDetail>();
+    					}
     					order.addOrderDetail(detail);
     				}
     			}

@@ -57,22 +57,24 @@ public class AdminUsers extends Controller {
     	obj.addProperty("id", user.id);
         obj.addProperty("username", user.username);
         obj.addProperty("email", user.email);
-        obj.addProperty("realname", user.userDetail.realname);
         if (user.userDetail != null) {
-        	obj.addProperty("sex", user.userDetail.sex);
-        	List<UserAddress> addrlist = user.userDetail.address;
-        	JsonArray array = new JsonArray();
-        	if (addrlist != null) {
-        		for (int i=0;i<addrlist.size();i++) {
-        			UserAddress addr  = addrlist.get(i);
-        			JsonObject addrobj = new JsonObject();
-        			addrobj.addProperty("address", addr.address);
-        			addrobj.addProperty("phone", addr.phone);
-        			addrobj.addProperty("area", addr.area);
-        			array.add(addrobj);
-        		}
-        	}
-        	obj.add("address", array);
+            obj.addProperty("realname", user.userDetail.realname);
+            if (user.userDetail != null) {
+            	obj.addProperty("sex", user.userDetail.sex);
+            	List<UserAddress> addrlist = user.userDetail.address;
+            	JsonArray array = new JsonArray();
+            	if (addrlist != null) {
+            		for (int i=0;i<addrlist.size();i++) {
+            			UserAddress addr  = addrlist.get(i);
+            			JsonObject addrobj = new JsonObject();
+            			addrobj.addProperty("address", addr.address);
+            			addrobj.addProperty("phone", addr.phone);
+            			addrobj.addProperty("area", addr.area);
+            			array.add(addrobj);
+            		}
+            	}
+            	obj.add("address", array);
+            }
         }
         return obj;
     }
