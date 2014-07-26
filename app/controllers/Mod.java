@@ -57,12 +57,11 @@ public class Mod extends Controller{
 	        if(user != null) {
 	            renderArgs.put("user", user);
 	        }
-	    MealType type = new MealType();
-	    type.mealType=1;
+	 
 	    
     	List<Meal> mainmeals = Meal.find("type.mealType= ?", 1).fetch(4);
     	
-    	type.mealType=3;
+    	
     	List<Meal> tangmeals = Meal.find("type.mealType= ?", 3).fetch(4);
     	
     	
@@ -158,9 +157,23 @@ public class Mod extends Controller{
 	        
 	        User user = connected();
 			 if(user == null) {
-				 user = new User( tel,  "123456",  tel);
+				 user = new User( tel,  tel,  tel);
 				 user.save();
-		     }    
+				 session.put("user", user.username);
+		     } else{
+		    	 String addrid=params.get("value_addr_id") ;
+		    	 
+		    	 if(addrid==null||addrid.equals("")){
+		    		 UserAddress userAddress =new UserAddress();
+		    		 userAddress.address=addr;
+			    	 userAddress.phone=tel;
+			    	 userAddress.bakphone=bak_tel;
+			    	 userAddress.defvalue="Y";
+			    	 user.address.add(userAddress);
+			    	 user.save();
+		    	 }
+	
+		     }   
 		
 		
 		Double total =0.0;
@@ -184,13 +197,7 @@ public class Mod extends Controller{
 		profile(0,"0");
     }
 	
-	public static void workByEntry(Map<Object, Object> map) {
-        Set<java.util.Map.Entry<Object, Object>> set = map.entrySet();
-        for (Iterator<Map.Entry<Object, Object>> it = set.iterator(); it.hasNext();) {
-            Map.Entry<Object, Object> entry = (Map.Entry<Object, Object>) it.next();
-            System.out.println(entry.getKey() + "--->" + map.get(entry.getKey()));
-        }
-    }
+	
 
 	
 	public static void vistMap(Map map){
@@ -212,11 +219,21 @@ public class Mod extends Controller{
 	public static void profile(Integer page,String orderstate){
 		User user = connected();
 		page = page != null ? page : 1;
+		
+		List<Order> orders=null ;
 		if(user != null){
 			renderArgs.put("user", user);
-			List<Order> orders = Order.find("byUserAndOrderstate", user,orderstate).fetch(page, 5);
+			if(orderstate.equals("3")){
+				
+				orders = Order.find("byUserAndOrderstate", user,orderstate).fetch(page, 5);
+				//hisprofile(orders,page);
+				renderTemplate("Mod/hisprofile.html", orders,page);
+			}else{
+				
+				orders = Order.find("user=? and orderstate!=?", user,"3").fetch(page, 5);
+				render(orders,page);
+			}
 			
-			render(orders,page);
 			
 		}else{
 			
@@ -225,6 +242,11 @@ public class Mod extends Controller{
 		
 	}
 	
+	
+	public static void hisprofile(List<Order> orders,Integer page){
+		render(orders,page);
+		
+	}
 	
 	public static void personal(){
 		User user = connected();

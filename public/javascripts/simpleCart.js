@@ -1179,6 +1179,8 @@
 					data['value_tel']=document.getElementById("value_tel").value;
 					data['value_tel_bk']=document.getElementById("value_tel_bk").value;
 					data['value_time']=document.getElementById("value_time").value;
+					data['value_time']=document.getElementById("value_time").value;
+					data['value_addr_id']=document.getElementById("value_addr_id").value;
 					
 					
 					/*********************/

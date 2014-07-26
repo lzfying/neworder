@@ -1,4 +1,6 @@
 #{extends 'main_1.html' /}
+<link rel="stylesheet" href="@{'/public/stylesheets/tip-yellow/tip-yellow.css'}" type="text/css" />
+#{script src:"jquery.poshytip.min.js" /}
 <div class="wrap pt20 pd20" >
 <h2 class="item">我的订单</h2>
 <div class="insideLeft">
@@ -7,8 +9,8 @@
 
 
 
-<li><a href="/profile?orderstate=1">订单详情</a></li>
-<li><a href="/profile?orderstate=3">历史订单</a></li>
+<li><a href="/profile?page=1&orderstate=0">订单详情</a></li>
+<li><a href="/profile?page=1&orderstate=3">历史订单</a></li>
 <li><a  href="/personal">我的资料</a></li>
 <li><a class="focus" href="/address">我的地址</a></li>
 <li><a href="#">关于到位儿</a></li>
@@ -88,11 +90,76 @@
 <input id="bakphone" type="text" name="bakphone">
 <p>（备用电话方便外卖员能联系到您）</p>
 <div class="ui-form-footer">
-<button id="add_address_submit" class="btn btn-yellow">保存</button>
+<button id="add_address_submit" class="btn btn-yellow" onclick="mycheckout();" type="button">保存</button>
 </div>
 	</form>
 	
+	<script>
 	
+	$(function(){
+		
+		$('#address').poshytip({
+			content: '电话号码不能为空',
+			showOn: 'none',
+			alignTo: 'target',
+			alignX: 'inner-left',
+		 
+		//alignY: 'center',
+			offsetX: 0,
+			offsetY: 5
+		});
+		
+		$('#phone').poshytip({
+			content: '电话号码不能为空',
+			showOn: 'none',
+			alignTo: 'target',
+			alignX: 'inner-left',
+		 
+		//alignY: 'center',
+			offsetX: 0,
+			offsetY: 5
+		});
+		
+		
+	});
+	
+	function mycheckout(){
+		if(document.getElementById("address").value==""){
+			
+			$('#address').poshytip('show'); 
+			return;
+			
+		}
+		
+		if(document.getElementById("phone").value==""){
+			
+			$('#phone').poshytip('show'); 
+			return;
+			
+		}
+		
+		if(!$("#phone").val().match(/^1[3|4|5|8][0-9]\d{4,8}$/)){ 
+			$('#phone').poshytip({
+				content: '请输入正确的电话号码',
+				showOn: 'none',
+				alignTo: 'target',
+			alignX: 'inner-left',
+			 
+			//alignY: 'center',
+				offsetX: 0,
+				offsetY: 5
+			});
+			$('#phone').poshytip('show'); 
+		    return ; 
+		   } 
+		
+		
+		$("#add_address_form").submit();
+		
+	}
+	
+	
+	</script>
 	</div>
 </div>
 

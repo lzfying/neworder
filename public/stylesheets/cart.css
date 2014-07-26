@@ -176,8 +176,8 @@ footer h1 a{
 	
 	padding: 23px 1px 8px 30px;
 	line-height: 18px;
-	position:fixed;
-	top:180px;
+	position:absolute;
+	top:8px;
 	right: 0px;
 	margin-left:30px;
 	opacity: 0;
