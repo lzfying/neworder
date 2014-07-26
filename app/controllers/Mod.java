@@ -43,7 +43,7 @@ public class Mod extends Controller{
 	        }
 	        String username = session.get("user");
 	        if(username != null) {
-	        	System.out.println("cccc  "+User.find("byUsername", username).first());
+	        	
 	            return User.find("byUsername", username).first();
 	        } 
 	        return null;
@@ -146,6 +146,7 @@ public class Mod extends Controller{
 			orderDetail.totalNum= Integer.parseInt(params.get("item_quantity_"+i));
 			orderDetail.mealName=params.get("item_name_"+i);
 			orderDetail.price=Double.valueOf(params.get("item_price_"+i));
+			orderDetail.save();
 			order.addOrderDetail(orderDetail);
 
 		}
@@ -153,7 +154,7 @@ public class Mod extends Controller{
 		order.save();
 	
    
-		profile();
+		profile(0);
     }
 	
 	public static void workByEntry(Map<Object, Object> map) {
@@ -181,14 +182,14 @@ public class Mod extends Controller{
 	}
 	
 	
-	public static void profile(){
+	public static void profile(Integer page){
 		User user = connected();
-       
+		page = page != null ? page : 1;
 		if(user != null){
 			renderArgs.put("user", user);
-			List<Order> orders = Order.find("byUser", user).fetch();
+			List<Order> orders = Order.find("byUser", user).fetch(page, 5);
 			
-			render(orders);
+			render(orders,page);
 			
 		}else{
 			
@@ -442,6 +443,56 @@ public class Mod extends Controller{
 			renderJSON("{\"messages\":false}");
 			
 		}
+		
+	}
+	
+	
+	public static void previousPage(int startPosition){
+		User user = connected();
+	       
+		if(user != null){
+			renderArgs.put("user", user);
+			int totalnum = Order.find("byUser", user).fetch().size();
+			if(startPosition == 0) {  
+	            startPosition = startPosition;  
+	        }  
+	        else {  
+	            startPosition = startPosition - 1;  
+	        }  
+
+			
+			 profile(startPosition);
+			/////
+			
+			
+		}else{
+			
+			index("");
+		}
+		
+		
+	}
+	
+	
+	public static void nextPage(int startPosition){
+		
+		User user = connected();
+		if(user != null){
+			int totalnum = Order.find("byUser", user).fetch().size(); 
+	        if(startPosition >= totalnum/5) {  
+	            startPosition = startPosition;  
+	        }  
+	        else {  
+	            startPosition = startPosition + 1;  
+	        }  
+	        profile(startPosition);
+			
+		}else{
+			
+			index("");
+			
+		}
+		
 		
 	}
 	
