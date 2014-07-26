@@ -10,7 +10,7 @@ $(document).ready(function(){
     $(".fr").click(function(){ 
 
         var menID =  $(this).attr("id");
-
+        
         var thisTop = $("#img_" + menID).offset().top; //所在位置的高度
 
         var thisLeft = $("#img_" + menID).offset().left; //所在位置的宽度
@@ -169,11 +169,11 @@ simpleCart({
 #{list combos, as:'combo'}
 
 <li>
-<a href="#"><img src="${combo.url}" /></a>
+<a href="#"><img src="${combo.url}" id="img_combo${combo.id}" /></a>
 <div class="des">
 <p class="fl"><strong>${combo.name} </strong>&nbsp;&nbsp;${combo.des} </p>
 <span class="fl">&yen;<em>${combo.price.price}</em></span>
-<a class="fr" href="javascript:;"  id='${combo.id}'  onclick="showcart();simpleCart.add({name:'${combo.name}', price: ${combo.price.price},size:'tiny',thumb:'e.png'});">立即订购</a>
+<a class="fr" href="javascript:;"  id='combo${combo.id}'  onclick="showcart();simpleCart.add({name:'${combo.name}', price: ${combo.price.price},size:'tiny',thumb:'e.png'});">立即订购</a>
 </div>
 </li>
  #{/list}
@@ -197,9 +197,9 @@ simpleCart({
 <div class="wrap zhushi others">
 <h2>主食</h2>
 <ul>
-#{list meals, as:'meal'}
+#{list mainmeals, as:'meal'}
 <li>
-<a href="#"><img src="images/240-240.png" id='img_1' /></a>
+<a href="#"><img src="images/240-240.png" id="img_${meal.id}" /></a>
 <p><a class="fr" href="javascript:;" id='${meal.id}'   onclick="showcart();simpleCart.add({name:'${meal.name}', price: ${meal.price.price},size:'tiny',thumb:'e.png'});">立即订购</a>
 <span><em>&yen;</em>${meal.price.price}</span><br />
 【${meal.name}】
@@ -212,37 +212,25 @@ simpleCart({
 </ul>
 </div>
 <div class="clear"></div>
+
+
+
+
+
 <div class="wrap tanglei others">
 <h2>汤类</h2>
 <ul>
+#{list tangmeals, as:'meal'}
 <li>
-<a href="#"><img src="images/240-240.png" /></a>
-<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
-<span><em>&yen;</em>16</span><br />
-【辣子鸡盒饭】
+<a href="#"><img src="images/240-240.png" id="img_${meal.id}" /></a>
+<p><a class="fr" href="javascript:;" id='${meal.id}'   onclick="showcart();simpleCart.add({name:'${meal.name}', price: ${meal.price.price},size:'tiny',thumb:'e.png'});">立即订购</a>
+<span><em>&yen;</em>${meal.price.price}</span><br />
+【${meal.name}】
 </p>
-</li>
-<li>
-<a href="#"><img src="images/240-240.png" /></a>
-<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
-<span><em>&yen;</em>16</span><br />
-【辣子鸡盒饭】
-</p>
-</li>
-<li>
-<a href="#"><img src="images/240-240.png" /></a>
-<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
-<span><em>&yen;</em>16</span><br />
-【辣子鸡盒饭】
-</p>
-</li>
-<li>
-<a href="#"><img src="images/240-240.png" /></a>
-<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
-<span><em>&yen;</em>16</span><br />
-【辣子鸡盒饭】
-</p>
-</li>
+</li> 
+
+ #{/list}
+
 </ul>
 </div>
 <div class="clear"></div>

@@ -30,6 +30,8 @@ public class Meal extends Model{
     public String url;
     
     public String des;
+   
+    
     
     @OneToOne(cascade=CascadeType.ALL)
     public Price price;
@@ -71,5 +73,9 @@ public class Meal extends Model{
             "select distinct p.id from Post p join p.tags as t where t.name in (:tags) group by p.id having count(t.id) = :size"
         ).bind("tags", tags).bind("size", tags.length).fetch();
     }
+    
+    
+  
+   
 
 }

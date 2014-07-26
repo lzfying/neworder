@@ -11,8 +11,7 @@ import play.db.jpa.Model;
 @Table(name="back_meal_type")
 public class MealType extends Model {
 
-	@ManyToOne(cascade=CascadeType.ALL)
-	public Meal meal;
+	
 
 	public int mealType;
 

@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 
 import models.Combo;
 import models.Meal;
+import models.MealType;
 import models.Order;
 import models.OrderDetail;
 import models.User;
@@ -56,11 +57,18 @@ public class Mod extends Controller{
 	        if(user != null) {
 	            renderArgs.put("user", user);
 	        }
-    	List<Meal> meals = Meal.all().fetch(0, 10);
+	    MealType type = new MealType();
+	    type.mealType=1;
+	    
+    	List<Meal> mainmeals = Meal.find("type.mealType= ?", 1).fetch(4);
+    	
+    	type.mealType=3;
+    	List<Meal> tangmeals = Meal.find("type.mealType= ?", 3).fetch(4);
+    	
     	
     	List<Combo> combos = Combo.all().fetch(0, 4);
     	
-        render(meals,combos);
+        render(mainmeals,tangmeals,combos);
 		
        // render();
     }

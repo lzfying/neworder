@@ -113,7 +113,7 @@ function mainlogin(){
   #{doLayout /}
   
   <div class="mainfooter">
-  
+   #{if user}
   <script>
   var oMore=document.getElementById('more');
 	var oList=document.getElementById('more-list');
@@ -131,6 +131,7 @@ function mainlogin(){
 	};
   
   </script>
+  #{/if}
 <p><span>Copyright &copy; 2014 DaoWeir.com All Rights Reserved. </span></p>
 
 </div>
