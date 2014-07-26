@@ -9,7 +9,7 @@
  Target Server Version : 50616
  File Encoding         : utf-8
 
- Date: 07/25/2014 00:56:23 AM
+ Date: 07/26/2014 15:41:48 PM
 */
 
 SET NAMES utf8;
@@ -54,7 +54,7 @@ CREATE TABLE `back_combo` (
 --  Records of `back_combo`
 -- ----------------------------
 BEGIN;
-INSERT INTO `back_combo` VALUES ('1', '烧牛腩+香米+蚝油生菜+酸梅汁/甜橙汁', '烧牛腩套餐', null, '16'), ('2', '照烧鸡排+香米+土豆丝+酸梅汁/甜橙汁', '照烧鸡排套餐', null, '17'), ('3', '青椒里脊丝+香米+耗油生菜+酸梅汁/甜橙汁', '青椒里脊丝套餐', null, '18'), ('4', '甜椒土豆丝+香米+酸梅汁/甜橙汁', '甜椒土豆丝套餐', null, '19');
+INSERT INTO `back_combo` VALUES ('1', '烧牛腩+香米+蚝油生菜+酸梅汁/甜橙汁', '烧牛腩套餐', 'images/mealpic/combo_tudouniunan.jpg', '16'), ('2', '照烧鸡排+香米+土豆丝+酸梅汁/甜橙汁', '照烧鸡排套餐', 'images/mealpic/combo_jipai.jpg', '17'), ('3', '青椒里脊丝+香米+耗油生菜+酸梅汁/甜橙汁', '青椒里脊丝套餐', 'images/mealpic/combo_qingjiaorousi.jpg', '18'), ('4', '甜椒土豆丝+香米+酸梅汁/甜橙汁', '甜椒土豆丝套餐', 'images/mealpic/combo_tudousi.jpg', '19');
 COMMIT;
 
 -- ----------------------------
@@ -158,7 +158,7 @@ CREATE TABLE `back_meal` (
 --  Records of `back_meal`
 -- ----------------------------
 BEGIN;
-INSERT INTO `back_meal` VALUES ('1', '烧牛腩+香米+蚝油生菜', '烧牛腩盖饭', null, null, '14', '13'), ('2', '照烧鸡排+香米+土豆丝', '照烧鸡排饭', null, null, '10', '10'), ('3', '青椒里脊丝+香米+耗油生菜', '青椒里脊丝盖饭', null, null, '9', '9'), ('4', '甜椒土豆丝+香米', '甜椒土豆丝盖饭', null, null, '8', '8'), ('5', '土豆丝卷饼', '土豆丝卷饼', null, null, '5', '5'), ('6', '清凉解暑，生津止渴', '酸梅汁', null, null, '6', '6'), ('7', '补充维C，美容养颜', '甜橙汁', null, null, '7', '7'), ('8', '酸梅汁/甜橙汁', '酸梅汁/甜橙汁', null, null, '15', '14');
+INSERT INTO `back_meal` VALUES ('1', '烧牛腩+香米+蚝油生菜', '烧牛腩盖饭', 'images/mealpic/meal_tudouniunan.jpg', null, '14', '13'), ('2', '照烧鸡排+香米+土豆丝', '照烧鸡排饭', 'images/mealpic/meal_jipai.jpg', null, '10', '10'), ('3', '青椒里脊丝+香米+耗油生菜', '青椒里脊丝盖饭', 'images/mealpic/meal_qijiaorousi.jpg', null, '9', '9'), ('4', '甜椒土豆丝+香米', '甜椒土豆丝盖饭', 'images/mealpic/meal_tudousi.jpg', null, '8', '8'), ('5', '土豆丝卷饼', '土豆丝卷饼', 'images/mealpic/meal_tudousijuanbing.jpg', null, '5', '5'), ('6', '清凉解暑，生津止渴', '酸梅汁', 'images/mealpic/meal_suanmeizhi.jpg', null, '6', '6'), ('7', '补充维C，美容养颜', '甜橙汁', 'images/mealpic/meal_tianchengzhi.jpg', null, '7', '7'), ('8', '酸梅汁/甜橙汁', '酸梅汁/甜橙汁', 'images/mealpic/meal_tianchengzhi.jpg', null, '15', '14');
 COMMIT;
 
 -- ----------------------------
