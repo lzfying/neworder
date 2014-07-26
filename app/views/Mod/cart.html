@@ -122,6 +122,9 @@ function mycheckout(){
 	document.getElementById("value_addr").value=document.getElementById("input_addr").value;
 	document.getElementById("value_tel").value=document.getElementById("input_tel").value;
 	document.getElementById("value_tel_bk").value=document.getElementById("input_baktel").value;
+	document.getElementById("value_totalprice").value= document.getElementById("total_price_basket").innerHTML;
+
+	
 	if(document.getElementById("value_addr").value==""){
 		
 		$('#input_addr').poshytip('show'); 
@@ -251,11 +254,13 @@ function suborder(){
 <button id="confirm_order" class="ui-btn ui_submit btn-cart-checkout"   onclick="mycheckout();" data-loading="正在提交…" type="button">确认下单</button>
 
 <input id="value_note" type="hidden" value="" name="note">
-<input id="value_addr" type="hidden" value="111" name="address">
+<input id="value_addr" type="hidden" value="" name="address">
 <input id="value_tel" type="hidden" value="" name="phone">
 <input id="value_tel_bk" type="hidden" value="" name="phone-bk">
 <input id="value_inv" type="hidden" value="" name="invoice">
 <input id="value_time" type="hidden" value="" name="deliver_time">
+<input id="value_totalprice" type="hidden" value="" name="totalprice">
+
 <input id="value_payonline" type="hidden" value="0" name="is_online_paid">
 
 

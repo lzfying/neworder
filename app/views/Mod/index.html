@@ -161,47 +161,37 @@ simpleCart({
 
 
 
-
-
-
-<a name="taocan"></a>
-<div class="wrap taocan" >
+<a name="tehui"></a>
+<div class="wrap jinritaocan">
 <h2>套餐</h2>
 <ul>
- #{list combos, as:'combo'}
- <li><a href="#"><img src="images/taocan320-400.png" /></a>
-<p><a href="#">${combo.name} <span>${combo.price.price}</span>元</a></p>
+
+#{list combos, as:'combo'}
+
+<li>
+<a href="#"><img src="${combo.url}" /></a>
+<div class="des">
+<p class="fl"><strong>${combo.name} </strong>&nbsp;&nbsp;${combo.des} </p>
+<span class="fl">&yen;<em>${combo.price.price}</em></span>
+<a class="fr" href="javascript:;"  id='${combo.id}'  onclick="showcart();simpleCart.add({name:'${combo.name}', price: ${combo.price.price},size:'tiny',thumb:'e.png'});">立即订购</a>
+</div>
 </li>
  #{/list}
 
 
-</li>
+
+
+
 </ul>
 </div>
 <div class="clear"></div>
-<a name="tehui"></a>
-<div class="wrap jinritaocan">
-<h2>今日套餐</h2>
-<ul>
-<li>
-<a href="#"><img src="images/490-260.png" /></a>
-<div class="des">
-<p class="fl"><strong>【特惠套餐二】 </strong>&nbsp;&nbsp;水煮肉片+豆芽炒面筋+干锅西兰花</p>
-<span class="fl">&yen;<em>68</em></span>
-<a class="fr" href="javascript:;" onclick="simpleCart.add({name:'水煮肉片+豆芽炒面筋+干锅西兰花', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
-</div>
-</li>
-<li>
-<a href="#"><img src="images/490-260.png" /></a>
-<div class="des">
-<p class="fl"><strong>【特惠套餐二】 </strong>&nbsp;&nbsp;水煮肉片+豆芽炒面筋+干锅西兰花</p>
-<span class="fl">&yen;<em>68</em></span>
-<a class="fr" href="javascript:;"    onclick="simpleCart.add({name:'水煮肉片+豆芽炒面筋+干锅西兰花', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
-</div>
-</li>
-</ul>
-</div>
-<div class="clear"></div>
+
+
+
+
+
+
+
 
 <a name="dandian"></a>
 <div class="wrap zhushi others">
@@ -256,40 +246,7 @@ simpleCart({
 </ul>
 </div>
 <div class="clear"></div>
-<div class="wrap xiaochi others pd30">
-<h2>小吃</h2>
-<ul>
-<li>
-<a href="#"><img src="images/240-240.png" /></a>
-<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
-<span><em>&yen;</em>16</span><br />
-【辣子鸡盒饭】
-</p>
-</li>
-<li>
-<a href="#"><img src="images/240-240.png" /></a>
-<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
-<span><em>&yen;</em>16</span><br />
-【辣子鸡盒饭】
-</p>
-</li>
-<li>
-<a href="#"><img src="images/240-240.png" /></a>
-<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
-<span><em>&yen;</em>16</span><br />
-【辣子鸡盒饭】
-</p>
-</li>
-<li>
-<a href="#"><img src="images/240-240.png" /></a>
-<p><a class="fr" href="javascript:;" onclick="simpleCart.add({name:'辣子鸡盒饭', price: 34.95,size:'tiny',thumb:'e.png'});">立即订购</a>
-<span><em>&yen;</em>16</span><br />
-【辣子鸡盒饭】
-</p>
-</li>
-</ul>
-</div>
-<div class="clear"></div>
+
 
 </body>
 </html>

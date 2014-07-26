@@ -44,7 +44,7 @@ public class Order extends Model{
 	
 	public String orderstate="0";//0:未处理 1：已发货 2：已签收 3：完成交易
 	
-	public int orderPrice;
+	public Double orderPrice=0.0;
 	
 	
 	public Order(User user,String orderNum,String  receiver_name,String receiver_addr,String receiver_tel,String receiver_other,String payWay){

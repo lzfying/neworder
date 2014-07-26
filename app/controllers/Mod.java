@@ -1,6 +1,7 @@
 package controllers;
 
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -57,10 +58,10 @@ public class Mod extends Controller{
 	        }
     	List<Meal> meals = Meal.all().fetch(0, 10);
     	
-    	List<Combo> combos = Combo.all().fetch(0, 3);
+    	List<Combo> combos = Combo.all().fetch(0, 4);
     	
         render(meals,combos);
-		System.out.println("*******");
+		
        // render();
     }
 	
@@ -119,6 +120,19 @@ public class Mod extends Controller{
 		render(addr);
 	}
 	
+	 /** 
+     * double 乘法 
+     * @param d1 
+     * @param d2 
+     * @return 
+     */ 
+	public static double mul(double d1,int d2){ 
+        BigDecimal bd1 = new BigDecimal(Double.toString(d1)); 
+        BigDecimal bd2 = new BigDecimal(Double.toString(d2)); 
+        return bd1.multiply(bd2).doubleValue(); 
+    } 
+
+	
 	public static void order(String name) {
 		
 		String addr="",tel="",bak_tel="";
@@ -140,21 +154,26 @@ public class Mod extends Controller{
 				 user.save();
 		     }    
 		
+		
+		Double total =0.0;
 		Order order = new Order(connected(),s,addr,tel,bak_tel,"offline");
 		for(int i=1;i<itemCount+1;i++){
 			OrderDetail orderDetail = new OrderDetail();
 			orderDetail.totalNum= Integer.parseInt(params.get("item_quantity_"+i));
 			orderDetail.mealName=params.get("item_name_"+i);
 			orderDetail.price=Double.valueOf(params.get("item_price_"+i));
+			
+			total=total+mul(Double.valueOf(params.get("item_price_"+i)),orderDetail.totalNum)      ;
 			orderDetail.save();
 			order.addOrderDetail(orderDetail);
 
 		}
+		order.orderPrice=total;
 		order.user=user;
 		order.save();
 	
    
-		profile(0);
+		profile(0,"0");
     }
 	
 	public static void workByEntry(Map<Object, Object> map) {
@@ -182,12 +201,12 @@ public class Mod extends Controller{
 	}
 	
 	
-	public static void profile(Integer page){
+	public static void profile(Integer page,String orderstate){
 		User user = connected();
 		page = page != null ? page : 1;
 		if(user != null){
 			renderArgs.put("user", user);
-			List<Order> orders = Order.find("byUser", user).fetch(page, 5);
+			List<Order> orders = Order.find("byUserAndOrderstate", user,orderstate).fetch(page, 5);
 			
 			render(orders,page);
 			
@@ -461,7 +480,7 @@ public class Mod extends Controller{
 	        }  
 
 			
-			 profile(startPosition);
+			 profile(startPosition,"0");
 			/////
 			
 			
@@ -485,7 +504,7 @@ public class Mod extends Controller{
 	        else {  
 	            startPosition = startPosition + 1;  
 	        }  
-	        profile(startPosition);
+	        profile(startPosition,"0");
 			
 		}else{
 			
