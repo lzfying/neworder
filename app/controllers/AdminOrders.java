@@ -1,5 +1,6 @@
 package controllers;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -84,7 +85,8 @@ public class AdminOrders extends Controller {
         obj.addProperty("orderid", order.id);
         obj.addProperty("ordernum", order.orderNum);
         if (order.date != null) {
-        	obj.addProperty("date", order.date.toLocaleString());
+        	DateFormat df = new SimpleDateFormat("yyyy年MM月dd日 hh时mm分ss秒");  
+        	obj.addProperty("date", df.format(order.date));
         }
         obj.addProperty("orderprice", order.orderPrice);
         obj.addProperty("state", order.orderstate);
