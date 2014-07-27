@@ -17,11 +17,18 @@
                 <th data-options="field:'type',width:130,align:'center'">类别</th>
                 <th data-options="field:'price',width:50,align:'center'">价格</th>
                 <th data-options="field:'discount',width:130,align:'center'">折扣</th>
-                <th data-options="field:'daynum',width:80,align:'center'">单日订购数量</th>
-                <th data-options="field:'totalnum',width:240,align:'center'">订购总量</th>
+      <!--            <th data-options="field:'daynum',width:80,align:'center'">单日订购数量</th>   -->
+ <!--           <th data-options="field:'totalnum',width:240,align:'center'">订购总量</th>  -->
                 <th data-options="field:'des',width:240,align:'center'">菜品描述</th>
-                <th data-options="field:'pic',width:240,align:'center'">菜品图片</th>
+                <th data-options="field:'url',width:240,align:'center'">菜品图片</th>
                 <th data-options="field:'comments',width:240,align:'center'">菜品评论</th>
+                <th data-options="field:'ishide', width:50, align:'center',formatter:function(val,rec){
+                    if (val == '0') {
+                        return '显示';
+                    } else if (val == '1') {
+                        return '不显示';
+                    }
+                }">是否显示</th>
             </tr>
         </thead>
     </table>
