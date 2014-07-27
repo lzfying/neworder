@@ -46,14 +46,27 @@
                     
                     
                     
- 
-                    
-                    
-                    
-                    
-                    
-                    
-                    <input type="submit" class="pay-now" value="配送中">
+                 %{
+    				if(order.orderstate=="0"){
+				}%
+					<input type="submit" class="pay-now" value="已下单">
+				%{
+   					} else if (order.orderstate=="1"){
+				}%
+ 					<input type="submit" class="pay-now" value="配送中">
+				%{
+  			 		}else if (order.orderstate=="2"){
+				}%
+                    <input type="submit" class="pay-now" value="配送完毕">
+                 %{
+  			 		}else if (order.orderstate=="3"){
+				}%
+                 	<input type="submit" class="pay-now" value="完成订单">
+                     %{
+  			 		}
+				}%	
+                 	
+                 	
                     <p class="item-content fl">下单时间 </p>
                     <p class="date"> ${order.date}</p>
                 </div>

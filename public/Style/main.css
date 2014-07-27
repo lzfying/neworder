@@ -52,7 +52,7 @@ a{text-decoration:none; outline:none}
 .jinritaocan ul li{width:490px; float:left; margin-right:20px; overflow:hidden}
 .jinritaocan ul li img{width:488px; height:260px; border:1px #ddd solid}
 .jinritaocan ul li div.des{height:54px; width:458px; padding:15px; border:1px #ddd solid; border-top:none; overflow:hidden}
-.jinritaocan ul li div.des p{font-size:14px; line-height:30px; color:#363636}
+.jinritaocan ul li div.des p{font-size:12px; line-height:30px; color:#363636;float: left;}
 .jinritaocan ul li div.des p strong{font-size:16px; display:block; padding-left:0}
 .jinritaocan ul li div.des span{display:block; font-size:24x; font-family:arial; margin-left:16px; margin-top:16px; color:#f28e20}
 .jinritaocan ul li div.des span em{font-size:36px; font-family:microsoft yahei; font-style:normal; margin-left:5px}
