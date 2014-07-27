@@ -66,6 +66,16 @@ public class AdminOrders extends Controller {
     	renderText(obj);
     }
     
+    public static void chageOrderStatus(List<String> id, String status) {
+    	
+    	for (String ordernum: id) {
+    		Order order = Order.find("byOrderNum", ordernum).first();
+    		order.orderstate = status;
+    		order.save();
+    	}
+    	
+    }
+    
     private static JsonObject getOrderJsonObj(Order order) {
     	JsonObject obj = new JsonObject();
     	if (order == null) {
@@ -88,33 +98,37 @@ public class AdminOrders extends Controller {
         	StringBuffer sb = new StringBuffer();
         	JsonArray detailarray = new JsonArray();
         	for (OrderDetail detail: order.orderDetails) {
-        		JsonObject mealJson = new JsonObject();
-        		JsonObject id = new JsonObject();
-        		if (detail.meal != null) {
-        			mealJson.addProperty("id", detail.meal.id);
-        			mealJson.addProperty("name", detail.meal.name);
-        			mealJson.addProperty("type", "菜品");
-        			if (detail.meal.price != null) {
-        				mealJson.addProperty("price", detail.meal.price.price);
-        			}
-        			mealJson.addProperty("discount", detail.meal.price.discount);
-        			detailarray.add(mealJson);
-        			
-        			sb.append(detail.meal.name);
-        			id.addProperty("meal", detail.meal.id);
-        		} else if (detail.combo != null) {
-        			mealJson.addProperty("id", detail.combo.id);
-        			mealJson.addProperty("name", detail.combo.name);
-        			mealJson.addProperty("type", "套餐");
-        			if (detail.combo.price != null) {
-        				mealJson.addProperty("price", detail.combo.price.price);
-        			}
-        			mealJson.addProperty("discount", detail.combo.price.discount);
-        			detailarray.add(mealJson);
-        			
-        			sb.append(detail.combo.name);
-        			id.addProperty("combo", detail.combo.id);
-        		}
+        		sb.append(detail.mealName).append(" x ").append(detail.totalNum);
+//        		JsonObject mealJson = new JsonObject();
+//        		mealJson.addProperty("name", detail.mealName);
+        		
+//        		JsonObject id = new JsonObject();
+        		
+//        		if (detail.meal != null) {
+//        			mealJson.addProperty("id", detail.meal.id);
+//        			mealJson.addProperty("name", detail.mealName);
+//        			mealJson.addProperty("type", "菜品");
+//        			if (detail.meal.price != null) {
+//        				mealJson.addProperty("price", detail.meal.price.price);
+//        			}
+//        			mealJson.addProperty("discount", detail.meal.price.discount);
+//        			detailarray.add(mealJson);
+//        			
+//        			sb.append(detail.meal.name);
+//        			id.addProperty("meal", detail.meal.id);
+//        		} else if (detail.combo != null) {
+//        			mealJson.addProperty("id", detail.combo.id);
+//        			mealJson.addProperty("name", detail.mealName);
+//        			mealJson.addProperty("type", "套餐");
+//        			if (detail.combo.price != null) {
+//        				mealJson.addProperty("price", detail.combo.price.price);
+//        			}
+//        			mealJson.addProperty("discount", detail.combo.price.discount);
+//        			detailarray.add(mealJson);
+//        			
+//        			sb.append(detail.combo.name);
+//        			id.addProperty("combo", detail.combo.id);
+//        		}
         		sb.append("<br>");
         	}
         	obj.addProperty("content", sb.toString());

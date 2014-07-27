@@ -9,17 +9,17 @@
 <script type="text/javascript" src="@{'/public/javascripts/easyui-lang-zh_CN.js'}"></script>
 </head>
 <body>
-	<table id="orderdatas" class="easyui-datagrid" style="border: false; width: auto; height: auto" data-options="pagination:true,singleSelect:true,url:'/admin/order/getorders',method:'get',toolbar:'#tb'">
+	<table id="orderdatas" class="easyui-datagrid" style="border: false; width: auto; height: auto" data-options="pagination:true,url:'/admin/order/getorders',method:'get',toolbar:'#tb'">
 		<thead>
 			<tr>
 			    <th data-options="field:'ck',checkbox:true"></th>
-				<th data-options="field:'ordernum',width:150,align:'center'">订单编号</th>
+				<th data-options="field:'ordernum',width:120,align:'center'">订单编号</th>
 				<th data-options="field:'date',width:130,align:'center'">下单时间</th>
-				<th data-options="field:'orderprice',width:80,align:'center'">订单价格</th>
-				<th data-options="field:'address',width:240,align:'center'">送餐地址</th>
+				<th data-options="field:'orderprice',width:60,align:'center'">订单价格</th>
+				<th data-options="field:'address',width:240,align:'left'">送餐地址</th>
                 <th data-options="field:'name',width:80,align:'center'">联系人</th>
 				<th data-options="field:'tel',width:100,align:'center'">联系电话</th>
-				<th data-options="field:'content',width:100,align:'center'">内容</th>
+				<th data-options="field:'content',width:120,align:'right'">订单内容</th>
 				<th data-options="field:'state',width:60,align:'center',formatter:function(val,rec){
 				    if (val == '0') {
 				        return '已下单';
@@ -31,14 +31,14 @@
 				        return '交易完成'
 				    }
 				}">订单状态</th>
-				<th data-options="field:'others',width:200,align:'center'">备注</th>
+				<th data-options="field:'others',width:100,align:'center'">备注</th>
 			</tr>
 		</thead>
 	</table>
 	<div id="tb" style="border: false; padding: 5px; height: auto">
 		<div style="margin-bottom: 5px">
-			<a id="add" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加订单</a>
-			<a id="edit" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑订单</a> 
+		<!--<a id="add" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加订单</a>-->
+			<a id="edit" class="easyui-linkbutton" iconCls="icon-edit" plain="true">订单状态</a> 
 			<a id="delete" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除订单</a>
 			订单日期: <input id="startdate" class="easyui-datebox" style="width: 80px">
             至: <input id="enddate" class="easyui-datebox" style="width: 80px">
@@ -112,6 +112,55 @@
             <input type="hidden" name="order.id" id="order.id"/>
         #{/form}
     </div> 
+    <div id="statusdialog" class="easyui-dialog" title="修改订单状态" style="width:300px;height:100px;top:100px"
+        data-options="resizable:false,modal:true,buttons:[{
+                text:'保存',
+                handler:function(){
+                    var rows = $('#orderdatas').datagrid('getSelections');
+                    var ids = '';
+		            for(var i=0; i<rows.length; i++){
+		                ids += 'id='+ rows[i].ordernum;
+		                if (i != rows.length - 1) {
+		                    ids+='&'
+		                }
+		            }
+		            
+		            var status = $('#orderstatus').val();
+		            
+		            $.ajax({  
+                        url:'/admin/order/chageOrderStatus',
+                        type:'POST',  
+                        data:ids + '&status=' + status,
+                        success:function(data){  
+                            $('#statusdialog').dialog('close');
+                            $('#orderdatas').datagrid('reload');
+                            alert('操作成功！');
+                        },  
+                        error:function(){  
+                            alert('操作失败，请重试！');  
+                        }  
+                    });
+		            
+                }
+            },{
+                text:'关闭',
+                handler:function(){
+                    $('#statusdialog').dialog('close');
+                }
+            }]" closed="true" >
+       <table cellpadding="5">
+                <tr>
+                    <td>订单状态：</td>
+                    <td>
+                      <select id="orderstatus" name="orderstatus">
+                          <option value ="0">已下单</option>
+                          <option value ="1">正在配送</option>
+                          <option value ="2">已送达</option>
+                      </select>
+                    </td>
+                </tr>
+            </table>
+    </div>
 	<script type="text/javascript">
         function chooseMeal() {
         	var g = $('#mealcombo').combogrid('grid');    // get datagrid object
@@ -167,7 +216,7 @@
 			$('#editdialog').dialog('open');
 		});
 		
-		$("#edit").click(function() {
+/**		$("#edit").click(function() {
 			var rows = $('#orderdatas').datagrid('getSelections');
 			if (rows.length == 0) {
 				alert("请先选择需要编辑的订单！")
@@ -227,6 +276,16 @@
             });
 		});
 	
+**/
+		$("#edit").click(function() {
+		    var rows = $('#orderdatas').datagrid('getSelections');
+		    if (rows.length == 0) {
+		        alert("请先选择需要编辑的订单！")
+		        return;
+		    }
+		    $("#statusdialog").dialog('open');
+		});
+
 		$("#delete").click(function() {
 			var rows = $('#orderdatas').datagrid('getSelections');
 			var ids = "";
@@ -279,6 +338,35 @@
                 {field:'discount',title:'折扣',width:80}
             ]],
             fitColumns: true
+		});
+		
+		$('statusdialog').dialog({
+			title : '订单状态编辑',
+			buttons : [
+			            {
+			                text : '保存',
+			                iconCls : 'icon-save',
+			                handler : function() {
+			                    var form = $("#orderform"); 
+			                    $.ajax({  
+			                        url:form.attr('action'),  
+			                        type:form.attr('method'),  
+			                        data:form.serialize() + "&" + meals + combos,  
+			                        success:function(data){  
+			                            alert("提交成功！");
+			                        },  
+			                        error:function(){  
+			                            alert("提交失败，请重试！");  
+			                        }  
+			                    });
+			                }
+			            }, {
+			                text : '取消',
+			                iconCls : 'icon-cancel',
+			                handler : function() {
+			                    $('#editdialog').dialog('close');
+			                }
+			            }]
 		});
 		
 		$('#editdialog').dialog({
