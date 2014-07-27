@@ -85,7 +85,7 @@ public class AdminOrders extends Controller {
         obj.addProperty("orderid", order.id);
         obj.addProperty("ordernum", order.orderNum);
         if (order.date != null) {
-        	DateFormat df = new SimpleDateFormat("yyyy年MM月dd日 hh时mm分ss秒");  
+        	DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");  
         	obj.addProperty("date", df.format(order.date));
         }
         obj.addProperty("orderprice", order.orderPrice);
