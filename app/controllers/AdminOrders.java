@@ -1,5 +1,6 @@
 package controllers;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,10 +34,10 @@ public class AdminOrders extends Controller {
     		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
     		Date sDate = sf.parse(startdate);
     		Date eDate = sf.parse(enddate);
-    		orderList = Order.find("date >= ? and date <= ? order by date desc",sDate, eDate).from(start).fetch(rows);
+    		orderList = Order.find("date >= ? and date <= ? and isdelete = '0' order by date desc",sDate, eDate).from(start).fetch(rows);
     		count = orderList.size();
     	} else {
-    		orderList = Order.find("order by date desc").from(start).fetch(rows);
+    		orderList = Order.find("isdelete = '0' order by date desc").from(start).fetch(rows);
     		count = Order.count();
     	}
         
@@ -84,14 +85,15 @@ public class AdminOrders extends Controller {
         obj.addProperty("orderid", order.id);
         obj.addProperty("ordernum", order.orderNum);
         if (order.date != null) {
-        	obj.addProperty("date", order.date.toLocaleString());
+        	DateFormat df = new SimpleDateFormat("yyyy年MM月dd日 hh时mm分ss秒");  
+        	obj.addProperty("date", df.format(order.date));
         }
         obj.addProperty("orderprice", order.orderPrice);
         obj.addProperty("state", order.orderstate);
         obj.addProperty("address", order.receiver_addr);
         obj.addProperty("tel", order.receiver_tel);
         obj.addProperty("name", order.receiver_name);
-        obj.addProperty("others", order.receiver_other);
+        obj.addProperty("other", order.receiver_other);
 //        obj.addProperty("area", order.area);
         
         if (order.orderDetails != null && order.orderDetails.size() > 0) {
@@ -200,7 +202,8 @@ public class AdminOrders extends Controller {
     public static void deleteOrder(Long[] id) {
     	for (int i=0;i<id.length;i++) {
     		Order order = Order.findById(id[i]);
-    		order.delete();
+    		order.isdelete = 1;
+    		order.save();
     	}
     }
 

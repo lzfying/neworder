@@ -27,7 +27,7 @@ public class Order extends Model{
 	public User user;
 	
 	@Required
-	@ManyToMany(cascade=CascadeType.PERSIST)
+	@ManyToMany(cascade=CascadeType.ALL)
 	public List<OrderDetail> orderDetails;
 	
 	public Date date;
@@ -45,6 +45,10 @@ public class Order extends Model{
 	public String orderstate="0";//0:未处理 1：已发货 2：已签收 3：完成交易
 	
 	public Double orderPrice=0.0;
+	
+	public int isdelete;
+	
+	public String des = "";
 	
 	public Order(User user,String orderNum,String  receiver_name,String receiver_addr,String receiver_tel,String receiver_other,String payWay){
 		

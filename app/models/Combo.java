@@ -28,6 +28,8 @@ public class Combo extends Model {
     public String url;
     
     public String des;
+    
+    public int ishide;
 
     @OneToMany(mappedBy="combo", cascade=CascadeType.ALL)
     public List<Comment> comments;

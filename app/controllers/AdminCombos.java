@@ -50,6 +50,7 @@ public class AdminCombos extends Controller {
         obj.addProperty("name", combo.name);
         obj.addProperty("price", combo.price.price);
         obj.addProperty("discount", combo.price.discount);
+        obj.addProperty("ishide", combo.ishide);
         obj.addProperty("des", combo.des);
         if (combo.details != null) {
         	JsonArray array = new JsonArray();
