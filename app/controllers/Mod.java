@@ -187,9 +187,9 @@ public class Mod extends Controller{
 		
 		
 		Double total =0.0;
-		Order order = new Order(connected(),s,addr,tel,bak_tel,"offline");
+		Order order = new Order(connected(),s,addr,tel,receiver_other,"offline");
 		order.receiver_name=receiver_name;
-		order.receiver_other=receiver_other;
+		order.bak_tel=bak_tel;
 		for(int i=1;i<itemCount+1;i++){
 			OrderDetail orderDetail = new OrderDetail();
 			orderDetail.totalNum= Integer.parseInt(params.get("item_quantity_"+i));

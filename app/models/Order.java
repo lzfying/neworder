@@ -38,6 +38,8 @@ public class Order extends Model{
 	
 	public String receiver_tel;
 	
+	public String bak_tel;
+	
 	public String receiver_other;
 	
 	public String payWay;
