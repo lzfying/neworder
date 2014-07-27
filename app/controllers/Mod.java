@@ -43,11 +43,18 @@ public class Mod extends Controller{
 	        if(renderArgs.get("user") != null) {
 	            return renderArgs.get("user", User.class);
 	        }
+	        
+	        String userid = session.get("userid");
+	        if(userid != null) {
+	            return User.findById(Long.valueOf(userid));
+	        }
+	        
 	        String username = session.get("user");
 	        if(username != null) {
 	        	
 	            return User.find("byUsername", username).first();
-	        } 
+	        }
+	        
 	        return null;
 	    }
 	
@@ -159,7 +166,7 @@ public class Mod extends Controller{
 			 if(user == null) {
 				 user = new User( tel,  tel,  tel);
 				 user.save();
-				 session.put("user", user.username);
+				 session.put("userid", user.id);
 		     } else{
 		    	 String addrid=params.get("value_addr_id") ;
 		    	 
@@ -221,7 +228,7 @@ public class Mod extends Controller{
 		page = page != null ? page : 1;
 		
 		List<Order> orders=null ;
-		if(user != null){
+		if(user != null){System.out.println("xxx  "+user.id);
 			renderArgs.put("user", user);
 			if(orderstate.equals("3")){
 				
@@ -325,8 +332,6 @@ public class Mod extends Controller{
 		}else{
 			index("");
 		}
-		
-		
 		
 	}
 	
