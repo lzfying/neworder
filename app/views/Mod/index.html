@@ -197,7 +197,7 @@ simpleCart({
 <ul>
 #{list mainmeals, as:'meal'}
 <li>
-<a href="#"><img src="images/240-240.png" id="img_${meal.id}" /></a>
+<a href="#"><img src="${meal.url}" id="img_${meal.id}" /></a>
 <p><a class="fr" href="javascript:;" id='${meal.id}'   onclick="showcart();simpleCart.add({name:'${meal.name}', price: ${meal.price.price},size:'tiny',thumb:'e.png'});">立即订购</a>
 <span><em>&yen;</em>${meal.price.price}</span><br />
 【${meal.name}】
@@ -220,7 +220,7 @@ simpleCart({
 <ul>
 #{list tangmeals, as:'meal'}
 <li>
-<a href="#"><img src="images/240-240.png" id="img_${meal.id}" /></a>
+<a href="#"><img src="${meal.url}" id="img_${meal.id}" /></a>
 <p><a class="fr" href="javascript:;" id='${meal.id}'   onclick="showcart();simpleCart.add({name:'${meal.name}', price: ${meal.price.price},size:'tiny',thumb:'e.png'});">立即订购</a>
 <span><em>&yen;</em>${meal.price.price}</span><br />
 【${meal.name}】
