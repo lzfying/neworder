@@ -95,9 +95,15 @@ function mainreg(){
         </ul>
        
         #{if user}
-   
+     			%{
+     			String uname=user.username;
+     			if(uname.length()>6){
+     			uname=uname.substring(0,6)+"...";
+     			}
+    				
+				}%
            <div class="welcome fr">   
-     <p>欢迎您 ,<a class="more"  id="more" href="#">${user.username}</a>
+     <p>欢迎您 ,<a class="more"  id="more" href="#">${uname}</a>
      <span id="more-list">
      <a href="/profile?page=1&orderstate=0">我的订单</a>
      <a href="/personal">详细资料</a>

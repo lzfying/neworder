@@ -239,7 +239,7 @@ a{text-decoration:none; outline:none}
 .inside{width:1000px; margin:0 auto}
 .top{width:100%; height:54px; padding:20px 0; background:#2c0c01}
 .welcome{color:#ff;}
-.welcome p{color:#fff; line-height:30px; margin-top:15px; height:140px; position:relative; background:url(../images/sanjiao.png) right 15px no-repeat; }
+.welcome p{color:#fff; line-height:30px; margin-top:15px; height:140px; position:relative;  }
 .welcome p a{color:#f28e20; margin:0 5px;}
 .welcome p a.more{padding-right:8px}
 
