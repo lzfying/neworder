@@ -9,7 +9,7 @@
  Target Server Version : 50616
  File Encoding         : utf-8
 
- Date: 07/26/2014 15:41:48 PM
+ Date: 07/27/2014 11:33:40 AM
 */
 
 SET NAMES utf8;
@@ -45,6 +45,7 @@ CREATE TABLE `back_combo` (
   `name` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   `price_id` bigint(20) DEFAULT NULL,
+  `ishide` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `FKA21E103664DD7076` (`price_id`),
   CONSTRAINT `FKA21E103664DD7076` FOREIGN KEY (`price_id`) REFERENCES `back_mealprice` (`id`)
@@ -54,7 +55,7 @@ CREATE TABLE `back_combo` (
 --  Records of `back_combo`
 -- ----------------------------
 BEGIN;
-INSERT INTO `back_combo` VALUES ('1', '烧牛腩+香米+蚝油生菜+酸梅汁/甜橙汁', '烧牛腩套餐', 'images/mealpic/combo_tudouniunan.jpg', '16'), ('2', '照烧鸡排+香米+土豆丝+酸梅汁/甜橙汁', '照烧鸡排套餐', 'images/mealpic/combo_jipai.jpg', '17'), ('3', '青椒里脊丝+香米+耗油生菜+酸梅汁/甜橙汁', '青椒里脊丝套餐', 'images/mealpic/combo_qingjiaorousi.jpg', '18'), ('4', '甜椒土豆丝+香米+酸梅汁/甜橙汁', '甜椒土豆丝套餐', 'images/mealpic/combo_tudousi.jpg', '19');
+INSERT INTO `back_combo` VALUES ('1', '烧牛腩+香米+蚝油生菜+酸梅汁/甜橙汁', '烧牛腩套餐', 'images/mealpic/combo_tudouniunan.jpg', '16', '0'), ('2', '照烧鸡排+香米+土豆丝+酸梅汁/甜橙汁', '照烧鸡排套餐', 'images/mealpic/combo_jipai.jpg', '17', '0'), ('3', '青椒里脊丝+香米+耗油生菜+酸梅汁/甜橙汁', '青椒里脊丝套餐', 'images/mealpic/combo_qingjiaorousi.jpg', '18', '0'), ('4', '甜椒土豆丝+香米+酸梅汁/甜橙汁', '甜椒土豆丝套餐', 'images/mealpic/combo_tudousi.jpg', '19', '0');
 COMMIT;
 
 -- ----------------------------
@@ -128,6 +129,7 @@ CREATE TABLE `back_customeraddress` (
   `bakphone` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `userDetail_id` bigint(20) DEFAULT NULL,
+  `defvalue` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKB4ECD2FE7544CA7E` (`userDetail_id`),
   CONSTRAINT `FKB4ECD2FE7544CA7E` FOREIGN KEY (`userDetail_id`) REFERENCES `meta_customerdetail` (`id`)
@@ -145,6 +147,7 @@ CREATE TABLE `back_meal` (
   `combodetail_id` bigint(20) DEFAULT NULL,
   `price_id` bigint(20) DEFAULT NULL,
   `type_id` bigint(20) DEFAULT NULL,
+  `ishide` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `FK4F91C01BBF56A7D6` (`combodetail_id`),
   KEY `FK4F91C01B64DD7076` (`price_id`),
@@ -158,7 +161,7 @@ CREATE TABLE `back_meal` (
 --  Records of `back_meal`
 -- ----------------------------
 BEGIN;
-INSERT INTO `back_meal` VALUES ('1', '烧牛腩+香米+蚝油生菜', '烧牛腩盖饭', 'images/mealpic/meal_tudouniunan.jpg', null, '14', '13'), ('2', '照烧鸡排+香米+土豆丝', '照烧鸡排饭', 'images/mealpic/meal_jipai.jpg', null, '10', '10'), ('3', '青椒里脊丝+香米+耗油生菜', '青椒里脊丝盖饭', 'images/mealpic/meal_qijiaorousi.jpg', null, '9', '9'), ('4', '甜椒土豆丝+香米', '甜椒土豆丝盖饭', 'images/mealpic/meal_tudousi.jpg', null, '8', '8'), ('5', '土豆丝卷饼', '土豆丝卷饼', 'images/mealpic/meal_tudousijuanbing.jpg', null, '5', '5'), ('6', '清凉解暑，生津止渴', '酸梅汁', 'images/mealpic/meal_suanmeizhi.jpg', null, '6', '6'), ('7', '补充维C，美容养颜', '甜橙汁', 'images/mealpic/meal_tianchengzhi.jpg', null, '7', '7'), ('8', '酸梅汁/甜橙汁', '酸梅汁/甜橙汁', 'images/mealpic/meal_tianchengzhi.jpg', null, '15', '14');
+INSERT INTO `back_meal` VALUES ('1', '烧牛腩+香米+蚝油生菜', '烧牛腩盖饭', 'images/mealpic/meal_tudouniunan.jpg', null, '14', '13', '0'), ('2', '照烧鸡排+香米+土豆丝', '照烧鸡排饭', 'images/mealpic/meal_jipai.jpg', null, '10', '10', '0'), ('3', '青椒里脊丝+香米+耗油生菜', '青椒里脊丝盖饭', 'images/mealpic/meal_qijiaorousi.jpg', null, '9', '9', '0'), ('4', '甜椒土豆丝+香米', '甜椒土豆丝盖饭', 'images/mealpic/meal_tudousi.jpg', null, '8', '8', '0'), ('5', '土豆丝卷饼', '土豆丝卷饼', 'images/mealpic/meal_tudousijuanbing.jpg', null, '5', '5', '0'), ('6', '清凉解暑，生津止渴', '酸梅汁', 'images/mealpic/meal_suanmeizhi.jpg', null, '6', '6', '0'), ('7', '补充维C，美容养颜', '甜橙汁', 'images/mealpic/meal_tianchengzhi.jpg', null, '7', '7', '0'), ('8', '酸梅汁/甜橙汁', '酸梅汁/甜橙汁', 'images/mealpic/meal_tianchengzhi.jpg', null, '15', '14', '1');
 COMMIT;
 
 -- ----------------------------
@@ -254,10 +257,12 @@ CREATE TABLE `back_order` (
   `receiver_other` varchar(255) DEFAULT NULL,
   `receiver_tel` varchar(255) DEFAULT NULL,
   `user_id` bigint(20) DEFAULT NULL,
+  `isdelete` int(11) NOT NULL DEFAULT '0',
+  `des` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKA2C865F647140EFE` (`user_id`),
   CONSTRAINT `FKA2C865F647140EFE` FOREIGN KEY (`user_id`) REFERENCES `meta_customer` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Table structure for `back_order_back_orderdetail`
@@ -291,7 +296,7 @@ CREATE TABLE `back_orderdetail` (
   KEY `FKC7CFADC787BF6BFE` (`meal_id`),
   CONSTRAINT `FKC7CFADC787BF6BFE` FOREIGN KEY (`meal_id`) REFERENCES `back_meal` (`id`),
   CONSTRAINT `FKC7CFADC785CCCE56` FOREIGN KEY (`combo_id`) REFERENCES `back_combo` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Table structure for `back_tag`
@@ -366,7 +371,7 @@ CREATE TABLE `meta_customer` (
   PRIMARY KEY (`id`),
   KEY `FKC7DB90D87544CA7E` (`userDetail_id`),
   CONSTRAINT `FKC7DB90D87544CA7E` FOREIGN KEY (`userDetail_id`) REFERENCES `meta_customerdetail` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Table structure for `meta_customer_back_customeraddress`
