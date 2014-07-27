@@ -486,10 +486,10 @@ public class Mod extends Controller{
 		
 		if(sms.resendSMSCode(tel, randomnum, "1")){
 			session.put("smscode", randomnum);
-			renderJSON("{su:true}");
+			renderJSON("{\"su\":true}");
 			
 		}else{
-			renderJSON("{su:false}");
+			renderJSON("{\"su\":false}");
 			
 		}
 		
