@@ -91,7 +91,14 @@ public class AdminOrders extends Controller {
         obj.addProperty("orderprice", order.orderPrice);
         obj.addProperty("state", order.orderstate);
         obj.addProperty("address", order.receiver_addr);
-        obj.addProperty("tel", order.receiver_tel);
+        String tel = "";
+        if (order.receiver_tel != null) {
+        	tel = order.receiver_tel;
+        }
+        if (order.bak_tel != null) {
+        	tel += "<br>" + order.bak_tel;
+        }
+        obj.addProperty("tel", tel);
         obj.addProperty("name", order.receiver_name);
         obj.addProperty("other", order.receiver_other);
 //        obj.addProperty("area", order.area);
