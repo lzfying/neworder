@@ -304,6 +304,7 @@ public class Mod extends Controller{
 				user.address.add(userAddress);
 				
 			}else{
+				userAddress.defvalue=address.defvalue;
 				user.address.remove(address);
 				user.address.add(userAddress);
 			}
