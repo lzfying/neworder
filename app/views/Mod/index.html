@@ -112,6 +112,15 @@ simpleCart({
 		 },
 	cartStyle: 'div'
 });
+
+%{
+	if(from=="clear"){
+}%
+simpleCart.empty();
+
+%{
+	}
+}%
 </script>
 
 
@@ -171,7 +180,7 @@ simpleCart({
 <div class="des">
 <p class="fl"><strong>${combo.name} </strong>&nbsp;&nbsp;${combo.des} </p>
 <span class="fl">&yen;<em>${combo.price.price}</em></span>
-<a class="fr" href="javascript:;"  id='combo${combo.id}'  onclick="showcart();simpleCart.add({name:'${combo.name}', price: ${combo.price.price},size:'tiny',thumb:'e.png'});">立即订购</a>
+<a class="fr" href="javascript:;"  id='combo${combo.id}'  onclick="showcart();simpleCart.add({name:'${combo.name}', price: ${combo.price.price},thumb:'${combo.url}'});">立即订购</a>
 </div>
 </li>
  #{/list}
@@ -198,7 +207,7 @@ simpleCart({
 #{list mainmeals, as:'meal'}
 <li>
 <a href="#"><img src="${meal.url}" id="img_${meal.id}" /></a>
-<p><a class="fr" href="javascript:;" id='${meal.id}'   onclick="showcart();simpleCart.add({name:'${meal.name}', price: ${meal.price.price},size:'tiny',thumb:'e.png'});">立即订购</a>
+<p><a class="fr" href="javascript:;" id='${meal.id}'   onclick="showcart();simpleCart.add({name:'${meal.name}', price: ${meal.price.price},size:'tiny',thumb:'${meal.url}'});">立即订购</a>
 <span><em>&yen;</em>${meal.price.price}</span><br />
 【${meal.name}】
 </p>
@@ -216,12 +225,12 @@ simpleCart({
 
 
 <div class="wrap tanglei others">
-<h2>汤类</h2>
+<h2>饮料</h2>
 <ul>
 #{list tangmeals, as:'meal'}
 <li>
 <a href="#"><img src="${meal.url}" id="img_${meal.id}" /></a>
-<p><a class="fr" href="javascript:;" id='${meal.id}'   onclick="showcart();simpleCart.add({name:'${meal.name}', price: ${meal.price.price},size:'tiny',thumb:'e.png'});">立即订购</a>
+<p><a class="fr" href="javascript:;" id='${meal.id}'   onclick="showcart();simpleCart.add({name:'${meal.name}', price: ${meal.price.price},thumb:'${meal.url}'});">立即订购</a>
 <span><em>&yen;</em>${meal.price.price}</span><br />
 【${meal.name}】
 </p>

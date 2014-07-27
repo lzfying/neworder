@@ -31,7 +31,7 @@ public class Meal extends Model{
     
     public String des;
    
-    
+    public int ishide=0;
     
     @OneToOne(cascade=CascadeType.ALL)
     public Price price;

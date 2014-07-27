@@ -45,6 +45,7 @@ public class Mod extends Controller{
 	        }
 	        
 	        String userid = session.get("userid");
+	       
 	        if(userid != null) {
 	            return User.findById(Long.valueOf(userid));
 	        }
@@ -66,15 +67,15 @@ public class Mod extends Controller{
 	        }
 	 
 	    
-    	List<Meal> mainmeals = Meal.find("type.mealType= ?", 1).fetch(4);
+    	List<Meal> mainmeals = Meal.find("type.mealType= ? and ishide=?", 1,0).fetch(4);
     	
     	
-    	List<Meal> tangmeals = Meal.find("type.mealType= ?", 3).fetch(4);
+    	List<Meal> tangmeals = Meal.find("type.mealType= ? and ishide=?", 3,0).fetch(4);
     	
     	
     	List<Combo> combos = Combo.all().fetch(0, 4);
     	
-        render(mainmeals,tangmeals,combos);
+        render(mainmeals,tangmeals,combos,from);
 		
        // render();
     }
@@ -112,7 +113,7 @@ public class Mod extends Controller{
 	
 	public static void logout() {
         session.clear();
-        index("");
+        index("clear");
     }
 	
 	public static void cart(){
@@ -149,7 +150,7 @@ public class Mod extends Controller{
 	
 	public static void order(String name) {
 		
-		String addr="",tel="",bak_tel="";
+		String addr="",tel="",bak_tel="",receiver_name="",receiver_other="";
 		
 		int itemCount =0;
 		
@@ -161,6 +162,8 @@ public class Mod extends Controller{
 	        addr=params.get("value_addr");
 	        tel=params.get("value_tel");
 	        bak_tel=params.get("value_tel_bk");
+	        receiver_name=params.get("value_receiver_name");
+	        receiver_other=params.get("value_receiver_other");
 	        
 	        User user = connected();
 			 if(user == null) {
@@ -185,11 +188,14 @@ public class Mod extends Controller{
 		
 		Double total =0.0;
 		Order order = new Order(connected(),s,addr,tel,bak_tel,"offline");
+		order.receiver_name=receiver_name;
+		order.receiver_other=receiver_other;
 		for(int i=1;i<itemCount+1;i++){
 			OrderDetail orderDetail = new OrderDetail();
 			orderDetail.totalNum= Integer.parseInt(params.get("item_quantity_"+i));
 			orderDetail.mealName=params.get("item_name_"+i);
 			orderDetail.price=Double.valueOf(params.get("item_price_"+i));
+			orderDetail.url=params.get("item_url_"+i);
 			
 			total=total+mul(Double.valueOf(params.get("item_price_"+i)),orderDetail.totalNum)      ;
 			orderDetail.save();
@@ -228,7 +234,7 @@ public class Mod extends Controller{
 		page = page != null ? page : 1;
 		
 		List<Order> orders=null ;
-		if(user != null){System.out.println("xxx  "+user.id);
+		if(user != null){
 			renderArgs.put("user", user);
 			if(orderstate.equals("3")){
 				
@@ -237,7 +243,7 @@ public class Mod extends Controller{
 				renderTemplate("Mod/hisprofile.html", orders,page);
 			}else{
 				
-				orders = Order.find("user=? and orderstate!=?", user,"3").fetch(page, 5);
+				orders = Order.find("user=? and orderstate!=? order by date desc", user,"3").fetch(page, 5);
 				render(orders,page);
 			}
 			
@@ -435,7 +441,7 @@ public class Mod extends Controller{
 	
 	
 	public static void confirm(String tel){
-		System.out.println("dddff"+tel);
+		
 		String randomnum= getFixLenthString(6);
 		System.out.println("   GGGGG   "+randomnum);
 		

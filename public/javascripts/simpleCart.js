@@ -1156,7 +1156,7 @@
 						data['item_name_' + counter]		= item.get('name');
 						data['item_quantity_' + counter]	= item.quantity();
 						data['item_price_' + counter]		= item.price();
-
+						data['item_url_' + counter]		= item.get('thumb');
 						// create array of extra options
 						simpleCart.each(item.options(), function (val,x,attr) {
 							// check to see if we need to exclude this from checkout
@@ -1181,7 +1181,8 @@
 					data['value_time']=document.getElementById("value_time").value;
 					data['value_time']=document.getElementById("value_time").value;
 					data['value_addr_id']=document.getElementById("value_addr_id").value;
-					
+					data['value_receiver_name']=document.getElementById("input_receiver_name").value;
+					data['value_receiver_other']=document.getElementById("input_receiver_other").value;
 					
 					/*********************/
 

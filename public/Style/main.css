@@ -19,7 +19,7 @@ a{text-decoration:none; outline:none}
 .nav ul li a:hover{color:#f28e20;}
 .login_reg{width:100px; padding:0 7px; height:51px; background:url(../images/login_reg.png) center no-repeat; line-height:51px; margin-right:50px;}
 .login_reg daobutton{font-size:12px; color:#fff; display:block; width:50%; height:51px; text-align:center; float:right; background:none; border:none; outline:none; cursor:pointer}
-.banner{width:100%;height:604px; background:url(../images/banner.jpg) center top no-repeat}
+.banner{width:100%;height:304px; background:url(../images/banner.jpg) center top no-repeat}
 .shoppingBox{position:fixed;_position:absolute;z-index:1000; width:220px; padding-top:46px; top:30%; right:0; background:url(../images/shoppingBoxIcon.png) right top no-repeat}
 #shpBox{background:url(../images/shoppingBoxBg.png); overflow:hidden}
 #shpBox ul{width:180px; padding:10px 20px; overflow:hidden}

@@ -25,6 +25,8 @@ public class OrderDetail extends Model {
 	
 	public String des;
 	
+	public String url;
+	
 	public String mealName;
 
 }

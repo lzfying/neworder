@@ -131,6 +131,13 @@ $("#mask,#maskTop").fadeOut(function() {
 });
 
 	}	
+			
+			function toreg(){
+				
+				
+				parent.mainreg();
+			}
+
 		
 </script>
 </head>
@@ -139,22 +146,14 @@ $("#mask,#maskTop").fadeOut(function() {
 <div class="loginBoxBg">
 <div class="login">
 <div class="left">
-<h2><em><a href="#">没有账号？马上注册！</a></em>账号登录</h2>
+<h2><em><a href="#" onclick="toreg();">没有账号？马上注册！</a></em>账号登录</h2>
 <form class="border_radius" id="focus"  method="post" action="/login_1">
     	<label><span>用户名/邮箱</span><input type="text" class="input_txt" name="adminname"   id="adminname" maxlength="26" /></label>
         <label><span>密码</span><input type="password" class="input_txt input_pass" name="adminpass" id="adminpass" maxlength="30"/></label>   
-        <label><input type="submit" value="登录" class="input_submit"  /><em><a href="#">忘记密码？</a></em></label>
+        <label><input type="submit" value="登录" class="input_submit"  /></label>
 </form>
 </div>
-<div class="right">
-<h2>合作账号登录</h2>
-<ul>
-<li class="qq"><a href="#">腾讯微博</a></li>
-<li class="qq2"><a href="#">腾讯QQ</a></li>
-<li class="weixin"><a href="#">微信账号</a></li>
-<li class="xinlang"><a href="#">新浪微博</a></li>
-</ul>
-</div>
+
 </div>
 </div>
 <div class="loginBox-bottom"></div>
