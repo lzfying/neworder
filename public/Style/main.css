@@ -69,7 +69,7 @@ a{text-decoration:none; outline:none}
 .others ul li p a:hover{background:#dc5a10}
 
 
-.mainfooter{height:70px; padding:15px 0 10px; width:100%;background-color:#4a1400;}
+.mainfooter{height:70px; padding:15px 0 10px; width:100%;background-color:#4a1400;margin-top: 30px;}
 .mainfooter p{text-align:center; color:#ddd; line-height:30px}
 .mainfooter p span{font-family:arial; color:#ddd}
 .mainfooter p a{color:#ddd; margin:0 8px}
@@ -269,11 +269,11 @@ a{text-decoration:none; outline:none}
 .insideRight .itemContent{width:320px; padding:0 15px;overflow:hidden}
 .insideRight .itemContent-price{width:440px; padding:0 14px; overflow:hidden; border-right:1px dashed #ddd}
 .insideRight .itemContent-price ul li{margin-bottom:10px; padding-bottom:15px; border-bottom:1px dashed #ddd; overflow:hidden}
-.insideRight .itemContent-price ul li p.item-content{line-height:24px; text-indent:0; width:200px; overflow:hidden}
+.insideRight .itemContent-price ul li p.item-content{line-height:100px; text-indent:0; width:100px; overflow:hidden}
 .insideRight .itemContent-price ul li p.item-content strong a{color:#f27800}
-.insideRight .itemContent-price ul li img{float:left; margin-right:20px; height:85px; width:85px}
+.insideRight .itemContent-price ul li img{float:left; margin-right:20px; height:108px; width:196px}
 .insideRight .unitPrice{width:100px; padding:0 10px;overflow:hidden}
-.insideRight .unitPrice p{font-family:arial; text-align:center; line-height:85px; text-indent:0}
+.insideRight .unitPrice p{font-family:arial; text-align:center;  text-indent:0}
 .insideRight .total{width:100px; padding:0 10px; overflow:hidden; color:#5a5a5a; text-align:center}
 .insideRight .total p{text-indent:0; font-family:arial; color:#f27800; font-size:18px; line-height:85px; }
 .insideRight .state{width:160px; padding:0 14px;overflow:hidden; color:#5a5a5a; text-align:center}
@@ -281,7 +281,7 @@ a{text-decoration:none; outline:none}
 .insideRight .state input{display:block; width:90px; height:30px; color:#fff; background:#f28e1f; text-align:center; margin:5px auto; border:0; cursor:pointer;}
 .insideRight .state input:hover{background:#dc5a0f}
 .insideRight .state p.date{background:url(../images/clock.png) left center no-repeat; color:#999;  font-family:arial; text-align:left; padding-left:24px;}
-.insideRight p{color:#5a5a5a; line-height:28px; text-indent:20px;}
+.insideRight p{color:#5a5a5a; line-height:100px; text-indent:20px;}
 .insideRight p strong{font-size:16px; color:#f27800; font-weight:normal;  display:block;}
 .insideRight .page{clear:both; overflow:hidden; margin-top:20px}
 .insideRight .page a{display:block; padding:1px 10px; color:#5a5a5a; border:1px #ccc solid; float:right; margin-left:20px}

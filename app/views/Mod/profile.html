@@ -30,7 +30,7 @@
                     <p class="item-content fl">
                      ${detail.mealName}  </p>
                     <div class="unitPrice fr">
-                    <p> ${detail.price}x${detail.totalNum} </p>
+                    <p> ${detail.price} x ${detail.totalNum} </p>
                     </div>
                     <div class="clear"></div>
                     </li>
@@ -49,26 +49,24 @@
                  %{
     				if(order.orderstate=="0"){
 				}%
-					<input type="submit" class="pay-now" value="已下单">
+					<input type="submit" class="pay-now" value="已下单" style="margin-top: 25px;">
 				%{
    					} else if (order.orderstate=="1"){
 				}%
- 					<input type="submit" class="pay-now" value="配送中">
+ 					<input type="submit" class="pay-now" value="配送中" style="margin-top: 25px;">
 				%{
   			 		}else if (order.orderstate=="2"){
 				}%
-                    <input type="submit" class="pay-now" value="配送完毕">
+                    <input type="submit" class="pay-now" value="配送完毕" style="margin-top: 25px;">
                  %{
   			 		}else if (order.orderstate=="3"){
 				}%
-                 	<input type="submit" class="pay-now" value="完成订单">
+                 	<input type="submit" class="pay-now" value="完成订单" style="margin-top: 25px;">
                      %{
   			 		}
 				}%	
-                 	
-                 	
-                    <p class="item-content fl">下单时间 </p>
-                    <p class="date"> ${order.date}</p>
+                 	<br>
+                    <div>下单时间: ${order.date}</div>
                 </div>
        </div>
        
