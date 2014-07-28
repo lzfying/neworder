@@ -571,7 +571,7 @@ font-family: "Trebuchet MS",sans-serif;
 }
 
 .caddr-edit-field > input.addr {
-    width: 170px;
+    width: 400px;
 }
 input[type="text"], input[type="password"], input[type="email"], input[type="tel"] {
     border: 1px solid #bbb;
@@ -623,7 +623,7 @@ button, input, select, textarea {
 
 .caddr-edit-field > input.tel, .caddr-edit-field > input.bk {
     margin-left: 2px;
-    width: 124px;
+    width: 200px;
 }
 input[type="text"], input[type="password"], input[type="email"], input[type="tel"] {
     border: 1px solid #bbb;
