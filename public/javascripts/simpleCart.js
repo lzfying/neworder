@@ -350,6 +350,8 @@
 					});
 					sc_items = newItems;
 					simpleCart.update();
+					$("#mypay").css('display','none'); 
+					$("#kongde").css('display','block'); 
 				},
 
 

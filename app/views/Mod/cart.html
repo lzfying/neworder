@@ -56,15 +56,12 @@ $(function(){
 		content: '电话号码不能为空',
 		showOn: 'none',
 		alignTo: 'target',
-	alignX: 'inner-left',
+		alignX: 'inner-left',
 	 
 	//alignY: 'center',
 		offsetX: 0,
 		offsetY: 5
 	});
-	
-	
-	
 	
 
 });
@@ -76,6 +73,7 @@ simpleCart.currency({
 	  symbol: "￥" ,
 	  name: "人民币"
 	});
+
 
 
 
@@ -126,6 +124,8 @@ function mycheckout(){
 	document.getElementById("value_tel_bk").value=document.getElementById("input_baktel").value;
 	document.getElementById("value_totalprice").value= document.getElementById("total_price_basket").innerHTML;
 
+	//alert(simpleCart.total());
+	
 	
 	if(document.getElementById("value_addr").value==""){
 		
@@ -322,9 +322,5 @@ function suborder(){
 
 </div>
 </div>
-
-
-
-
 </body>
 </html>

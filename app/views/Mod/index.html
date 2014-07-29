@@ -139,6 +139,42 @@ simpleCart({
 	cartStyle: 'div'
 });
 
+
+
+if(simpleCart.quantity()>0){
+	$("#mypay").css('display','none'); 
+	$("#kongde").css('display','block'); 
+	
+}
+
+simpleCart.bind( 'beforeRemove' , function( item ){
+	if(this.quantity()==1){
+		$("#mypay").css('display','none'); 
+		$("#kongde").css('display','block'); 
+	
+	}
+
+	});
+	
+simpleCart.bind( "afterAdd" , function( item ){
+	$("#kongde").css('display','none'); 
+	$("#mypay").css('display','block'); 
+	});
+
+
+simpleCart.bind( 'load' , function(){
+	
+	if(this.quantity()>0){
+		$("#mypay").css('display','block'); 
+		$("#kongde").css('display','none'); 
+	}else{
+		$("#mypay").css('display','none'); 
+		$("#kongde").css('display','block'); 
+		
+	}
+
+	});
+
 %{
 	if(from=="clear"){
 }%
@@ -185,8 +221,9 @@ items
 				<span class="simpleCart_total"></span>
 			</div>
 			<div id="popoverButtons" class="clearfix">
-				<a class="hudbtn primary right" href="/cart" style="margin-top: 20px">立即结账</a>
 				
+				<a class="hudbtn primary right" href="/cart" style="margin-top: 20px; " id="mypay">立即结账</a>
+				<a class="hudbtn primary right"  style="margin-top: 20px; display: none; " id="kongde">篮子是空的哦</a>
 			</div>
 			
 			
