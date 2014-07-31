@@ -3,7 +3,7 @@
 # ~~~~
 # Home page
 GET     /                                       Mod.index
-
+GET     /index                                 Mod.index
 GET     /index2                                Mod.index
 GET     /listMeal                              Application.listMeals
 GET     /orderForm                              Application.doOrder

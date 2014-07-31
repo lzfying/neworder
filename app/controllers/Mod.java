@@ -75,6 +75,10 @@ public class Mod extends Controller{
     	
     	List<Combo> combos = Combo.all().fetch(0, 4);
     	
+    	if (from != null && from.equals("qr")) {
+    		System.out.println("From QR Code");
+    	}
+    	
         render(mainmeals,tangmeals,combos,from);
 		
        // render();
